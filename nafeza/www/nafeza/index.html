@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title></title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Tajawal:wght@300;400;500;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="nafeza/main.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+
+</head>
+
+<body>
+  <!-- === Top Bar === -->
+  <div class="topbar">
+    <div class="container">
+      <div class="rownav">
+        <nav class="topbar-links">
+          <a href="#" title="مراكز الخدمات اللوجيستية"><i class="fa-solid fa-location-dot icon-blue"></i> مراكز الخدمات
+            اللوجيستية</a>|
+          <a href="#" title="خدمات الدعم الفني"> خدمات الدعم الفني</a>|
+          <a href="#" title="البيانات المفتوحة">الاتصال بنا </a>|
+          <span class="lang-select">
+            <i class="fa-solid fa-globe"></i>
+            <span class="lang-label" onclick="toggleLang()">اللغة</span>
+            <select id="lang-dropdown" style="display:none;">
+              <option value="ar">العربية</option>
+              <option value="en">English</option>
+            </select>
+          </span>
+        </nav>
+        <form class="search" role="search">
+          <input type="search" placeholder="ابحث هنا..." aria-label="ابحث هنا" />
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <!-- <i class="fa-solid fa-magnifying-glass"> -->
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="help-box">
+    <!-- يمين -->
+    <label for="question">كيف يمكننا مساعدتك؟</label>
+    <div class="help-right">
+      <input type="text" id="question" placeholder="اطرح سؤالك وستجد الجواب ...">
+      <button>عرض</button>
+    </div>
+
+    <!-- شمال -->
+    <div class="help-left">
+      <i class="fa-regular fa-circle-user"></i>
+      <button class="login-btn">تسجيل الدخول <i class="fa fa-caret-down"></i></button>
+
+      <button class="register-btn">حساب جديد</button>
+    </div>
+
+  </div>
+  <script>
+    function login() {
+  // هنا ممكن تضيف تحقق من اسم المستخدم والباسورد (لو backend)
+  
+  // المحتوى الجديد
+  const newContent = `
+    <div class="row">
+      <!-- الجزء الأول -->
+      <div class="col">
+        <button class="close-btn" onclick="closeLogin()">X</button>
+        <img src="nafeza/img/user-avatar.png" alt="Logo" class="logo">
+        <h1>ميلاد جرجس زخارى المنشاوى</h1>
+        <h3>الشركه الهندسيه للتوريدات والاستشارات</h3>
+        <h3>acc@escpumps.com</h3>
+        <h4>اخر تسجيل دخول: أغسطس ٢٣، ٢٠٢٥</h4>
+        <div class="smart-login">
+          <button class="btn">حساب جديد</button>
+          <button class="btnout">تسجيل خروج</button>
+        </div>
+      </div>
+
+      <!-- الجزء الثاني -->
+      <div class="col">
+        <h1>ابدأ من هنا خدمات</h1>
+        <a href="#"><p><i class="fa fa-paperclip"></i> طلبات تفعيل الخدمات الإلكترونية</p></a>
+        <a href="#"><p><i class="fa fa-paperclip"></i> الخدمات الإلكترونية</p></a>
+        <a href="#"><p><i class="fa fa-paperclip"></i> طلب إضافة كيان/مستخلص تابع (جديد)</p></a>
+        <a href="#"><p><i class="fa fa-paperclip"></i> طلب تغير المفوض على الحساب الرئيسي</p></a>
+        <a href="#"><p><i class="fa fa-paperclip"></i> طلب إلحاق موظف/مستخلص (محذوف من كيان آخر)</p></a>
+        <a href="#"><p><i class="fa fa-paperclip"></i> طلب حذف موظف/مستخلص</p></a>
+        <a href="#"><p><i class="fa fa-paperclip"></i> طلب اضافه موظف تابع (جديد)</p></a>
+        <a href="nafeza/acilist.html"><p><i class="fa fa-paperclip"></i> طلبات شحنات ال (ACI)</p></a>
+        <a href="#"><p><i class="fa fa-paperclip"></i> طلب الحصول على رقم تعريفي (ACID)</p></a>
+        <a href="#"><p><i class="fa fa-paperclip"></i> الاقرارات الجمركية</p></a>
+        <a href="#"><p><i class="fa fa-paperclip"></i> خدمة تأكيد مواعيد الكشف و المعاينة</p></a>
+        <br>
+        <a href="#"><p><i class="fa fa-bell"></i> صندوق الإشعارات</p></a>
+      </div>
+
+      <!-- الجزء الثالث -->
+      <div class="col">
+        <h2>إدارة الحسابات</h2>
+        <a href="#"><p><i class="fa fa-paperclip"></i> الحسابات الغير مفعله</p></a>
+      </div>
+    </div>
+  `;
+
+
+  // استبدال المحتوى
+  document.getElementById("loginBox").innerHTML = newContent;
+
+  // استبدال help-left
+  const helpLeft = document.querySelector(".help-left");
+  helpLeft.innerHTML = `
+    <i class="fa-regular fa-circle-user"></i>
+    <button class="login-btn" onclick="toggleLoginBox()">حسابي <i class="fa fa-caret-down"></i></button>
+  `;
+}
+
+function toggleLoginBox() {
+  const loginBox = document.getElementById("loginBox");
+  if (loginBox.style.display === "none" || loginBox.style.display === "") {
+    loginBox.style.display = "block";
+  } else {
+    loginBox.style.display = "none";
+  }
+}
+  </script>
+  <div class="row-container" id="loginBox">
+    <div class="row">
+      <!-- الجزء الأول -->
+      <div class="col">
+        <button class="close-btn" onclick="closeLogin()">X</button>
+        <img src="nafeza/img/nafeza-id.png" alt="Logo" class="logo">
+        <p>
+          مرحباً بك في نظام نافذة للتسجيل الموحد
+          أنجز معاملاتك الإلكترونية بكل سهولة وذلك بالدخول لمرة واحدة فقط من خلال نظام التسجيل الموحد، واستفد من العديد
+          من الخدمات الإلكترونية دون الحاجة إلى الدخول مرة أخرى.
+          ليس عليك سوى إدخال اسم المستخدم أو رقم الهوية وكلمة المرور للوصول إلى الخدمات الإلكترونية الآمنة عبر المنصات
+          المختلفة، مثل: الكومبيوتر و الكومبيوتر اللوحي و الهواتف الذكية.
+          لإنشاء حساب إلكتروني خاص بك، الرجاء الضغط علي حساب جديد لإخال البيانات المطلوبة.في حالة العملاء التجاريين ، قم
+          بترقية حسابك من أجل تفعيل الخدمات الإلكترونية عبر البوابة الإلكترونية ثم التوجة الي أقرب مركز خدمات لوجيستية
+          لإستكمال الإجراء، وذلك لمطابقة البيانات وإتمام عملية التسجيل
+        </p>
+      </div>
+
+      <!-- الجزء الثاني -->
+      <div class="col">
+        <h6>مستخدم جديد</h6>
+        <p>إنشيء حساب جديد وابدأ في استخدام البوابة الإلكترونية لنافذة وتمتع بالخدمات المتاحة</p>
+        <button class="btn">حساب جديد</button>
+        <a href="https://www.nafeza.gov.eg/web/media/files/create-electronic-account.pdf"
+          style="margin-top:15px; font-size:13px; color:#ddd;">
+          <p>تطبق شروط وأحكام الاستخدام</p>
+        </a>
+      </div>
+
+      <!-- الجزء الثالث -->
+      <div class="col">
+        <h2>تسجيل الدخول</h2>
+        <!-- اسم المستخدم -->
+        <div class="form-group">
+          <input type="text" placeholder="|  اسم المستخدم">
+          <i class="fa fa-user"></i>
+        </div>
+
+        <!-- كلمة المرور -->
+        <div class="form-group">
+          <input type="password" placeholder="|  كلمة المرور">
+          <i class="fa fa-lock"></i>
+        </div>
+        <div class="checkbox">
+          <label><input type="checkbox"> تذكر كلمة المرور</label>
+        </div>
+        <button class="btn" onclick="login()">تسجيل الدخول</button>
+        <a href="#" class="forgot">نسيت كلمة مرورك؟</a>
+
+        <div class="smart-login">
+          <img src="nafeza/img/token-login-btn.png" alt="e-token">
+          <button class="btnusb"> <span>الدخول الذكي</span>
+            <span>Nafeza e-token</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <button class="close-btn" id="closeLogin"><i class="fa-solid fa-xmark"></i></button>
+
+  <div class="logoid" ><img src="nafeza/img/nafeza-id.png" alt=""></div> -->
+  <!-- === Header / Nav === -->
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="#" aria-label="الرئيسية">
+          <div class="logo" aria-hidden="true"><img src="nafeza/img/nafeza-logo-ar.svg" alt=""></div>
+        </a>
+        <nav class="navlinks" aria-label="روابط رئيسية">
+          <a href="#about">عن نافذة</a>
+          <a href="#services">الخدمات و المنتجات</a>
+          <a href="#aci">نظام التسجيل المُسبق للشحنات</a>
+          <a href="#media">المركز الإعلامي</a>
+          <a href="#support">الدعم والمساعدة</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <button class="open-btn" onclick="toggleSidebar()"><img src="https://www.nafeza.gov.eg/img/currencies.png"
+      alt=""></button>
+  <!-- القائمة -->
+  <div id="mySidebar" class="sidebar">
+    <button class="close-btn" onclick="toggleSidebar()">×</button>
+    <div class="titlecurency">
+      <h2>أسعار صرف العملات</h2>
+    </div>
+    <div class="currency">
+      <div class="currency-header">
+        <img src="https://flagcdn.com/w20/us.png" alt="علم أمريكا">
+
+        <strong>دولار أمريكي (USD)</strong>
+      </div>
+      <div class="all_curency">
+        <div class="exchange-rate">
+          <span class="label">سعر الصرف:</span>
+          <span class="value">30.9000</span>
+        </div>
+        <div class="change-amount">
+          <span class="label">مقدار التغير:</span>
+          <span class="value">0.000</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="currency">
+      <div class="currency-header">
+        <img src="https://flagcdn.com/w20/eu.png" alt="علم أوروبا">
+        <strong>يورو (EUR)</strong>
+      </div>
+
+      <div class="all_curency">
+        <div class="exchange-rate">
+          <span class="label">سعر الصرف:</span>
+          <span class="value">30.9000</span>
+        </div>
+        <div class="change-amount">
+          <span class="label">مقدار التغير:</span>
+          <span class="value">0.000</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="currency">
+      <div class="currency-header">
+        <img src="https://flagcdn.com/w20/gb.png" alt="علم المملكة المتحدة">
+        <strong>جنيه إسترليني (GBP)</strong>
+      </div>
+      <div class="all_curency">
+        <div class="exchange-rate">
+          <span class="label">سعر الصرف:</span>
+          <span class="value">30.9000</span>
+        </div>
+        <div class="change-amount">
+          <span class="label">مقدار التغير:</span>
+          <span class="value">0.000</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="currency">
+      <div class="currency-header">
+        <img src="https://flagcdn.com/w20/cny.png" alt="علم الصين">
+        <strong>يوان صيني (CNY)</strong>
+      </div>
+      <div class="all_curency">
+        <div class="exchange-rate">
+          <span class="label">سعر الصرف:</span>
+          <span class="value">30.9000</span>
+        </div>
+        <div class="change-amount">
+          <span class="label">مقدار التغير:</span>
+          <span class="value">0.000</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="currency" style="text-align:center;">
+      <a href="#">المزيد من العملات</a>
+    </div>
+
+    <div class="sidebar-footer">
+      آخر تحديث في: أغسطس ٢٠، ٢٠٢٥ <br>
+      المصدر: مصلحة الجمارك المصرية
+    </div>
+  </div>
+
+
+
+  <!-- Slider main container -->
+  <div class="swiper">
+    <div class="swiper-wrapper">
+
+      <!-- Slide 1 -->
+      <div class="swiper-slide" style="background-image:url('nafeza/img/master-slider-20-dt.webp')">
+        <div class="small-circle"></div>
+        <div class="big-circle">
+          <h2>الإفراج الجمركي اللاورقي</h2>
+          <p>
+            باستخدام تقنية رمز الاستجابة السريعة QR Code
+            الإفراج الجمركي اللاورقي هو آلية جديدة تهدف إلى تبسيط وتسريع إجراءات الإفراج عن البضائع في الموانئ من خلال
+            الاعتماد على التكنولوجيا والبيانات الرقمية بدلاً من المستندات الورقي
+          </p>
+          <button>اعرف المزيد</button>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="swiper-slide" style="background-image:url('nafeza/img/slide2.jpg')">
+        <div class="small-circle"></div>
+        <div class="big-circle">
+          <h2>خدمة الإشعارات عبر تطبيق نافذة</h2>
+          <p>
+            فَعَّل خدمة استلام الإشعارات على تطبيق نافذة وابقَ على اطلاع دائم بكل تعاملاتك الجمركية.
+          </p>
+          <button>جرب الآن</button>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="swiper-slide" style="background-image:url('nafeza/img/slide3.jpg')">
+        <div class="small-circle"></div>
+        <div class="big-circle">
+          <h2>إستيراد سيارات المصريين بالخارج</h2>
+          <p>
+            مُتاح الآن طلب الحصول على رقم ACID
+            لإستيراد سيارات المصريين بالخارج من خلال منصة نافذة.
+          </p>
+          <button>تقديم الطلب</button>
+        </div>
+      </div>
+
+      <!-- كرر لباقي الـ 9 صور -->
+    </div>
+
+    <!-- أزرار التحكم -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+  </div>
+
+  <!-- === Hero === -->
+  <section class="hero">
+    <div class="container hero-wrap">
+      <div>
+        <span class="badge"><i class="fa-solid fa-bolt"></i> منصة التسجيل الموحّد</span>
+        <h2>أنجز معاملاتك الإلكترونية بكل سهولة من مكان واحد</h2>
+        <p>دخول واحد، خدمات متعددة، متوفرة عبر الويب والجوال. تتبّع شحناتك، أدر مستنداتك، واستفد من خدمات لوجستية
+          متكاملة.</p>
+        <div class="hero-cta">
+          <a class="btn primary" href="#login"><i class="fa-solid fa-right-to-bracket"></i> ابدأ الآن</a>
+          <a class="btn" href="#learn"><i class="fa-solid fa-circle-info"></i> تعرّف على النظام</a>
+        </div>
+        <div class="hero-card" style="margin-top:16px">
+          <strong>تطبيق الجوال</strong>
+          <p style="margin:6px 0 0; color:var(--muted)">حمّل التطبيق لتتابع جميع إجراءاتك في أي وقت</p>
+        </div>
+      </div>
+      <div>
+        <div class="hero-card">
+          <h3 style="margin:0 0 8px">كيف يمكننا مساعدتك؟</h3>
+          <p style="margin:0 0 14px; color:var(--muted)">اطرح سؤالك وستجد الجواب…</p>
+          <form class="inp" onsubmit="event.preventDefault()">
+            <label for="q" class="visually-hidden">سؤال</label>
+            <input id="q" type="text" placeholder="مثال: ما هي خطوات التسجيل المسبق؟" />
+            <div class="form-actions" style="margin-top:12px">
+              <button class="btn primary" type="submit">ابحث عن إجابة</button>
+              <a href="#faq" style="color:#cfe1ff">الأسئلة الشائعة</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === Services shortcuts === -->
+  <section id="services" class="container services-bar">
+    <div class="services">
+      <a class="service-link" href="#decl-inquiry" title="الإستعلام عن الإقرارات">
+        <i class="fa-solid fa-file-circle-check"></i>
+        <span>الإستعلام عن الإقرارات</span>
+      </a>
+      <a class="service-link" href="#tariff" title="الإستعلام عن التعريفة">
+        <i class="fa-solid fa-scale-balanced"></i>
+        <span>الإستعلام عن التعريفة</span>
+      </a>
+      <a class="service-link" href="#publications" title="المنشورات الجمركية">
+        <i class="fa-solid fa-book"></i>
+        <span>المنشورات الجمركية</span>
+      </a>
+      <a class="service-link" href="#centers" title="مراكز الخدمات اللوجستية">
+        <i class="fa-solid fa-warehouse"></i>
+        <span>مراكز الخدمات اللوجستية</span>
+      </a>
+      <a class="service-link" href="#open-data" title="البيانات المفتوحة">
+        <i class="fa-solid fa-database"></i>
+        <span>البيانات المفتوحة</span>
+      </a>
+      <a class="service-link" href="#support" title="الدعم والمساعدة">
+        <i class="fa-solid fa-life-ring"></i>
+        <span>الدعم والمساعدة</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- === Quick Help Cards === -->
+  <section class="help">
+    <div class="container">
+      <div class="grid">
+        <article class="card">
+          <div class="chip"><i class="fa-regular fa-circle-question"></i> شائع الآن</div>
+          <h3>ما هو ACID؟</h3>
+          <p>رقم تعريفي للشحنة ضمن نظام التسجيل المُسبق (ACI). يجب إدراجه على كافة مستندات الشحن.</p>
+        </article>
+        <article class="card">
+          <div class="chip"><i class="fa-solid fa-mobile-screen-button"></i> تطبيق الجوال</div>
+          <h3>إدارة الشحنات من الهاتف</h3>
+          <p>تتبّع الإجراءات وتلقّى التنبيهات في الوقت الفعلي عبر التطبيق.</p>
+        </article>
+        <article class="card">
+          <div class="chip"><i class="fa-solid fa-user-shield"></i> الدعم</div>
+          <h3>خدمات الدعم الفني</h3>
+          <p>فريقنا جاهز للرد على استفساراتك وحل المشكلات على مدار الساعة.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- === Auth Section === -->
+  <section id="login" class="auth">
+    <div class="container auth-grid">
+      <div class="card">
+        <h3>تسجيل الدخول</h3>
+        <div class="inp"><label>اسم المستخدم</label><input type="text" placeholder="example@domain.com"></div>
+        <div class="inp"><label>كلمة المرور</label><input type="password" placeholder="••••••••"></div>
+        <div class="form-actions" style="margin-top:12px">
+          <button class="btn primary" type="button">دخول</button>
+          <a href="#" style="color:#cfe1ff">هل نسيت كلمة المرور؟</a>
+        </div>
+      </div>
+      <div id="register" class="card">
+        <h3>حساب جديد</h3>
+        <p style="color:var(--muted); margin:0 0 10px">اختر نوع الحساب المناسب لك</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px">
+          <a class="btn" href="#">حساب فردي</a>
+          <a class="btn" href="#">حساب تجاري</a>
+        </div>
+        <p style="color:#9fb2e9; margin:12px 0 0; font-size:14px">بالتسجيل فأنت توافق على <a href="#"
+            style="text-decoration:underline">الشروط والأحكام</a> و <a href="#" style="text-decoration:underline">سياسة
+            الخصوصية</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- === News/Updates === -->
+  <section id="updates" class="updates">
+    <div class="container">
+      <h3>آخر المستجدات</h3>
+      <div class="news-grid">
+        <article class="card news">
+          <div class="chip"><i class="fa-regular fa-clock"></i> إشعار</div>
+          <h4 style="margin:0">تحديثات على نظام التعريفة</h4>
+          <p class="muted">تم إطلاق تحسينات على صفحة الإستعلام عن التعريفة.</p>
+          <a class="btn" href="#">معرفة المزيد</a>
+        </article>
+        <article class="card news">
+          <div class="chip"><i class="fa-solid fa-shield-halved"></i> أمان</div>
+          <h4 style="margin:0">تعزيز المصادقة الثنائية</h4>
+          <p class="muted">تفعيل OTP عبر البريد أو الهاتف لجميع الحسابات الجديدة.</p>
+          <a class="btn" href="#">اطلع على التفاصيل</a>
+        </article>
+        <article class="card news">
+          <div class="chip"><i class="fa-solid fa-bullhorn"></i> إعلان</div>
+          <h4 style="margin:0">مراكز لوجستية جديدة</h4>
+          <p class="muted">افتتاح مركزين جديدين لخدمة مجتمع التجارة.</p>
+          <a class="btn" href="#">المواقع والساعات</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- === Footer === -->
+  <footer>
+    <div class="container foot">
+      <div>
+        <h4>عن المنصة</h4>
+        <p style="color:var(--muted)">منصة موحّدة لتبسيط الإجراءات الجمركية وتيسير حركة التجارة. هذا القالب لأغراض
+          الاختبار والعرض فقط.</p>
+        <form class="sub" onsubmit="event.preventDefault()">
+          <input type="email" placeholder="بريدك للإشتراك بالتنبيهات">
+          <button class="btn primary" type="submit">اشترك</button>
+        </form>
+      </div>
+      <div>
+        <h4>روابط</h4>
+        <ul>
+          <li><a href="#about">عن نافذة</a></li>
+          <li><a href="#services">الخدمات و المنتجات</a></li>
+          <li><a href="#aci">التسجيل المُسبق للشحنات</a></li>
+          <li><a href="#support">الدعم والمساعدة</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>مركز المساعدة</h4>
+        <ul>
+          <li><a href="#faq">الأسئلة الشائعة</a></li>
+          <li><a href="#guides">أدلة الاستخدام</a></li>
+          <li><a href="#contact">تواصل معنا</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>قانوني</h4>
+        <ul>
+          <li><a href="#terms">الشروط والأحكام</a></li>
+          <li><a href="#privacy">سياسة الخصوصية</a></li>
+          <li><a href="#open-data">البيانات المفتوحة</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container"
+      style="padding:12px 0; color:#9db0e5; font-size:14px; border-top:1px solid rgba(255,255,255,.06)">
+      © <span id="y">2025</span> — قالب واجهة RTL تجريبي. جميع الأسماء والعلامات المذكورة تخص أصحابها.
+    </div>
+  </footer>
+  <script>
+    const loginBtn = document.querySelector(".login-btn");
+    const loginBox = document.getElementById("loginBox");
+
+    loginBtn.addEventListener("click", () => {
+      loginBox.classList.add("show");
+    });
+
+    function closeLogin() {
+      loginBox.classList.remove("show");
+    }
+  </script>
+  <script>
+    function toggleSidebar() {
+      let sidebar = document.getElementById("mySidebar");
+      let openBtn = document.querySelector(".open-btn");
+
+      if (sidebar.classList.contains("active")) {
+        // لو مفتوحة -> اقفلها واظهر الزرار
+        sidebar.classList.remove("active");
+        openBtn.style.display = "block";
+      } else {
+        // لو مقفولة -> افتحها واخفِ الزرار
+        sidebar.classList.add("active");
+        openBtn.style.display = "none";
+      }
+    }
+  </script>
+  <script>
+    // تحديث السنة تلقائياً
+    document.getElementById('y').textContent = new Date().getFullYear();
+    const swiper = new Swiper('.swiper', {
+      loop: true,
+      autoplay: {
+        delay: 4000,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+</body>
+
+</html>

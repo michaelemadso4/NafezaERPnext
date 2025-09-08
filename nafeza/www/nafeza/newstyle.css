@@ -1,0 +1,268 @@
+/* ✅ إعدادات عامة */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Tajawal", sans-serif;
+}
+
+body {
+  background: #f8f9fa;
+  color: #333;
+  line-height: 1.6;
+}
+
+.navbar {
+    padding: 0;
+    display: none;
+}
+.web-footer {
+    padding: 3rem 0;
+    min-height: 140px;
+    background-color: var(--fg-color);
+    border-top: 1px solid #e2e2e2;
+    margin-top: auto;
+    display: none;
+}
+button:not(:disabled), [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled) {
+    cursor: pointer;
+    /* display: none; */
+}
+/* ✅ الشريط العلوي */
+.topbar {
+  background: #111;
+  color: #fff;
+  padding: 10px 20px;
+}
+
+.topbar-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topbar .brand-title {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.topbar .actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+/* ✅ أزرار عامة */
+.btn,
+.side-action,
+.open-sidebar-btn {
+          appearance: none;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    font-weight: 600;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(51, 51, 51);
+    border-image: initial;
+    background: linear-gradient(to right, rgb(255, 255, 255), rgb(211, 211, 211));
+    padding: 8px 12px;
+    border-radius: 10px;
+}
+
+.btn:hover,
+.side-action:hover,
+.open-sidebar-btn:hover {
+  background: #fff;
+}
+.open-sidebar-tasks-btn{
+    background: linear-gradient(to bottom, rgb(198, 212, 232), rgb(65, 107, 168));
+  color: #fff;
+      width: 172px;
+
+   cursor: pointer;
+    font-weight: 600;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(255, 255, 255);
+    border-image: initial;
+    appearance: none;
+     padding: 8px 12px;
+    border-radius: 10px;
+    margin-left: 1072px !important;
+
+}
+
+.btn-outline {
+  /* background: transparent; */
+  border: 1px solid #fff;
+}
+
+/* ✅ الهيدر الرمادي */
+.header-gray {
+  background: #ddd;
+  padding: 10px 20px;
+  border-bottom: 1px solid #bbb;
+}
+
+.h-row {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+/* ✅ القائمة الجانبية */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 300px;
+  height: 100%;
+  background: #fff;
+  box-shadow: -2px 0 8px rgba(0,0,0,0.2);
+  padding: 15px;
+  transition: right 0.3s ease-in-out;
+  overflow-y: auto;
+  z-index: 999;
+  display: flex;
+  flex-direction: row; /* يخلي العناصر صف */
+  align-items: flex-start; /* يصطفوا من البداية */
+  gap: 5px; /* مسافة صغيرة بين الأزرار */
+}
+
+.sidebar.active {
+  right: 0;
+}
+
+.sidebar .close-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 300px;
+      background: linear-gradient(to bottom, rgb(198, 212, 232), rgb(65, 107, 168));
+  border: none;
+  color: #fff;
+  padding: 8px;
+  margin-bottom: 15px;
+  
+}
+
+.sidebar .side-action {
+      background: transparent;
+    display: block;
+    width: auto;
+    margin-top: 5px;
+    border: none;
+}
+.sidebar .side-action:hover {
+background: linear-gradient(to bottom, rgb(198, 212, 232), rgb(65, 107, 168));
+}
+
+/* ✅ جدول المرفقات */
+.attachments-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  text-align: center;
+  font-size: 14px;
+}
+.imglogo {
+    width: 140px;
+    height: 60px;
+}
+
+.attachments-table th,
+.attachments-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+.attachments-table tr:hover {
+  background: #f1f1f1;
+  cursor: pointer;
+}
+
+/* ✅ الفورم */
+.container-fluid {
+  padding: 20px;
+}
+
+.section {
+  background: #fff;
+  border-radius: 6px;
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.section-header h2 {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* ✅ الصور */
+.containerimg {
+  padding: 15px;
+}
+
+.attachments-view {
+  background: #fff;
+  padding: 15px;
+  border-radius: 6px;
+  max-height: 800px;
+  overflow-y: auto;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.img-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.img-box {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.img-box img {
+  width: 100%;
+  height: auto;
+  display: block;
+}

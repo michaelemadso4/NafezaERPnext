@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>نظام النافذة الموحدة للتجارة</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+     <!-- الشريط العلوي -->
+  <header class="topbar">
+    <div class="container">
+      <div class="topbar-row">
+        <div class="brand">
+          <div class="brand-title">نظام النافذة الموحدة للتجارة</div>
+        </div>
+        <div class="spacer"></div>
+        <div class="actions">
+          <button class="btn">سطح المكتب</button>
+          <button class="btn btn-outline">ميلاد جرجس زخارى المنشاوى</button>
+          <button class="btn" title="تسجيل الخروج">خروج</button>
+        <img src="img/ImageHandler.png" alt="Logo" />
+
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- الهيدر الرمادي -->
+  <section class="header-gray">
+    <div class="container">
+      <div class="h-row">
+        <div class="acid">ACID : 4126485472025080020 M</div>
+        <div class="page-title">طلب إفراج عن شحنة وارد</div>
+      </div>
+    </div>
+  </section>
+  
+ <!-- زرار الفتح فوق -->
+<!-- زرار الفتح -->
+<button class="open-sidebar-btn">المهام</button>
+
+<!-- القائمة الجانبية -->
+<div id="sidebar" class="sidebar">
+  <!-- الجزء الأساسي -->
+  <div id="sidebar-main">
+    <button class="close-btn"> المهام <span>&times;</span></button>
+    <button class="side-action">حفظ</button>
+    <button id="attachmentsBtn" class="side-action">صور المرفقات</button>
+    <button class="side-action">طباعة</button>
+    <button class="side-action">بدء الاجراءات البنكية</button>
+    <button class="side-action">عودة</button>
+  </div>
+
+  <!-- جزء المرفقات -->
+  <div id="sidebar-attachments" style="display: none;">
+    <button id="backBtn" class="side-action">عودة</button>
+    <button class="side-action">صور المرفقات</button>
+    <h3>المرفقات المُقدمة</h3>
+
+    <div>
+      <select>
+        <option>عرض الكل</option>
+        <option>المرفقات المرفوضة</option>
+      </select>
+      <button class="side-action">عرض بيانات المُرفق</button>
+    </div>
+
+    <table border="1" style="margin-top:10px; width:100%; text-align:center;">
+      <thead>
+        <tr>
+          <th>وصف المرفق</th>
+          <th>توجد صورة</th>
+          <th>مرفوض</th>
+          <th>مؤشر الحذف</th>
+          <th>ت.أول حفظ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>فاتورة مبدئية</td>
+          <td>✔</td>
+          <td>✖</td>
+          <td>✖</td>
+          <td>25-08-2025</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+ 
+  <div class="container">
+  <!-- سكشن البيانات الأساسية -->
+  <div class="section">
+    <div class="section-header" onclick="toggleSection(this)">
+       <h2>
+        <i class="fa fa-file" aria-hidden="true"></i>
+        البيانات الأساسية
+      </h2>
+      <button class="toggle-btn">▼</button>
+    </div>
+    <div class="section-content">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>ص.شأن (مستورد/مستودع)</label>
+          <input type="text" value="412648547" readonly>
+        </div>
+        <div class="form-group">
+          <label>المستورد/المستودع</label>
+          <input type="text" value="الشركه الهندسيه للتوريدات والاستشارات">
+        </div>
+        <div class="form-group">
+          <label>العنوان</label>
+          <textarea rows="2">القاهرة مدينة النور شقة 2 امتداد عباس العقاد طريق النصر م نصر القاهرة - رقم ملف 26670ق</textarea>
+        </div>
+        <div class="form-group">
+          <label>رقم المحمول</label>
+          <input type="text" value="01095007100">
+        </div>
+        <div class="form-group">
+          <label>رقم قومي/باسبور</label>
+          <input type="text">
+        </div>
+        <div class="form-group">
+          <label>رقم المصنع</label>
+          <input type="text">
+        </div>
+        <div class="form-group">
+          <label>تاريخ انتهاء بطاقة الرقم القومى</label>
+          <input type="date">
+        </div>
+        <div class="form-group">
+          <label>الدولة</label>
+          <input type="text" value="مصري">
+        </div>
+        <div class="form-group">
+          <label>نوع قيد المتعامل</label>
+          <input type="text" value="سجل وكلاء">
+        </div>
+        <div class="form-group">
+          <label>رقم القيد</label>
+          <input type="text" value="8215">
+        </div>
+        <div class="form-group">
+          <label>تاريخ انتهاء القيد</label>
+          <input type="text" value="26/07/2030">
+        </div>
+        <div class="form-group">
+          <label>النوع الفرعي</label>
+          <input type="text" value="إفراج مسبق ACI">
+        </div>
+        <div class="form-group">
+          <label>رقم ACI</label>
+          <input type="text" value="4126485472025080020 M">
+        </div>
+        <div class="form-group">
+          <label>القيمة المقر عنها</label>
+          <input type="text" value="677073.6">
+        </div>
+        <div class="form-group">
+          <label>مقدم الطلب</label>
+          <input type="text" value="ميلاد جرجس زخارى المنشاوى">
+        </div>
+        <div class="form-group">
+          <label>موبايل للتراسل</label>
+          <input type="text" value="01005706022">
+        </div>
+        <div class="form-group">
+          <label>البريد الإلكترونى</label>
+          <input type="email" value="acc@escpumps.com">
+        </div>
+        <div class="form-group">
+          <label>صفة مقدم الطلب</label>
+          <input type="text" value="تجاري و صناعي">
+        </div>
+        <div class="form-group">
+          <label>مقدم البيان</label>
+          <input type="text" value="محمد جمال الدين عبد العظيم عثمان">
+        </div>
+        <div class="form-group">
+          <label>صفة مقدم البيان</label>
+          <input type="text" value="مندوب شركة/مكتب">
+        </div>
+        <div class="form-group">
+          <label>تاريخ الشحن</label>
+          <input type="text" value="27/08/2025">
+        </div>
+        <div class="form-group">
+          <label>تاريخ الوصول</label>
+          <input type="text" value="30/09/2025">
+        </div>
+        <div class="form-group">
+          <label>النظام الجمركي الحالي</label>
+          <input type="text" value="إستيراد برسم وارد">
+        </div>
+        <div class="form-group">
+          <label>القطاع التعريفي</label>
+          <input type="text" value="المشروعات التجارية [قطاع خاص]">
+        </div>
+        <div class="form-group">
+          <label>المجمع الجمركي</label>
+          <input type="text" value="ادارة جمرك مطار ( 1- ) القاهرة">
+        </div>
+        <div class="form-group">
+          <label>جمرك وصول البضاعة</label>
+          <input type="text" value="دائرة ميناء الإسكندرية">
+        </div>
+        <div class="form-group">
+          <label>جمرك الإفراج النهائي</label>
+          <input type="text" value="دائرة ميناء الإسكندرية">
+        </div>
+        <div class="form-group">
+          <label>الحالة</label>
+          <input type="text" value="تم إصدار ACI">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  function toggleSection(header) {
+    const section = header.parentElement;
+    const content = section.querySelector(".section-content");
+    const btn = header.querySelector(".toggle-btn");
+    if (content.style.display === "block") {
+      content.style.display = "none";
+      btn.textContent = "▼";
+    } else {
+      content.style.display = "block";
+      btn.textContent = "▲";
+    }
+  }
+const sidebar = document.getElementById("sidebar");
+const openBtn = document.querySelector(".open-sidebar-btn");
+const closeBtn = document.querySelector(".sidebar .close-btn");
+
+openBtn.addEventListener("click", () => {
+  sidebar.classList.add("active");
+  openBtn.style.display = "none";   // إخفاء زرار الفتح
+});
+
+closeBtn.addEventListener("click", () => {
+  sidebar.classList.remove("active");
+  openBtn.style.display = "inline-block"; // إظهاره تاني
+});
+</script>
+
+</body>
+</html>

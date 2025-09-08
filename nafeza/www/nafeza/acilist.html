@@ -1,0 +1,591 @@
+{% extends "templates/web.html" %}
+
+{% block title %}
+	{{ _("منصة نافذة - طلبات شحنات ال (ACI)") }}
+{% endblock %}
+
+{% block page_content %}
+<!doctype html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title></title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Tajawal:wght@300;400;500;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+
+</head>
+<script>
+  frappe.ready(function () {
+    
+
+    console.log("Frappe is ready!");
+    
+    (function () {
+  const table = document.querySelector(".custom-table");
+  if (!table) return;
+
+  // دالة مساعدة لإخفاء كل القوائم
+  function hideAllDropdowns() {
+    document.querySelectorAll(".dropdown").forEach(d => (d.style.display = "none"));
+  }
+
+  // نجيب البيانات ونبنّي الصفوف
+  frappe.call({
+  method: "nafeza.www.nafeza.acelist.get_shipment_requests",
+  callback: function (r) {
+    if (!r.message) return;
+
+    r.message.forEach((row, index) => {
+      // صف البيانات
+      const tableRow = document.createElement("div");
+      tableRow.className = "table-row " + (index % 2 === 0 ? "row-even" : "row-odd");
+      tableRow.innerHTML = `
+        <div class="table-cell">${row.preliminary_number || ""}</div>
+        <div class="table-cell">${row.aci_number || ""}</div>
+        <div class="table-cell">${row.egyptian_importer || ""}</div>
+        <div class="table-cell">${row.foreign_exporter || ""}</div>
+        <div class="table-cell">
+          <img src="${row.country_icon || ""}" alt="Flag" style="width:24px;height:auto;vertical-align:middle;">
+          &nbsp; ${row.exporting_country || ""}
+        </div>
+        <div class="table-cell"><span class="status-box">${row.request_type || ""}</span></div>
+        <div class="table-cell">
+          <div class="actions">
+            <button type="button" class="setting-btn" aria-label="Settings"><i class="fa fa-cog"></i></button>
+            <button type="button" class="info-btn" aria-label="Info"><i class="fa fa-info-circle"></i></button>
+          </div>
+          <div class="dropdown" style="display:none">
+            <a href="#">عرض التفاصيل</a>
+            <a href="#" class="edit-link" data-aci="${row.aci_number}">تعديل البيانات</a>
+          </div>
+        </div>
+      `;
+      table.appendChild(tableRow);
+
+      // صف التفاصيل (مخفي مبدئياً)
+      const rowDetails = document.createElement("div");
+      rowDetails.className = "row-details";
+      rowDetails.style.display = "none";
+      rowDetails.innerHTML = `
+        <strong>تاريخ التسجيل:</strong> ${row.request_date || ""} <br>
+        <strong>نوع الشحنة:</strong> ${row.shipment_type || ""}
+      `;
+      table.appendChild(rowDetails);
+    });
+
+    // بعد ما يتم إنشاء كل الروابط
+    document.querySelectorAll(".edit-link").forEach(link => {
+      link.addEventListener("click", function (e) {
+        e.preventDefault();
+        const aci = this.getAttribute("data-aci");
+        window.open(`newmts.html?aci=${aci}`, "_blank"); // فتح في تاب جديدة
+      });
+    });
+  }
+});
+
+
+  // تفويض أحداث داخل الجدول
+  if (!window._acilistHandlersAttached) {
+    window._acilistHandlersAttached = true;
+
+    // غلق أي dropdown عند الضغط خارج .actions أو .dropdown
+    window.addEventListener("click", (e) => {
+      if (!e.target.closest(".actions") && !e.target.closest(".dropdown")) {
+        hideAllDropdowns();
+      }
+    });
+
+    // التعامل مع ضغطات الأزرار داخل الجدول
+    table.addEventListener("click", (e) => {
+      // زر الإعدادات (يفتح/يقفل الـ dropdown)
+      const settingBtn = e.target.closest(".setting-btn");
+      if (settingBtn) {
+        const row = settingBtn.closest(".table-row");
+        const dropdown = row?.querySelector(".dropdown");
+        if (!dropdown) return;
+
+        const isOpen = dropdown.style.display === "block";
+        hideAllDropdowns(); // اقفل أي مفتوح
+        dropdown.style.display = isOpen ? "none" : "block";
+        return; // منع تداخل مع أحداث أخرى
+      }
+
+      // زر المعلومات (يفتح/يقفل تفاصيل الصف التالي)
+      const infoBtn = e.target.closest(".info-btn");
+      if (infoBtn) {
+        const row = infoBtn.closest(".table-row");
+        const details = row?.nextElementSibling;
+        if (details && details.classList.contains("row-details")) {
+          details.style.display = details.style.display === "block" ? "none" : "block";
+        }
+        return;
+      }
+
+      // الضغط على رابط داخل dropdown → اقفله بعد الاختيار
+      const linkInDropdown = e.target.closest(".dropdown a");
+      if (linkInDropdown) {
+        hideAllDropdowns();
+      }
+    });
+  }
+})();
+
+});
+</script>
+
+<body>
+  <!-- === Top Bar === -->
+  <div class="topbar">
+    <div class="container">
+      <div class="rownav">
+        <nav class="topbar-links">
+          <a href="#" title="مراكز الخدمات اللوجيستية"><i class="fa-solid fa-location-dot icon-blue"></i> مراكز الخدمات
+            اللوجيستية</a>|
+          <a href="#" title="خدمات الدعم الفني"> خدمات الدعم الفني</a>|
+          <a href="#" title="البيانات المفتوحة">الاتصال بنا </a>|
+          <span class="lang-select">
+            <i class="fa-solid fa-globe"></i>
+            <span class="lang-label" onclick="toggleLang()">اللغة</span>
+            <select id="lang-dropdown" style="display:none;">
+              <option value="ar">العربية</option>
+              <option value="en">English</option>
+            </select>
+          </span>
+        </nav>
+        <form class="search" role="search">
+          <input type="search" placeholder="ابحث هنا..." aria-label="ابحث هنا" />
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <!-- <i class="fa-solid fa-magnifying-glass"> -->
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="help-box">
+    <!-- يمين -->
+    <label for="question">كيف يمكننا مساعدتك؟</label>
+    <div class="help-right">
+      <input type="text" id="question" placeholder="اطرح سؤالك وستجد الجواب ...">
+      <button>عرض</button>
+    </div>
+
+    <!-- شمال -->
+    <div class="help-left">
+      <i class="fa-regular fa-circle-user"></i>
+      <button class="login-btn">حسابي<i class="fa fa-caret-down"></i></button>
+
+      <!-- <button class="register-btn">حساب جديد</button> -->
+    </div>
+
+  </div>
+  <div class="row-container" id="loginBox">
+    <div class="row">
+      <!-- الجزء الأول -->
+      <div class="col">
+        <button class="close-btn" onclick="closeLogin()">X</button>
+        <img src="img/user-avatar.png" alt="Logo" class="logo">
+        <h1>ميلاد جرجس زخارى المنشاوى</h1>
+        <h3>الشركه الهندسيه للتوريدات والاستشارات</h3>
+        <h3>acc@escpumps.com</h3>
+        <h4>اخر تسجيل دخول: أغسطس ٢٣، ٢٠٢٥</h4>
+        <div class="smart-login">
+          <button class="btn">حساب جديد</button>
+          <button class="btnout">تسجيل خروج</button>
+
+        </div>
+      </div>
+
+      <!-- الجزء الثاني -->
+      <div class="col">
+        <h1>ابدأ من هنا خدمات</h1>
+        <a href="" style="margin-top:15px; font-size:13px; color:#ddd;">
+          <p> <i class="fa fa-paperclip"></i> طلبات تفعيل الخدمات الإلكترونية</p>
+        </a>
+        <a href="" style="margin-top:15px; font-size:13px; color:#ddd;">
+          <p> <i class="fa fa-paperclip"></i> الخدمات الإلكترونية</p>
+        </a>
+        <a href="" style="margin-top:15px; font-size:13px; color:#ddd;">
+          <p> <i class="fa fa-paperclip"></i> طلب إضافة كيان/مستخلص تابع (جديد)</p>
+        </a>
+        <a href="" style="margin-top:15px; font-size:13px; color:#ddd;">
+          <p> <i class="fa fa-paperclip"></i> طلب تغير المفوض على الحساب الرئيسي</p>
+        </a>
+        <a href="" style="margin-top:15px; font-size:13px; color:#ddd;">
+          <p> <i class="fa fa-paperclip"></i> طلب إلحاق موظف/مستخلص (محذوف من كيان آخر)</p>
+        </a>
+        <a href="" style="margin-top:15px; font-size:13px; color:#ddd;">
+          <p> <i class="fa fa-paperclip"></i> طلب حذف موظف/مستخلص</p>
+        </a>
+        <a href="" style="margin-top:15px; font-size:13px; color:#ddd;">
+          <p> <i class="fa fa-paperclip"></i> طلب اضافه موظف تابع (جديد)</p>
+        </a>
+        <a href="" style="margin-top:15px; font-size:13px; color:#ddd;">
+          <p> <i class="fa fa-paperclip"></i> طلبات شحنات ال (ACI)</p>
+        </a>
+        <a href="" style="margin-top:15px; font-size:13px; color:#ddd;">
+          <p> <i class="fa fa-paperclip"></i> طلب الحصول على رقم تعريفي (ACID)</p>
+        </a>
+        <a href="" style="margin-top:15px; font-size:13px; color:#ddd;">
+          <p> <i class="fa fa-paperclip"></i> الاقرارات الجمركية</p>
+        </a>
+        <a href="" style="margin-top:15px; font-size:13px; color:#ddd;">
+          <p> <i class="fa fa-paperclip"></i> خدمة تأكيد مواعيد الكشف و المعاينة</p>
+        </a>
+        <br>
+
+        <a href="" style="margin-top:15px; font-size:13px; color:#ddd;">
+          <p><i class="fa fa-bell"></i> صندوق الإشعارات</p>
+        </a>
+      </div>
+
+      <!-- الجزء الثالث -->
+      <div class="col">
+        
+        <h2>إدارةالحسابات</h2>
+        <!-- اسم المستخدم -->
+        <a href=""style="margin-top:15px; font-size:13px; color:#ddd;"><p> <i class="fa fa-paperclip"></i> الحسابات الغير مفعله </p></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- <button class="close-btn" id="closeLogin"><i class="fa-solid fa-xmark"></i></button>
+
+  <div class="logoid" ><img src="img/nafeza-id.png" alt=""></div> -->
+  <!-- === Header / Nav === -->
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="#" aria-label="الرئيسية">
+          <div class="logo" aria-hidden="true"><img src="img/nafeza-logo-ar.svg" alt=""></div>
+        </a>
+        <nav class="navlinks" aria-label="روابط رئيسية">
+          <a href="#about">عن نافذة</a>
+          <a href="#services">الخدمات و المنتجات</a>
+          <a href="#aci">نظام التسجيل المُسبق للشحنات</a>
+          <a href="#media">المركز الإعلامي</a>
+          <a href="#support">الدعم والمساعدة</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <!-- === list Section === -->
+  <div class="listContainer">
+    <h2>طلبات شحنات ال (ACI)</h2>
+    <h4>اطلع على جميع طلبات ال (ACI) التي تقدمت بها</h4>
+    <hr>
+
+    <!-- زرار حفظ في اكسل -->
+    <div class="top-actions">
+      <button class="excel-btn">حفظ البيانات في ملف اكسل</button>
+    </div>
+
+    <!-- الفلترة والبحث -->
+    <div class="filter-box">
+      <select>
+        <option>فرز بواسطة</option>
+        <option>التاريخ</option>
+        <option>الحالة</option>
+      </select>
+
+      <select>
+        <option>اختر الكيان</option>
+        <option>شخص طبيعي</option>
+        <option>شركة</option>
+      </select>
+
+      <button class="search-btn">ابحث</button>
+      <button class="reload-btn">⟳</button>
+
+      <div class="spacer"></div>
+
+      <button class="add-btn"><i class="fa-solid fa-plus"></i> اضف طلب (ACID)</button>
+    </div>
+  </div>
+
+  <!-- === List Table === -->
+  <div class="custom-table">
+    <!-- Head -->
+    <div class="table-head table-cell">الرقم المبدئي</div>
+    <div class="table-head table-cell">الرقم التعريفي (ACI)</div>
+    <div class="table-head table-cell">المستورد المصري</div>
+    <div class="table-head table-cell">المُصدر الأجنبي</div>
+    <div class="table-head table-cell">دولة المُصدر</div>
+    <div class="table-head table-cell">نوع الطلب</div>
+    <div class="table-head table-cell">التفاصيل</div>
+
+    <!-- Row 1 -->
+   
+    <div class="row-details">
+      <strong>تاريخ التسجيل:</strong> 2025-08-15 <br>
+      <strong>نوع الشحنة:</strong> إلكترونيات
+    </div>
+  </div>
+
+
+  <!-- === Hero === -->
+  <section class="hero">
+    <div class="container hero-wrap">
+      <div>
+        <span class="badge"><i class="fa-solid fa-bolt"></i> منصة التسجيل الموحّد</span>
+        <h2>أنجز معاملاتك الإلكترونية بكل سهولة من مكان واحد</h2>
+        <p>دخول واحد، خدمات متعددة، متوفرة عبر الويب والجوال. تتبّع شحناتك، أدر مستنداتك، واستفد من خدمات لوجستية
+          متكاملة.</p>
+        <div class="hero-cta">
+          <a class="btn primary" href="#login"><i class="fa-solid fa-right-to-bracket"></i> ابدأ الآن</a>
+          <a class="btn" href="#learn"><i class="fa-solid fa-circle-info"></i> تعرّف على النظام</a>
+        </div>
+        <div class="hero-card" style="margin-top:16px">
+          <strong>تطبيق الجوال</strong>
+          <p style="margin:6px 0 0; color:var(--muted)">حمّل التطبيق لتتابع جميع إجراءاتك في أي وقت</p>
+        </div>
+      </div>
+      <div>
+        <div class="hero-card">
+          <h3 style="margin:0 0 8px">كيف يمكننا مساعدتك؟</h3>
+          <p style="margin:0 0 14px; color:var(--muted)">اطرح سؤالك وستجد الجواب…</p>
+          <form class="inp" onsubmit="event.preventDefault()">
+            <label for="q" class="visually-hidden">سؤال</label>
+            <input id="q" type="text" placeholder="مثال: ما هي خطوات التسجيل المسبق؟" />
+            <div class="form-actions" style="margin-top:12px">
+              <button class="btn primary" type="submit">ابحث عن إجابة</button>
+              <a href="#faq" style="color:#cfe1ff">الأسئلة الشائعة</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === Services shortcuts === -->
+  <section id="services" class="container services-bar">
+    <div class="services">
+      <a class="service-link" href="#decl-inquiry" title="الإستعلام عن الإقرارات">
+        <i class="fa-solid fa-file-circle-check"></i>
+        <span>الإستعلام عن الإقرارات</span>
+      </a>
+      <a class="service-link" href="#tariff" title="الإستعلام عن التعريفة">
+        <i class="fa-solid fa-scale-balanced"></i>
+        <span>الإستعلام عن التعريفة</span>
+      </a>
+      <a class="service-link" href="#publications" title="المنشورات الجمركية">
+        <i class="fa-solid fa-book"></i>
+        <span>المنشورات الجمركية</span>
+      </a>
+      <a class="service-link" href="#centers" title="مراكز الخدمات اللوجستية">
+        <i class="fa-solid fa-warehouse"></i>
+        <span>مراكز الخدمات اللوجستية</span>
+      </a>
+      <a class="service-link" href="#open-data" title="البيانات المفتوحة">
+        <i class="fa-solid fa-database"></i>
+        <span>البيانات المفتوحة</span>
+      </a>
+      <a class="service-link" href="#support" title="الدعم والمساعدة">
+        <i class="fa-solid fa-life-ring"></i>
+        <span>الدعم والمساعدة</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- === Quick Help Cards === -->
+  <section class="help">
+    <div class="container">
+      <div class="grid">
+        <article class="card">
+          <div class="chip"><i class="fa-regular fa-circle-question"></i> شائع الآن</div>
+          <h3>ما هو ACID؟</h3>
+          <p>رقم تعريفي للشحنة ضمن نظام التسجيل المُسبق (ACI). يجب إدراجه على كافة مستندات الشحن.</p>
+        </article>
+        <article class="card">
+          <div class="chip"><i class="fa-solid fa-mobile-screen-button"></i> تطبيق الجوال</div>
+          <h3>إدارة الشحنات من الهاتف</h3>
+          <p>تتبّع الإجراءات وتلقّى التنبيهات في الوقت الفعلي عبر التطبيق.</p>
+        </article>
+        <article class="card">
+          <div class="chip"><i class="fa-solid fa-user-shield"></i> الدعم</div>
+          <h3>خدمات الدعم الفني</h3>
+          <p>فريقنا جاهز للرد على استفساراتك وحل المشكلات على مدار الساعة.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- === Auth Section === -->
+  <section id="login" class="auth">
+    <div class="container auth-grid">
+      <div class="card">
+        <h3>تسجيل الدخول</h3>
+        <div class="inp"><label>اسم المستخدم</label><input type="text" placeholder="example@domain.com"></div>
+        <div class="inp"><label>كلمة المرور</label><input type="password" placeholder="••••••••"></div>
+        <div class="form-actions" style="margin-top:12px">
+          <button class="btn primary" type="button">دخول</button>
+          <a href="#" style="color:#cfe1ff">هل نسيت كلمة المرور؟</a>
+        </div>
+      </div>
+      <div id="register" class="card">
+        <h3>حساب جديد</h3>
+        <p style="color:var(--muted); margin:0 0 10px">اختر نوع الحساب المناسب لك</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px">
+          <a class="btn" href="#">حساب فردي</a>
+          <a class="btn" href="#">حساب تجاري</a>
+        </div>
+        <p style="color:#9fb2e9; margin:12px 0 0; font-size:14px">بالتسجيل فأنت توافق على <a href="#"
+            style="text-decoration:underline">الشروط والأحكام</a> و <a href="#" style="text-decoration:underline">سياسة
+            الخصوصية</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- === News/Updates === -->
+  <section id="updates" class="updates">
+    <div class="container">
+      <h3>آخر المستجدات</h3>
+      <div class="news-grid">
+        <article class="card news">
+          <div class="chip"><i class="fa-regular fa-clock"></i> إشعار</div>
+          <h4 style="margin:0">تحديثات على نظام التعريفة</h4>
+          <p class="muted">تم إطلاق تحسينات على صفحة الإستعلام عن التعريفة.</p>
+          <a class="btn" href="#">معرفة المزيد</a>
+        </article>
+        <article class="card news">
+          <div class="chip"><i class="fa-solid fa-shield-halved"></i> أمان</div>
+          <h4 style="margin:0">تعزيز المصادقة الثنائية</h4>
+          <p class="muted">تفعيل OTP عبر البريد أو الهاتف لجميع الحسابات الجديدة.</p>
+          <a class="btn" href="#">اطلع على التفاصيل</a>
+        </article>
+        <article class="card news">
+          <div class="chip"><i class="fa-solid fa-bullhorn"></i> إعلان</div>
+          <h4 style="margin:0">مراكز لوجستية جديدة</h4>
+          <p class="muted">افتتاح مركزين جديدين لخدمة مجتمع التجارة.</p>
+          <a class="btn" href="#">المواقع والساعات</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- === Footer === -->
+  <footer>
+    <div class="container foot">
+      <div>
+        <h4>عن المنصة</h4>
+        <p style="color:var(--muted)">منصة موحّدة لتبسيط الإجراءات الجمركية وتيسير حركة التجارة. هذا القالب لأغراض
+          الاختبار والعرض فقط.</p>
+        <form class="sub" onsubmit="event.preventDefault()">
+          <input type="email" placeholder="بريدك للإشتراك بالتنبيهات">
+          <button class="btn primary" type="submit">اشترك</button>
+        </form>
+      </div>
+      <div>
+        <h4>روابط</h4>
+        <ul>
+          <li><a href="#about">عن نافذة</a></li>
+          <li><a href="#services">الخدمات و المنتجات</a></li>
+          <li><a href="#aci">التسجيل المُسبق للشحنات</a></li>
+          <li><a href="#support">الدعم والمساعدة</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>مركز المساعدة</h4>
+        <ul>
+          <li><a href="#faq">الأسئلة الشائعة</a></li>
+          <li><a href="#guides">أدلة الاستخدام</a></li>
+          <li><a href="#contact">تواصل معنا</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>قانوني</h4>
+        <ul>
+          <li><a href="#terms">الشروط والأحكام</a></li>
+          <li><a href="#privacy">سياسة الخصوصية</a></li>
+          <li><a href="#open-data">البيانات المفتوحة</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container"
+      style="padding:12px 0; color:#9db0e5; font-size:14px; border-top:1px solid rgba(255,255,255,.06)">
+      © <span id="y">2025</span> — قالب واجهة RTL تجريبي. جميع الأسماء والعلامات المذكورة تخص أصحابها.
+    </div>
+  </footer>
+  <script>
+    const loginBtn = document.querySelector(".login-btn");
+    const loginBox = document.getElementById("loginBox");
+
+    loginBtn.addEventListener("click", () => {
+      loginBox.classList.add("show");
+    });
+
+    function closeLogin() {
+      loginBox.classList.remove("show");
+    }
+  </script>
+
+  <script>
+    // تحديث السنة تلقائياً
+    document.getElementById('y').textContent = new Date().getFullYear();
+    const swiper = new Swiper('.swiper', {
+      loop: true,
+      autoplay: {
+        delay: 4000,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+</body>
+<script>
+  // Dropdown toggle
+  document.querySelectorAll(".setting-btn").forEach(btn => {
+    btn.addEventListener("click", e => {
+      let dropdown = btn.parentElement.nextElementSibling;
+      document.querySelectorAll(".dropdown").forEach(d => {
+        if (d !== dropdown) d.style.display = "none";
+      });
+      dropdown.style.display = dropdown.style.display === "flex" ? "none" : "flex";
+    });
+  });
+
+  // Info toggle
+  document.querySelectorAll(".info-btn").forEach((btn, index) => {
+    btn.addEventListener("click", () => {
+      let detailRow = document.querySelectorAll(".row-details")[index];
+      detailRow.style.display = detailRow.style.display === "block" ? "none" : "block";
+    });
+  });
+
+  // لو ضغطت برا يقفل أي dropdown
+  window.addEventListener("click", e => {
+    if (!e.target.closest(".actions")) {
+      document.querySelectorAll(".dropdown").forEach(d => d.style.display = "none");
+    }
+  });
+   // Toggle language dropdown
+  function toggleLang() {
+    const dropdown = document.getElementById('lang-dropdown');
+    dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+  }
+
+  // Close login box on outside click
+  document.addEventListener('click', function (event) {
+    const loginBox = document.getElementById('loginBox');
+    if (!loginBox.contains(event.target) && !event.target.classList.contains('login-btn')) {
+      loginBox.classList.remove('show');
+    }
+  });
+</script>
+
+{% endblock %}
+</html>

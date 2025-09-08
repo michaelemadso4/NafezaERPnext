@@ -1,0 +1,216 @@
+{% extends "templates/web.html" %}
+
+{% block title %}
+{{ _("منصة نافذة - طلبات شحنات ال (ACI)") }}
+{% endblock %}
+
+{% block page_content %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>نظام النافذة الموحدة للتجارة</title>
+
+  <!-- روابط CSS -->
+  <link rel="stylesheet" href="newstyle.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Tajawal:wght@300;400;500;700;800;900&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <!-- ✅ الشريط العلوي -->
+  <header class="topbar">
+    <div class="container">
+      <div class="topbar-row">
+        <div class="brand">
+          <div class="brand-title">نظام النافذة الموحدة للتجارة</div>
+        </div>
+        <div class="spacer"></div>
+        <div class="actions">
+          <button class="btn"><img src="img/ImageHandler (1).png" alt=""> سطح المكتب</button>
+          <button class="btn btn-outline"> <img src="img/ImageHandler (10).png" alt=""> ميلاد جرجس زخارى
+            المنشاوى</button>
+          <button class="btn" title="تسجيل الخروج"> <img src="img/ImageHandler (2).png" alt=""> خروج</button>
+          <img class="imglogo" src="img/ImageHandler.png" alt="Logo" />
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ✅ الهيدر الرمادي -->
+  <section class="header-gray">
+    <div class="container">
+      <div class="h-row">
+        <div class="acid"></div>
+
+        <script>
+          document.addEventListener("DOMContentLoaded", function () {
+            // قراءة قيمة aci من الـ URL
+            const params = new URLSearchParams(window.location.search);
+            const aci = params.get("aci");
+
+            // لو aci موجود ضيفه في الـ div
+            if (aci) {
+              document.querySelector(".acid").textContent = "ACID : " + aci;
+            }
+          });
+        </script>
+        <div class="page-title">طلب إفراج عن شحنة وارد</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ✅ زرار فتح القائمة -->
+  <button class="open-sidebar-tasks-btn">المهام</button>
+
+  <!-- ✅ القائمة الجانبية -->
+  <div id="sidebar" class="sidebar">
+
+    <!-- الجزء الأساسي -->
+    <div id="sidebar-main">
+      <button class="close-btn"> المهام <span>&times;</span></button>
+      <button class="side-action"><img src="img/ImageHandler (4).png" alt=""> حفظ</button>
+      <button id="attachmentsBtn" class="side-action"> <img src="img/ImageHandler (5).png" alt=""> صور المرفقات</button>
+      <button class="side-action"><img src="img/ImageHandler (6).png" alt=""> طباعة</button>
+      <button class="side-action"> <img src="img/ImageHandler (7).png" alt=""> بدء الاجراءات البنكية</button>
+      <button class="side-action"> <img src="img/ImageHandler ().png" alt=""> عودة</button>
+    </div>
+
+    <!-- جزء المرفقات -->
+    <div id="sidebar-attachments" style="display: none;">
+      <button id="backBtn" class="side-action"><i class="fa-arrow-left"></i> عودة </button>
+      <button class="side-action">صور المرفقات</button>
+      <h3>المرفقات المُقدمة</h3>
+
+      <div class="attachments-filter">
+        <select>
+          <option>عرض الكل</option>
+          <option>المرفقات المرفوضة</option>
+        </select>
+        <button class="side-action">عرض بيانات المُرفق</button>
+      </div>
+      <script>
+        frappe.ready(function () {
+          const params = new URLSearchParams(window.location.search);
+            const aci = params.get("aci");
+          console.log("Frappe is ready!" + aci);
+          frappe.call({
+            method: "nafeza.www.nafeza.newmts.get_shipment_files",
+            args: {
+              shipment_request: String(aci)
+            },
+            callback: function (r) {
+              if (r.message) {
+                if (r.message && r.message.files) {
+                  let tbody = document.getElementById("attachments-body");
+                  tbody.innerHTML = ""; // تفريغ الجدول
+
+                  r.message.files.forEach(file => {
+                    let row = `
+          <tr onclick="showAttachment('${file.file}')">
+            <td>${file.description || ""}</td>
+            <td>${file.file ? "✔" : "✖"}</td>
+            <td>${file.unacceptable == 1 ? "✖" : "✔"}</td>
+            <td>${file.deleted == 1 ? "✖" : "✔"}</td>
+            <td>${file.date_time ? file.date_time.split(" ")[0] : ""}</td>
+          </tr>
+        `;
+                    tbody.innerHTML += row;
+                  });
+                }
+              }
+
+            }
+
+          });
+
+        });
+        // دالة تغير الصورة
+        function showAttachment(filePath) {
+          const imgBox = document.querySelector(".img-box img");
+          if (filePath) {
+            imgBox.src = filePath;
+          }
+        }
+      </script>
+      <!-- جدول المرفقات -->
+      <table class="attachments-table">
+        <thead>
+          <tr>
+            <th>وصف المرفق</th>
+            <th>توجد صورة</th>
+            <th>مرفوض</th>
+            <th>مؤشر الحذف</th>
+            <th>ت.أول حفظ</th>
+          </tr>
+        </thead>
+        <tbody id="attachments-body">
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ✅ البيانات الأساسية -->
+  <div class="container-fluid">
+    <div class="section">
+      <div class="section-header">
+        <h2><i class="fa fa-file"></i> البيانات الأساسية</h2>
+        <button class="toggle-btn">▼</button>
+      </div>
+      <div class="section-content">
+        <div class="form-grid">
+          <!-- بعض الحقول -->
+          <div class="form-group">
+            <label>ص.شأن (مستورد/مستودع)</label>
+            <input type="text" value="412648547" readonly>
+          </div>
+          <div class="form-group">
+            <label>المستورد/المستودع</label>
+            <input type="text" value="الشركه الهندسيه للتوريدات والاستشارات">
+          </div>
+          <div class="form-group">
+            <label>العنوان</label>
+            <textarea
+              rows="2">القاهرة مدينة النور شقة 2 امتداد عباس العقاد طريق النصر م نصر القاهرة - رقم ملف 26670ق</textarea>
+          </div>
+          <div class="form-group">
+            <label>رقم المحمول</label>
+            <input type="text" value="01095007100">
+          </div>
+          <div class="form-group">
+            <label>تاريخ الوصول</label>
+            <input type="text" value="30/09/2025">
+          </div>
+          <div class="form-group">
+            <label>الحالة</label>
+            <input type="text" value="تم إصدار ACI">
+          </div>
+          <!-- ... باقي الحقول زي ما تحب -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ✅ منطقة الصور -->
+  <div class="containerimg">
+    <div class="attachments-view">
+      <div class="img-list">
+        <div class="img-box">
+          <img src="" alt="من فضلك اضغط اختار ملف">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ✅ ملف JavaScript -->
+  <script src="script.js"></script>
+</body>
+{% endblock %}
+
+</html>
