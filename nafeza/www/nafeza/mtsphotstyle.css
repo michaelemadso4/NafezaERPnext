@@ -866,3 +866,138 @@ body {
     background-color: #62a7f1;
     color: #fff;
 }
+
+.my-tabs {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  font-family: "Tajawal", sans-serif;
+}
+
+.my-tab-buttons {
+  display: flex;
+  border-bottom: 2px solid #ccc;
+}
+
+.my-tab-buttons button {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-bottom: none;
+  background-color: #f5f5f5;
+  margin-right: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.my-tab-buttons button.my-active {
+  background-color: #fff;
+  font-weight: bold;
+}
+
+.my-tab-content .my-tab-pane {
+  border: 1px solid #ccc;
+  padding: 15px;
+  display: none;
+  min-height: 50px;
+}
+
+.my-tab-content .my-tab-pane.my-active {
+  display: block;
+}
+
+
+/* Hover زر (لو عندك زر) */
+.btn-view-all:hover {
+  background: #0b5ed7;
+}
+
+/* جدول مخصص */
+.custom-table-container {
+  margin: 20px 0;
+  direction: rtl;
+  font-family: "Cairo", sans-serif;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.custom-attachments-table {
+  width: max-content;
+  min-width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.custom-attachments-table th, 
+.custom-attachments-table td {
+  height: 28px;
+  border: 1px solid #000;
+  padding: 4px 6px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.custom-attachments-table th {
+  background: linear-gradient(to top, #e0e0e0, #ffffff);
+  font-weight: bold;
+}
+
+.custom-attachments-table tr:first-child td {
+  background: #b3e5ff;
+  font-weight: bold;
+}
+
+.custom-attachments-table tr:nth-child(even):not(:first-child) {
+  background: #f9f9f9;
+}
+
+.custom-attachments-table tr:nth-child(odd):not(:first-child) {
+  background: #ffffff;
+}
+
+.custom-attachments-table tr:hover td {
+  background: #b3e5ff !important;
+}
+
+/* Pagination مخصص */
+.custom-pagination {
+  text-align: center;
+  margin-top: 10px;
+  font-family: "Cairo", sans-serif;
+}
+
+.custom-pagination span {
+  display: inline-block;
+  margin: 0 4px;
+  padding: 4px 8px;
+  border: 1px solid #0b5ed7;
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.custom-pagination span.active {
+  background: #0b5ed7;
+  color: #fff;
+}
+
+.custom-pagination span:hover:not(.active) {
+  background: #cfe2ff;
+}
+
+.openbtn {
+  display: flex;
+  align-items: center;
+  padding: 8px 15px;
+  border: 1px solid #ccc;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: auto; /* يحرك الزرار لليمين */
+}
+
+.openbtn img {
+  margin-left: 5px; /* مسافة بين الصورة والكلمة */
+}
