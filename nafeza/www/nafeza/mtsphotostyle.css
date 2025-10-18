@@ -1,0 +1,317 @@
+body {
+      margin: 0;
+      font-family: Tahoma, Arial, sans-serif;
+      direction: rtl;
+      background: #f7f7f7;
+    }
+
+    /* ✅ الشريط العلوي */
+    .topbar {
+      background: #000;
+      color: #fff;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .topbar .title {
+      font-size: 16px;
+    }
+    .topbar .subtitle {
+      font-size: 12px;
+      color: #ccc;
+    }
+    .topbar .actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .topbar .actions button {
+    appearance: none;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    font-weight: 600;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(51, 51, 51);
+    border-image: initial;
+    background: linear-gradient(to right, rgb(255, 255, 255), rgb(211, 211, 211));
+    padding: 8px 12px;
+    border-radius: 10px;
+    }
+    .actions button img{
+      height: 30px;
+    }
+  
+    .topbar .logo {
+      /* height: 45px; */
+      width: 125px;
+    }
+
+    /* ✅ الشريط الرمادي */
+    .graybar {
+      background: #e0e0e0;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+    }
+    .graybar img {
+      width: 20px;
+      margin-left: 8px;
+    }
+
+    /* ✅ الصفحة */
+    .page {
+      display: flex;
+    }
+
+    /* ✅ القائمة الجانبية */
+    .sidebar {
+      width: 400px;
+      background: #fff;
+      border-left: 1px solid #ddd;
+      padding: 15px;
+      height: 1200px;
+    }
+    .sidebar .table-container {
+      overflow-x: auto;     /* ✅ scroll أفقي داخل الجدول فقط */
+      white-space: nowrap;  /* يمنع الجدول من النزول للسطر التالي */
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+      border-radius: 4px;
+    }
+    .sidebar .title_sidbar {
+      margin: 0 0 10px;
+      font-size: 16px;
+      color: #fff;
+      background: linear-gradient(rgb(198, 212, 232), rgb(65, 107, 168));
+      font-weight: bold;          /* يجعل النص عريض */
+      text-align: center;         /* يوسّط النص */
+      padding: 5px 0;             /* مسافة بسيطة فوق وتحت النص (اختياري لتحسين الشكل) */
+      border-radius: 6px;  
+    }
+    .btnBack {
+        width: 100%;
+        background: linear-gradient(to bottom, #e0e0e0, #d3d1d1); /* تدرّج رمادي */
+        color: #000;                     /* لون النص */
+        font-weight: bold;               /* عريض */
+        text-align: right;               /* محاذاة لليمين */
+        padding: 10px 15px;              /* مسافة داخلية */
+        border: none;                    /* بدون حدود */
+        border-radius: 6px;              /* حواف ناعمة */
+        display: flex;                   /* لترتيب الأيقونة مع النص */
+        align-items: center;             /* توسيط عمودي */
+        justify-content: flex-start;       /* العناصر على اليمين */
+        gap: 8px;                        /* مسافة بسيطة بين الأيقونة والنص */
+        cursor: pointer;                 /* شكل اليد عند المرور */
+      }
+    
+      .btnBack img {
+        width: 20px;                     /* حجم الأيقونة */
+        height: 20px;
+      }
+      .btnBack:hover {
+        background: linear-gradient(to bottom, #c0c0c0, #888888); /* تأثير عند المرور */
+      }
+      .header {
+          background: #f2f2f2;                 /* رمادي فاتح */
+          color: #333;                         /* لون النص */
+          font-weight: bold;                   /* النص عريض */
+          padding: 10px 15px;                  /* مسافة داخلية */
+          border-radius: 6px;                  /* حواف ناعمة */
+          display: flex;                       /* ترتيب أفقي */
+          align-items: center;                 /* توسيط عمودي */
+          justify-content: space-between;      /* النص والأيقونات على الطرفين */
+          font-size: 16px;
+        }
+
+        .header img {
+          width: 20px;                         /* حجم الأيقونة */
+          height: 20px;
+        }
+
+        .header span {
+          flex: 1;                             /* يخلي النص ياخد المساحة المتبقية */
+          margin-right: 8px;                   /* مسافة بسيطة بعد الأيقونة */
+        }
+
+        .header .arrow {
+          width: 16px;                         /* حجم سهم صغير */
+          height: 16px;
+        }
+    .attach_row {
+      display: flex;              /* يخلي العناصر في صف */
+      align-items: center;        /* توسيط عمودي */
+      gap: 10px;                  /* مسافة بين الـ select والزر */
+    }
+
+    /* تنسيق select */
+    .attach_row select {
+      padding: 8px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    /* الزر */
+    .show_btn {
+      display: inline-flex;
+      align-items: center;
+      background: #fff;
+      border: 1px solid #ccc;
+      color: #333;
+      font-weight: bold;
+      font-size: 12px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+
+    .show_btn img {
+      width: 18px;
+      height: 18px;
+    }
+
+    .show_btn:hover {
+      background: #f9f9f9;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+
+    .sidebar table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 13px;
+    }
+    .sidebar th, .sidebar td {
+      border: 1px solid #ddd;
+      padding: 5px;
+      text-align: center;
+    }
+    .sidebar th {
+      background: #f0f0f0;
+    }
+
+    /* ✅ المحتوى الرئيسي */
+    .content {
+      flex: 1;
+      padding: 20px;
+    }
+    .section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid;
+  border-image: linear-gradient(to left, #cacaca, #00ff66) 1; /* تدرج أخضر من يمين لشمال */
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+  background: linear-gradient(to bottom, #ffffff, #cacaca);
+}
+
+.section-header h4{
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-file {
+  display: flex;
+  /* justify-content: center;   توسيط العناصر أفقياً */
+  /* align-items: center;       توسيط رأسياً */
+  gap: 20px;                 /* مسافة بين العناصر */
+  padding: 20px;
+  background: linear-gradient(to bottom, #ffffff, #cacaca); /* أزرق → رمادي */
+  border-radius: 10px;       /* أطراف ناعمة */
+}
+
+.fileBorder {
+  border: 2px solid #949494;    /* حدود واضحة */
+  padding: 10px 15px;
+  border-radius: 0px;
+  background: transparent;          /* عشان يظهر أوضح */
+  display: flex;
+  font-size: 10px;
+  align-items: center;
+  gap: 8px;                  /* مسافة بين الأيقونة والنص */
+}
+
+.eye {
+  padding: 10px 15px;
+  border-radius: 8px;
+  background: transparent;
+  display: flex;
+    font-size: 10px;
+  align-items: center;
+  gap: 8px;
+}
+.eye:hover {
+  background: rgba(1, 58, 119, 0.301); /* أزرق فاتح شفاف */
+}
+.section-file img{
+  width: 24px;
+  height: 24px  ;
+}
+    .pdf-actions {
+      margin-bottom: 10px;
+    }
+    .pdf-actions button {
+      margin-left: 5px;
+      padding: 5px 10px;
+      border: 1px solid #444;
+      background: #ddd;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .pdf-viewer {
+      border: 1px solid #ccc;
+      background: #fff;
+      height: 1000px;
+    }
+    .web-footer{
+  display: none;
+}
+.navbar-light {
+    display: none;
+}
+
+.tr-selected {
+  background-color: #62a7f1;
+  color: #fff;
+}
+tr {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+tr:hover {
+  background-color: #62a7f1;
+}
+.pagination {
+  margin-top: 0px;
+  text-align: center;
+   padding-right: 20px;
+  direction: rtl;
+}
+.page-num {
+  font-weight: bold;
+  color: #007bff;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.page-num:hover {
+  color: #007bff;
+}
+.page-num.active {
+  color: #fff;
+  color: #333;
+ 
+  border-radius: 4px;
+}
+
+.addedmorfakat{
+  display: none;
+}

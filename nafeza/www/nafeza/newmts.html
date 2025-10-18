@@ -4,25 +4,16 @@
 {{ _("منصة نافذة - طلبات شحنات ال (ACI)") }}
 {% endblock %}
 
-{% block page_content %}
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>نظام النافذة الموحدة للتجارة</title>
-
-  <!-- روابط CSS -->
+{% block head_include %}
   <link rel="stylesheet" href="newstyle.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
   <link
     href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Tajawal:wght@300;400;500;700;800;900&display=swap"
     rel="stylesheet">
-</head>
+{% endblock %}
 
-<body>
+{% block page_content %}
   <!-- ✅ الشريط العلوي -->
   <header class="topbar">
     <div class="container">
@@ -79,7 +70,7 @@
       <button id="attachmentsBtn" class="side-action"> <img src="img/ImageHandler (5).png" alt=""> صور المرفقات</button>
       <button class="side-action"><img src="img/ImageHandler (6).png" alt=""> طباعة</button>
       <button class="side-action"> <img src="img/ImageHandler (7).png" alt=""> بدء الاجراءات البنكية</button>
-      <button class="side-action"> <img src="img/ImageHandler ().png" alt=""> عودة</button>
+      <button class="side-action"> <img src="img/ImageHandler (8).png" alt=""> عودة</button>
     </div>
 
     <!-- جزء المرفقات -->
@@ -210,7 +201,5 @@
 
   <!-- ✅ ملف JavaScript -->
   <script src="script.js"></script>
-</body>
-{% endblock %}
 
-</html>
+{% endblock %}

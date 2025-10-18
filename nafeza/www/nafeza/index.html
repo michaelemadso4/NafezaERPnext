@@ -62,7 +62,7 @@
   <script>
     function login() {
   // هنا ممكن تضيف تحقق من اسم المستخدم والباسورد (لو backend)
-  
+      
   // المحتوى الجديد
   const newContent = `
     <div class="row">
@@ -108,6 +108,7 @@
 
 
   // استبدال المحتوى
+  document.getElementById("myCol").style.display = "block";
   document.getElementById("loginBox").innerHTML = newContent;
 
   // استبدال help-left
@@ -130,7 +131,7 @@ function toggleLoginBox() {
   <div class="row-container" id="loginBox">
     <div class="row">
       <!-- الجزء الأول -->
-      <div class="col">
+      <div class="col" id="myCol">
         <button class="close-btn" onclick="closeLogin()">X</button>
         <img src="nafeza/img/nafeza-id.png" alt="Logo" class="logo">
         <p>
@@ -488,47 +489,96 @@ function toggleLoginBox() {
     </div>
   </section>
 
-  <!-- === Footer === -->
+
   <footer>
-    <div class="container foot">
+    <h2>كن على تواصل دائم معنا</h2>
+    <p>اشترك الآن في خدمة التنبيهات الإلكترونية لدينا وكن على إطلاع دائم بأحدث الأخبار والمستجدات الخاصة بالنافذة الواحدة القومية للتجارة الخارجية</p>
+    
+    <!-- فورم الاشتراك -->
+    <div class="subscribe">
+      <input type="email" placeholder="برجاء إدخال البريد الإلكتروني">
+      <input type="text" placeholder="رقم هاتفك المحمول">
+      <button>اشترك الآن</button>
+    </div>
+
+    <!-- روابط -->
+    <div class="links">
       <div>
-        <h4>عن المنصة</h4>
-        <p style="color:var(--muted)">منصة موحّدة لتبسيط الإجراءات الجمركية وتيسير حركة التجارة. هذا القالب لأغراض
-          الاختبار والعرض فقط.</p>
-        <form class="sub" onsubmit="event.preventDefault()">
-          <input type="email" placeholder="بريدك للإشتراك بالتنبيهات">
-          <button class="btn primary" type="submit">اشترك</button>
-        </form>
+        <strong>لمحة عامة عن نافذة</strong><br>
+        مراكز الخدمات اللوجستية
       </div>
       <div>
-        <h4>روابط</h4>
-        <ul>
-          <li><a href="#about">عن نافذة</a></li>
-          <li><a href="#services">الخدمات و المنتجات</a></li>
-          <li><a href="#aci">التسجيل المُسبق للشحنات</a></li>
-          <li><a href="#support">الدعم والمساعدة</a></li>
-        </ul>
+        <strong>دليل خدمات نافذة</strong><br>
+        الإستعلام عن الإقرارات الجمركية<br>
+        الإستعلام عن التعريفة الجمركية<br>
+        المنشورات الجمركية<br>
+        الإدراج المباشر للإقرارات<br>
+        البيانات مفتوحة المُصدر
       </div>
       <div>
-        <h4>مركز المساعدة</h4>
-        <ul>
-          <li><a href="#faq">الأسئلة الشائعة</a></li>
-          <li><a href="#guides">أدلة الاستخدام</a></li>
-          <li><a href="#contact">تواصل معنا</a></li>
-        </ul>
+        <strong>دليل خدمات نافذة</strong><br>
+        دليل الإجراءات<br>
+        نماذج العمل
       </div>
       <div>
-        <h4>قانوني</h4>
-        <ul>
-          <li><a href="#terms">الشروط والأحكام</a></li>
-          <li><a href="#privacy">سياسة الخصوصية</a></li>
-          <li><a href="#open-data">البيانات المفتوحة</a></li>
-        </ul>
+        <strong>الأخبار والفاعليات</strong><br>
+        الوسائط المتعددة
+      </div>
+      <div>
+        <strong>خدمات</strong><br>
+        الأسئلة الشائعة<br>
+        شكاوي ومقترحات<br>
+        نصائح أمنية
+      </div>
+      <div>
+        <strong>خدمات إضافية</strong><br>
+        أسعار العملات الأجنبية<br>
+        الإستعلام عن الباركود GS1<br>
+        المنشورات الجمركية<br>
+        التعريفة الجمركية<br>
+        وظائف نافذة
       </div>
     </div>
-    <div class="container"
-      style="padding:12px 0; color:#9db0e5; font-size:14px; border-top:1px solid rgba(255,255,255,.06)">
-      © <span id="y">2025</span> — قالب واجهة RTL تجريبي. جميع الأسماء والعلامات المذكورة تخص أصحابها.
+
+    <div class="divider"></div>
+
+    <!-- السوشيال -->
+    <div class="social">
+      <div>
+        <p>تابعنا عبر:</p>
+        <div class="social-icons">
+          <i class="fab fa-facebook"></i>
+          <i class="fab fa-x-twitter"></i>
+          <i class="fab fa-linkedin"></i>
+          <i class="fab fa-youtube"></i>
+        </div>
+      </div>
+      <div>
+        <p><strong>تابعنا عبر تحديثات الشبكات الاجتماعية</strong><br>
+        عرض كل التحديثات</p>
+      </div>
+      <div>
+        <p><strong>الخدمات اللوجيستية عبر الهاتف</strong><br>
+        على مدار الساعة، فى أي وقت ومن أي مكان، الخدمات اللوجستية عبر الهاتف لأجهزة الآيفون، الآيباد والأندرويد</p>
+      </div>
+    </div>
+
+    <div class="bottom-info">
+      <p>digicert-ssl | الدعم الفني | nafeza@mts-egy.com | 15460</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- حقوق -->
+    <div class="copyright">
+      <p>الحقوق محفوظة © ٢٠٢٥ الشركة المصرية لتكنولوجيا التجارة الإلكترونية</p>
+      <p>
+        <a href="#">الخصوصية</a> |
+        <a href="#">سياسة الاستخدام</a> |
+        <a href="#">عن نافذة</a> |
+        <a href="#">اتصل بنا</a> |
+        <a href="#">خريطة الموقع</a>
+      </p>
     </div>
   </footer>
   <script>

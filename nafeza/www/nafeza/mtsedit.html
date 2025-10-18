@@ -1,0 +1,1062 @@
+{% extends "nafeza/templates/web.html" %}
+
+{% block title %}
+{{ _("نظام النافذة الموحدة للتجارة") }}
+{% endblock %}
+
+{% block page_content %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام النافذة الموحدة للتجارة</title>
+    <link rel="stylesheet" href="mtsphotstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Tajawal:wght@300;400;500;700;800;900&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+
+    <div class="apptapbar">
+        <!-- ✅ الشريط العلوي -->
+        <div class="topbar">
+            <div>
+                <div class="title">نظام النافذة الموحدة للتجارة</div>
+                <div class="subtitle">Nafeza_V2.00.00.20250926 [I14]</div>
+            </div>
+            <div class="actions">
+                <button><img src="img/desktop.png">تحديث سطح المكتب</button>
+                <button><img src="img/account.png">ميلاد جرجس زخارى المنشاوى</button>
+                <button><img src="img/logout.png">خروج</button>
+                <img src="img/whitelogo.png" class="logo" alt="Logo">
+            </div>
+        </div>
+        <!-- ✅ الشريط الرمادي -->
+        <div class="graybar">
+            <img src="img/file.png" alt="icon">
+            <span id="acidcode"></span> </span>
+        </div>
+    </div>
+    <script>
+
+
+        let aci;
+
+        frappe.ready(
+            function () {
+                console.log("Frappe is ready!");
+                const params = new URLSearchParams(window.location.search);
+                aci = params.get("aci");
+                console.log(aci)
+                const acidcode = document.getElementById("acidcode");
+                frappe.call({
+                    method: "nafeza.www.nafeza.mtcPhotos.getShipment_data",
+                    args: {
+                        shipment_request: String(aci)
+                    },
+                    callback: function (r) {
+                        console.log(r.message)
+                        acidcode.innerText = r.message["release_number"]
+
+                    }
+                });
+                frappe.call({
+                    method: "nafeza.www.nafeza.mtsedit.get_shipment_files",
+                    args: {
+                        shipment_request: String(aci)
+                    },
+                    callback: function (r) {
+                        console.log(r.message["release_number"]);
+                        release_number = r.message["release_number"];
+                        // document.querySelector(".acid").innerHTML =  release_number ;
+
+                    }
+
+                });
+
+            });
+    </script>
+
+    <div class="container-home">
+        <!-- ✅ القائمة الجانبية -->
+        <button id="toggleMenuBtn" class="toggle-arrow">►</button>
+
+        <!-- القائمة -->
+        <div id="sidebarmenu" class="sidebarmenu">
+            <div class="header">
+                <span class="title">المهام</span>
+            </div>
+
+            <!-- <button class="side-action"><img src="img/ImageHandler (2).png"> حفظ</button> -->
+            <button class="side-action" onclick="location.href='nwmtcphoto.html?aci=' + aci"><img
+                    src="img/imgttach.png"> صور
+                المرفقات</button>
+            <button class="side-action"><img src="img/printer.png"> طباعة</button>
+            <!-- <button class="side-action"><img src="img/ImageHandler (4).png"> بدء الاجراءات البنكية</button> -->
+            <button class="side-action"><img src="img/back.png"> عودة</button>
+        </div>
+
+        <!-- ✅ القائمة الجانبية -->
+        <!-- ✅ المحتوى -->
+        <div class="list_column">
+            <div class="container-fluid">
+                <div class="section">
+                    <div class="section-header">
+                        <h4 style="margin: 0;">
+                            <img src="img/file.png"> البيانات الاساسية
+                        </h4>
+                        <div>
+                            <img src="img/ImageHandler (7).png" alt="Icon" style="width: 24px; height: 24px;">
+                            <span class="toggle-arrow-BD">▲</span>
+                        </div>
+                    </div>
+
+                    <!-- ✨ ده اللي هيتفتح ويتقفل -->
+                    <div class="section-content">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="shipment-number">ص.شأن (مستورد/مستودع)</label>
+                                <!-- varibale --> <input class="shipment_input" type="text" id="shipment-number"
+                                    value="412648547" readonly />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="shipment-name">الإسم</label>
+                                <input type="text" id="shipment-name" value="الشركه الهندسيه للتوريدات والاستشارات"
+                                    readonly />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="shipment-address">العنوان</label>
+                                <input type="text" id="shipment-address"
+                                    value="القاهرة مدينة النور شقة 2 امتداد عباس العقاد طريق النصر م نصر القاهرة - رقم ملف 26670ق"
+                                    readonly />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="shipment-mobile">رقم المحمول</label>
+                                <input type="tel" id="shipment-mobile" value="01095007100" readonly />
+                            </div>
+                            <div class="form-group">
+                                <label for="shipment-mobile"> .</label>
+                                <input type="tel" id="shipment-mobile" value="" />
+                            </div>
+                        </div>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="shipment-status">مصري</label>
+                                <select id="shipment-status">
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="shipment-name">رقم قومي/باسبور</label>
+                                <input type="text" id="shipment-name" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="shipment-address">رقم المصنع</label>
+                                <input type="text" id="shipment-address" placeholder="__/__/____" />
+                            </div>
+                            <div class="form-group">
+                                <label for="shipment-address">تاريخ انتهاء بطاقه الرقم القومي </label>
+                                <input type="text" id="shipment-address" placeholder="__/__/____" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="shipment-mobile">الدولة</label>
+                                <input type="tel" id="shipment-mobile" placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="shipment-status">نوع قيد المتعامل </label>
+                                <select id="shipment-status">
+                                </select>
+                            </div>
+                            <div class="form-group ">
+                                <label for="shipment-name">رقم القيد</label>
+                                <input type="text" id="shipment-name" />
+                            </div>
+                            <div class="form-group">
+                                <label for="shipment-address">تاريخ اتنتهاء القيد</label>
+                                <input type="text" id="shipment-address" placeholder="__/__/____" />
+                            </div>
+
+                            <div class="flex-btn"> بيانات المتعامل من مصلحه الضرائب</div>
+                            <div class="form-group">
+                                <label for="shipment-status">النوع الفرعي </label>
+                                <select id="shipment-status">
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="shipment-status">الدفتر </label>
+                                <select id="shipment-status">
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="shipment-address">ACI رقم</label>
+                                <input type="text" id="shipment-address" placeholder="__/__/____" />
+                            </div>
+                            <div class="form-group">
+                                <label for="shipment-address">تاريخ 46</label>
+                                <input type="text" id="shipment-address" placeholder="__/__/____" />
+                            </div>
+
+                            <div class="form-group">
+                                <label class="lblblue" for="shipment-mobile">القيمه المقر عنها </label>
+                                <input type="tel" id="shipment-mobile" placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="shipment-status">مقدم الطلب </label>
+                                <select id="shipment-status">
+                                </select>
+                            </div>
+                            <div class="form-group ">
+                                <label for="shipment-name">رقم المحمول للتراسل</label>
+                                <input type="text" id="shipment-name" />
+                            </div>
+                            <div class="form-group">
+                                <label for="shipment-address">البريد الاكتروني</label>
+                                <input type="text" id="shipment-address" placeholder="__/__/____" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="shipment-address"> صيغه مقدم الطلب</label>
+                                <input type="text" id="shipment-address" placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="presenter-name">مقدم البيان</label>
+                                <div class="input-row">
+                                    <input type="text" id="presenter-name-1" value="" readonly class="small-input" />
+                                    <input type="text" id="presenter-name-2" value="" readonly class="large-input" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="presenter-role">صفة مقدم البيان</label>
+                                <input type="text" id="presenter-role" value="" readonly />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="follows-to">تابع لـ</label>
+                                <input type="text" id="follows-to" value="" readonly />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="tariff-date">تاريخ تطبيق التعريفة</label>
+                                <input type="text" id="tariff-date" value="" readonly />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="previous-importer">المستورد قبل التنازل</label>
+                                <input type="text" id="previous-importer" value="" readonly />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="joint-inspection">موعد الفحص المشترك</label>
+                                <input type="text" id="joint-inspection" value="" readonly />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="truck-release-date">ت. صرف الشاحنات</label>
+                                <input type="text" id="truck-release-date" value="" readonly />
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+                                <label for="shipment-link-type">نوع ربط الشحنة</label>
+                                <input type="text" id="shipment-link-type" value="" readonly />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="shipping-date">تاريخ الشحن</label>
+                                <input type="text" id="shipping-date" value="" readonly />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="arrival-date">تاريخ الوصول</label>
+                                <input type="text" id="arrival-date" value="" readonly />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="compatible-system">النظام الجمركى المتوافق</label>
+                                <input type="text" id="compatible-system" value="" readonly />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="current-system">النظام الجمركى الحالى</label>
+                                <input type="text" id="current-system" value="" readonly />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="tariff-sector">القطاع التعريفى</label>
+                                <input type="text" id="tariff-sector" value="" readonly />
+                            </div>
+
+                        </div>
+
+                        <div class="form-grid">
+
+                            <div class="form-group wide-input">
+                                <label for="submission-system">نظام الخضوع</label>
+                                <input type="text" id="submission-system" value="" readonly />
+                            </div>
+
+                            <div class="form-group wide-input">
+                                <label for="previous-customs-system">النظام الجمركي السابق</label>
+                                <input type="text" id="previous-customs-system" value="" readonly />
+                            </div>
+
+                        </div>
+                        <div class="form-grid">
+
+                            <div class="form-group">
+                                <label for="customs-complex">المجمع الجمركي</label>
+                                <input type="text" id="customs-complex" value="" readonly />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="registration-customs">جمرك القيد</label>
+                                <input type="text" id="registration-customs" value="" readonly />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="arrival-customs">جمرك وصول البضاعة</label>
+                                <input type="text" id="arrival-customs" value="" readonly />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="final-release-customs">جمرك الإفراج النهائي</label>
+                                <input type="text" id="final-release-customs" value="" readonly />
+                            </div>
+
+                        </div>
+                        <div class="form-grid  three-wide">
+
+                            <div class="form-group">
+                                <label for="delivery-location">موقع تسليم البضاعة</label>
+                                <input type="text" id="delivery-location" value="" readonly />
+                            </div>
+
+                            <div class="form-group ">
+                                <label for="warehouse">المستودع - (نقل و تخزين تحت التحفظ حالة رفض الجهات
+                                    الرقابية)</label>
+                                <input type="text" id="warehouse" value="" readonly />
+                            </div>
+
+                            <div class="form-group ">
+                                <label for="for-entity">لصالح جهة</label>
+                                <input type="text" id="for-entity" value="" readonly />
+                            </div>
+
+                        </div>
+                        <div class="form-grid three-wide">
+
+                            <div class="form-group">
+                                <label for="inspection-description">وصف المعاينة</label>
+                                <input type="text" id="inspection-description" value="" readonly />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="client-attendance-date">ت. حضور المتعامل للفحص</label>
+                                <input type="text" id="client-attendance-date" value="" readonly />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="transfer-parties-count">عدد أطراف التنازل</label>
+                                <input type="text" id="transfer-parties-count" value="" readonly />
+                            </div>
+
+                        </div>
+
+                        <div class="form-grid">
+
+                            <div class="form-group ">
+                                <label for="customs-complex">موقع الإدراج</label>
+                                <select id="shipment-status">
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+                                <label for="first-save-date">ت. أول حفظ</label>
+                                <input type="text" id="first-save-date" value="" readonly />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="saved-by">القائم بالحفظ</label>
+                                <input type="text" id="saved-by" value="" readonly />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="last-save-date">ت. آخر حفظ</label>
+                                <input type="text" id="last-save-date" value="" readonly />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="aci-request-date">ACI تاريخ طلب</label>
+                                <input type="text" id="aci-request-date" value="" readonly />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="aci-issue-date">ACI تاريخ إصدار</label>
+                                <input type="text" id="aci-issue-date" value="" readonly />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="submission-date">تاريخ التقديم</label>
+                                <input type="text" id="submission-date" value="" readonly />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="status">الحالة</label>
+                                <input type="text" id="status" value="" readonly />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="declaration-stage">مرحلة الإقرار</label>
+                                <input type="text" id="declaration-stage" value="" readonly />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="request-type">نوع الطلب</label>
+                                <input type="text" id="request-type" value="" readonly />
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="section">
+                    <div class="section-header">
+                        <h4 style="margin: 0;">
+                            <img src="img/file.png"> المؤشرات / محددات الإقرار
+                        </h4>
+                        <div>
+                            <img src="img/ImageHandler (7).png" alt="Icon" style="width: 24px; height: 24px;">
+                            <span class="toggle-arrow-BD">▲</span>
+                        </div>
+                    </div>
+
+                    <!-- ✨ ده اللي هيتفتح ويتقفل -->
+                    <div class="section-content">
+                        <div class="form-grid wide-selects">
+                            <div class="form-group">
+                                <label for="postal-indicator">مؤشر طرود بريدية</label>
+                                <select id="postal-indicator" readonly>
+                                    <option></option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="invoice-system">المتعامل مُسجل بنظام الفاتورة الإلكترونية</label>
+                                <select id="invoice-system" readonly>
+                                    <option></option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="whitelist-status">المتعامل مُسجل قائمة بيضاء</label>
+                                <select id="whitelist-status" readonly>
+                                    <option></option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exit-indicator">مؤشر خروج بالمشمول - بدون حاويات</label>
+                                <select id="exit-indicator" readonly>
+                                    <option></option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="form-grid wide-selects">
+
+                            <div class="form-group">
+                                <label for="completion-approval">الإنتهاء من التبنيد</label>
+                                <select id="completion-approval" readonly>
+                                    <option></option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="full-fee-payment">سداد كامل الرسوم بالمرحلة الأولى</label>
+                                <select id="full-fee-payment" readonly>
+                                    <option></option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="disbursement-visa">تأشيرة الصرف</label>
+                                <select id="disbursement-visa" readonly>
+                                    <option></option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="article-104-commitment">تعهد المادة 104ج</label>
+                                <select id="article-104-commitment" readonly>
+                                    <option></option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exit-approval">ارغب في الخروج بنقل وتخزين تحت التحفظ لجهات العرض</label>
+                                <select id="exit-approval" readonly>
+                                    <option></option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inspection-rate">نسبة الكشف والمعاينه</label>
+                                <select id="inspection-rate" readonly>
+                                    <option></option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="special-committees">اللجان التخصصيه</label>
+                                <select id="special-committees" readonly>
+                                    <option></option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <hr>
+                        <div class="form-grid wide-selects lblblue">
+
+                            <div class="form-group">
+                                <label for="submitted-documents">كفايه المستندات المقدمه</label>
+                                <select id="submitted-documents" readonly>
+                                    <option></option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="is-stock-message">هل الرساله الوارده استوك ؟</label>
+                                <select id="is-stock-message" readonly>
+                                    <option></option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="under-suspicion">هل الرساله الوارده تحت الشكه</label>
+                                <select id="under-suspicion" readonly>
+                                    <option></option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="wooden-box">الرساله فى عبوه خشبيه سمك&gt; 6مم ؟</label>
+                                <select id="wooden-box" readonly>
+                                    <option></option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="guided-goods-freezone">سلع مرشدة للمدينة الحرة؟</label>
+                                <select id="guided-goods-freezone" readonly>
+                                    <option></option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="goods-freezone">سلع للمدينة الحرة؟</label>
+                                <select id="goods-freezone" readonly>
+                                    <option></option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="used-or-waste">هل الرسالة الواردة مستعملة او فضلات؟</label>
+                                <select id="used-or-waste" readonly>
+                                    <option></option>
+                                </select>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="section">
+                    <div class="section-header">
+                        <h4 style="margin: 0;">
+                            <img src="img/file.png"> التذييلات / المستندات والأعمال
+                        </h4>
+                        <div>
+                            <img src="img/ImageHandler (7).png" alt="Icon" style="width: 24px; height: 24px;">
+                            <span class="toggle-arrow-BD">▼</span>
+                        </div>
+                    </div>
+
+                    <!-- ✨ ده اللي هيتفتح ويتقفل -->
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="section">
+                    <div class="section-header">
+                        <h4 style="margin: 0;">
+                            <img src="img/file.png">بيانات الشحنة
+                        </h4>
+                        <div>
+                            <img src="img/ImageHandler (7).png" alt="Icon" style="width: 24px; height: 24px;">
+                            <span class="toggle-arrow-BD">▼</span>
+                        </div>
+                    </div>
+
+                    <!-- ✨ ده اللي هيتفتح ويتقفل -->
+                    <div class="section">
+                        <div class="customese">
+                            <h4 style="margin: 0; display: flex; align-items: center;">
+                                <div class="empty-box"></div>
+                                <span class="txt">بيانات الشحنة</span>
+                            </h4>
+                            <div style="display: flex; align-items: center; gap: 5px;">
+                                <div class="empty-box-small"></div>
+                                <img src="img/help (3).png" width="30" height="30" alt="">
+                                <span class="toggle-arrow-BD">▼</span>
+                            </div>
+                        </div>
+
+                        <!-- ✨ ده اللي هيتفتح ويتقفل -->
+
+                        <div class="tabs">
+                            <div class="tab active" data-tab="tab1">بيانات الشحنة</div>
+                            <div class="tab" data-tab="tab2">الطرود المطلوبة للكشف</div>
+                        </div>
+
+                        <div id="tab1" class="tab-content active">
+                            <!-- محتوى بيانات الشحنة -->
+                            <div class="leftcontainer">
+                                <!-- الشمال -->
+                                <div class="left_sidebar">
+                                    <p>إجمالي عدد الشحنات: 1</p>
+                                </div>
+
+                                <!-- يمين - بيانات الشحنة -->
+                                <div class="content">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="police-number">رقم البوليصة</label>
+                                            <input type="text" id="police-number" value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="police-date">تاريخ البوليصة</label>
+                                            <input type="text" id="police-date" value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="road-number">رقم الطريق</label>
+                                            <input type="text" id="road-number" value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="main-police">تابع لبوليصة رئيسية</label>
+                                            <input type="text" id="main-police" value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="port-from">ميناء الشحن</label>
+                                            <input type="text" id="port-from" value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="port-to">ميناء الوصول</label>
+                                            <input type="text" id="port-to" value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="final-destination">الوجهة النهائية</label>
+                                            <input type="text" id="final-destination" value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="arrival-date">تاريخ الوصول</label>
+                                            <input type="text" id="arrival-date" value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="departure-date">تاريخ المغادرة من بلد التصدير</label>
+                                            <input type="text" id="departure-date" value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="shipment-type">نوع الشحنة</label>
+                                            <input type="text" id="shipment-type" value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="destination-type">نوع وجهة الشحنة</label>
+                                            <input type="text" id="destination-type" value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="last-location">آخر موقع</label>
+                                            <input type="text" id="last-location" value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="shipping-agent">التوكيل الملاحى</label>
+                                            <input type="text" id="shipping-agent" value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="transport-name">اسم وسيلة النقل</label>
+                                            <input type="text" id="transport-name" value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="beneficiary-name">اسم المستفيد</label>
+                                            <input type="text" id="beneficiary-name" value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="waiver-requests">عدد طلبات التنازل</label>
+                                            <input type="text" id="waiver-requests" value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="shipment-number">رقم الشحنة</label>
+                                            <input type="text" id="shipment-number" value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sub-number">الرقم الفرعي</label>
+                                            <input type="text" id="sub-number" value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="shipment-date">تاريخ الشحنة</label>
+                                            <input type="text" id="shipment-date" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="leftcontainer">
+                            <div class="right_sidebar">
+                                <img src="img/transition.png" width="25px" height="25" alt="">
+                            <p>نص تأشيرة الفحص بالأشعة</p>    
+                            </div>
+
+<div class="table-container">
+    <table class="attachments-table">
+        <thead>
+            <tr>
+                <th>المسلسل</th>
+                <th>نوع الشحنة</th>
+                <th>نوع وجهة الشحنة</th>
+                <th>وصف عام للبضاعة</th>
+                <th>حالة التجميد</th>
+                <th>رمز الحاوية</th>
+                <th>عدد الطرود</th>
+                <th>وحدة الطرود</th>
+                <th>الوزن القائم</th>
+                <th>وحدة الوزن</th>
+                <th>السيل الملاحى</th>
+                <th>الحالة</th>
+                <th>تاريخ التفريغ</th>
+                <th>مطلوبة للفحص بالأشعة</th>
+                <th>نتيجة الكشف بالأشعة</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>حاويات كاملة</td>
+                <td>برسم الوارد</td>
+                <td>WATER PUMPS AND SPARE PARTS OF WATER PUMPS HS CODE?: 841370 ACID?: 4126485472025070021 IMPORTER TAXATION NUMBER?: 412648547 EXPORTER NUMBER?: ESA46002069</td>
+                <td></td>
+                <td>ARKU8364020</td>
+                <td>49</td>
+                <td>قطعة</td>
+                <td>14432</td>
+                <td>كيلو جرام</td>
+                <td>B1758616</td>
+                <td>مدفوع</td>
+                <td>03/09/2025 03:39</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>حاويات كاملة</td>
+                <td>برسم الوارد</td>
+                <td>WATER PUMPS AND SPARE PARTS OF WATER PUMPS HS CODE?: 841370</td>
+                <td></td>
+                <td>ARKU8372113</td>
+                <td>23</td>
+                <td>قطعة</td>
+                <td>19568</td>
+                <td>كيلو جرام</td>
+                <td>0640894</td>
+                <td>مدفوع</td>
+                <td>03/09/2025 01:30</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+                            </div>
+                        </div>
+
+                        <div id="tab2" class="tab-content">
+                            <!-- محتوى الطرود المطلوبة للكشف -->
+                            <div class="table-container">
+    <table class="attachments-table">
+        <thead>
+            <tr>
+                <th>المسلسل</th>
+                <th>رمز الحاوية</th>
+                <th>السيل الجمركى للحاويات</th>
+                <th>الوزن القائم</th>
+                <th>وحدة الوزن</th>
+                <th>عدد الطرود</th>
+                <th>وحدة الطرود</th>
+                <th>تاريخ التفريغ</th>
+                <th>مطلوب من الجمرك</th>
+                <th>مطلوب من الرقابة</th>
+                <th>مطلوب من هيئة السلامة</th>
+                <th>مطلوبة للفحص بالأشعة</th>
+                <th>نتيجة الكشف بالأشعة</th>
+                <th>وصف عام للبضاعة</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>ARKU8364020</td>
+                <td></td>
+                <td>14432</td>
+                <td>كيلو جرام</td>
+                <td>49</td>
+                <td>قطعة</td>
+                <td>03/09/2025 03:39</td>
+                <td>✔</td>
+                <td>✔</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>WATER PUMPS AND SPARE PARTS OF WATER PUMPS HS CODE?: 841370 ACID?: 4126485472025070021 IMPORTER TAXATION NUMBER?: 412648547 EXPORTER NUMBER?: ESA46002069</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>ARKU8372113</td>
+                <td></td>
+                <td>19568</td>
+                <td>كيلو جرام</td>
+                <td>23</td>
+                <td>قطعة</td>
+                <td>03/09/2025 01:30</td>
+                <td>✔</td>
+                <td>✔</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>WATER PUMPS AND SPARE PARTS OF WATER PUMPS HS CODE?: 841370</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+              <div class="container-fluid">
+                <div class="section">
+                    <div class="section-header">
+                        <h4 style="margin: 0;">
+                            <img src="img/file.png"> التأشيرات
+                        </h4>
+                        <div>
+                            <img src="img/ImageHandler (7).png" alt="Icon" style="width: 24px; height: 24px;">
+                            <span class="toggle-arrow-BD">▼</span>
+                        </div>
+                    </div>
+
+                    <!-- ✨ ده اللي هيتفتح ويتقفل -->
+                </div>
+            </div>
+             <div class="container-fluid">
+                <div class="section">
+                    <div class="section-header">
+                        <h4 style="margin: 0;">
+                            <img src="img/file.png"> الضرائب والرسوم
+                        </h4>
+                        <div>
+                            <img src="img/ImageHandler (7).png" alt="Icon" style="width: 24px; height: 24px;">
+                            <span class="toggle-arrow-BD">▼</span>
+                        </div>
+                    </div>
+
+                    <!-- ✨ ده اللي هيتفتح ويتقفل -->
+                </div>
+            </div>
+             <div class="container-fluid">
+                <div class="section">
+                    <div class="section-header">
+                        <h4 style="margin: 0;">
+                            <img src="img/file.png"> مرفقات مطلوبة
+                        </h4>
+                        <div>
+                            <img src="img/ImageHandler (7).png" alt="Icon" style="width: 24px; height: 24px;">
+                            <span class="toggle-arrow-BD">▼</span>
+                        </div>
+                    </div>
+
+                    <!-- ✨ ده اللي هيتفتح ويتقفل -->
+                </div>
+            </div>
+             <div class="container-fluid">
+                <div class="section">
+                    <div class="section-header">
+                        <h4 style="margin: 0;">
+                            <img src="img/file.png">مرفقات تم تقديمها
+                        </h4>
+                        <div>
+                            <img src="img/ImageHandler (7).png" alt="Icon" style="width: 24px; height: 24px;">
+                            <span class="toggle-arrow-BD">▼</span>
+                        </div>
+                    </div>
+
+                    <!-- ✨ ده اللي هيتفتح ويتقفل -->
+                </div>
+            </div>
+             <div class="container-fluid">
+                <div class="section">
+                    <div class="section-header">
+                        <h4 style="margin: 0;">
+                            <img src="img/file.png">مستندات وطلبات تابعه
+                        </h4>
+                        <div>
+                            <img src="img/ImageHandler (7).png" alt="Icon" style="width: 24px; height: 24px;">
+                            <span class="toggle-arrow-BD">▼</span>
+                        </div>
+                    </div>
+
+                    <!-- ✨ ده اللي هيتفتح ويتقفل -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    <script>
+        const tabs = document.querySelectorAll('.tab');
+        const contents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // إزالة active من الكل
+                tabs.forEach(t => t.classList.remove('active'));
+                contents.forEach(c => c.classList.remove('active'));
+
+                // تفعيل الـ tab والـ content المناسب
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab).classList.add('active');
+            });
+        });
+    </script>
+
+
+
+</body>
+<script>
+    // ✅ Checkbox تحديد الكل
+    const selectAll = document.getElementById("select-all");
+    const checkboxes = document.querySelectorAll(".row-checkbox");
+
+    selectAll.addEventListener("change", function () {
+        checkboxes.forEach(cb => cb.checked = this.checked);
+    });
+
+    // ✅ لو الغيت اختيار أي واحد يرجع "تحديد الكل" يفك نفسه
+    checkboxes.forEach(cb => {
+        cb.addEventListener("change", function () {
+            if (!this.checked) {
+                selectAll.checked = false;
+            } else if (document.querySelectorAll(".row-checkbox:checked").length === checkboxes.length) {
+                selectAll.checked = true;
+            }
+        });
+    });
+    // ✅ Checkbox تحديد الكل للجدول ده
+    const selectAllExpenses = document.getElementById("select-all-expenses");
+    const expenseCheckboxes = document.querySelectorAll(".row-checkbox-expense");
+
+    selectAllExpenses.addEventListener("change", function () {
+        expenseCheckboxes.forEach(cb => cb.checked = this.checked);
+    });
+
+    // ✅ تحديث حالة select-all-expenses
+    expenseCheckboxes.forEach(cb => {
+        cb.addEventListener("change", function () {
+            if (!this.checked) {
+                selectAllExpenses.checked = false;
+            } else if (document.querySelectorAll(".row-checkbox-expense:checked").length === expenseCheckboxes.length) {
+                selectAllExpenses.checked = true;
+            }
+        });
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const menu = document.getElementById("sidebarmenu");
+        const toggleBtn = document.getElementById("toggleMenuBtn");
+
+        toggleBtn.addEventListener("click", () => {
+            menu.classList.toggle("closed");
+
+            if (menu.classList.contains("closed")) {
+                toggleBtn.textContent = "◄"; // القائمة مقفولة
+                toggleBtn.style.right = "0"; // الزرار يروح أقصى اليمين
+            } else {
+                toggleBtn.textContent = "►"; // القائمة مفتوحة
+                toggleBtn.style.right = "180px"; // الزرار يرجع لمكانه الطبيعي
+            }
+        });
+    });
+    document.querySelectorAll('.section-header').forEach(header => {
+        header.addEventListener('click', () => {
+            const content = header.nextElementSibling;
+            const arrow = header.querySelector('.toggle-arrow-BD');
+
+            if (content.style.display === "none") {
+                content.style.display = "block";
+                arrow.textContent = "▲";  // سهم لتحت
+            } else {
+                content.style.display = "none";
+                arrow.textContent = "▼";  // سهم لفوق
+            }
+        });
+    });
+
+    const tabButtons = document.querySelectorAll(".tab-buttons button");
+    const tabPanes = document.querySelectorAll(".tab-pane");
+
+    tabButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const target = btn.dataset.tab;
+
+            // تفعيل الزر المختار
+            tabButtons.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+
+            // اظهار الـ Tab المناسب
+            tabPanes.forEach(pane => {
+                pane.classList.remove("active");
+                if (pane.id === target) pane.classList.add("active");
+            });
+        });
+    });
+
+</script>
+{% endblock %}
+
+</html>

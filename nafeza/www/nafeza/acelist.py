@@ -1,7 +1,6 @@
 import frappe
 
 def get_context(context):
-
     context.allow_guest = True
     return context
 
@@ -19,7 +18,9 @@ def get_shipment_requests():
             "request_type",
             "request_date",
             "shipment_type"
-        ]
+        ],
+        # order_by="CAST(preliminary_number AS UNSIGNED) asc"  # ترتيب تصاعدي
+        order_by="CAST(preliminary_number AS UNSIGNED) desc"  # لو عايز تنازلي
     )
 
     # تحويل الـ datetime/date إلى string

@@ -287,7 +287,7 @@ html[data-v-25a90c4d] {
 /* الجزء الشمال: تسجيل دخول + حساب جديد */
 .help-left {
   margin-left: 140px;
-  margin-right: 270px;
+  margin-right: 850px;
   display: flex;
   align-items: center;
   /* gap: 10px; */
@@ -299,6 +299,7 @@ html[data-v-25a90c4d] {
   color: white;
   padding: 6px 15px;
   border-radius: 5px;
+  
   border: none;
   cursor: pointer;
 
@@ -558,6 +559,7 @@ header {
 
     .col {
       flex: 1;
+      /* display: none; */
       padding: 20px;
       text-align: right;
     }
@@ -691,38 +693,59 @@ header {
       width: 24px;
       height: 24px;
     }
-
-    .custom-table .actions { position: relative; }
-.custom-table .dropdown {
-  position: absolute;
-  /* inset-inline-end: 0; يمين في RTL */
-  background: #fff;
-  border: 1px solid #ddd;
-  min-width: 160px;
-  padding: 6px 0;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-  z-index: 10;
-}
-.custom-table .dropdown a {
-  display: block;
-  padding: 8px 12px;
-  text-decoration: none;
-  color: #333;
-}
-.custom-table .dropdown a:hover {
-  background: #f5f7fa;
-}
-
-
-    /* الحالة المفتوحة */
-    .row-container.show {
-      top: 0;
-      margin-top: 88px;
-
+      .custom-table{
+        padding-left: 15%;
+        padding-right: 15%;
+      }
+      .custom-table .actions { position: relative; }
+  .custom-table .dropdown {
+    position: absolute;
+    /* inset-inline-end: 0; يمين في RTL */
+    background: #fff;
+    border: 1px solid #ddd;
+    min-width: 160px;
+    padding: 6px 0;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    z-index: 10;
+  }
+  .custom-table .dropdown a {
+    display: block;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: #333;
+  }
+  .custom-table .dropdown a:hover {
+    background: #f5f7fa;
+  }
+  /* أزرار الـ pagination */
+    .pagination {
+      justify-content: center;
+      margin-top: 15px;
+      text-align: center;
     }
+    .pagination button {
+      margin: 0 3px;
+      padding: 6px 12px;
+      border: 1px solid #aaa;
+      background: #fff;
+      cursor: pointer;
+    }
+    .pagination button.active {
+      background: #007bff;
+      color: white;
+    }
+
+      /* الحالة المفتوحة */
+      .row-container.show {
+        top: 0;
+        margin-top: 88px;
+
+      }
     
 
     .listContainer {
+      padding-left: 15%;
+      padding-right: 15%;
       background-color: #fff;
       color: #000;
         margin: 20px;
@@ -1300,7 +1323,7 @@ footer {
   }
 
   .news-grid {
-    grid-template-columns: 1fr
+    grid-template-columns: 1frبر
   }
 
   .foot {
@@ -1311,3 +1334,107 @@ footer {
     width: 160px
   }
 }
+
+  footer {
+    width: 100%;
+      background: #203f7f; /* أزرق */
+      color: #fff;
+      padding: 30px 20px;
+
+    }
+
+    footer h2 {
+      color:#fff;
+  margin: 0 0 10px;
+  font-size: 22px;
+  text-align: center;
+}
+
+footer p {
+  font-size: 14px;
+  margin: 0 0 20px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.subscribe {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center; /* يوسطن العناصر أفقياً */
+  margin-bottom: 30px;
+}
+
+.subscribe input {
+  padding: 6px 8px;
+  border: none;
+  border-radius: 5px;
+  min-width: 150px;
+  font-size: 13px;
+}
+
+.subscribe button {
+  padding: 6px 15px;
+  font-size: 13px;
+  background: #0056b3;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+
+    .links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .links div {
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .divider {
+      border-top: 1px solid #ccc;
+      margin: 20px 0;
+    }
+
+    .social {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .social-icons i {
+      font-size: 20px;
+      margin: 0 8px;
+      cursor: pointer;
+    }
+
+    .bottom-info {
+      font-size: 13px;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .copyright {
+      text-align: center;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .copyright a {
+      color: #fff;
+      margin: 0 5px;
+      text-decoration: none;
+    }
+
+    .web-footer{
+      display: none;
+    }

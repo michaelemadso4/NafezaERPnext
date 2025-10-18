@@ -14,13 +14,11 @@ body {
 
 /* ✅ الشريط العلوي */
 .apptapbar{
-  
   position: fixed;
   top: 0;
   left: 0;
-  margin-right: -280px !important;
-  width: 1200px !important;
-  z-index: 1000 !important;
+  width: 100%;
+  z-index: 1000;
 }
 .topbar {
     /* position: fixed; */
@@ -32,7 +30,6 @@ body {
 
 .topbar-row {
   display: flex;
-  width: 100%;
   align-items: center;
   justify-content: space-between;
 }
@@ -61,6 +58,11 @@ body {
   width: 40px;
   height: 40px;
 }
+.topbar .actions .logo  {
+  width: 100px;
+  height: 40px;
+}
+
 
 
 /* ✅ أزرار عامة */
@@ -210,37 +212,196 @@ body {
   align-items: center;
   gap: 8px;
 }
-
-.section-content {
-  display: block;
-  padding: 10px;
+.customese {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid;
+  border-image: linear-gradient(to left, #cacaca, #ffffff) 1; /* تدرج أخضر من يمين لشمال */
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+  background: white !important  ;
 }
 
+.customese h4{
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.container-fluid {
+  direction: rtl;
+  font-family: "Cairo", sans-serif;
+  font-size: 13px;
+  color: #333;
+  padding: 10px 15px;
+}
+
+/* ==== رأس القسم ==== */
+.section {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  background-color: #fdfdfd;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to left, #e6e6e6, #f9f9f9);
+  padding: 5px 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.section-header h4 {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #222;
+}
+
+.section-header img {
+  margin-left: 6px;
+  width: 20px;
+  height: 20px;
+}
+.empty-box {
+    width: 24px;
+    height: 24px;
+    border: 1px solid #ccc;
+    flex-shrink: 0; /* يحافظ على حجم المربع */
+}
+
+.empty-box-small {
+    width: 24px;
+    height: 24px;
+    border: 1px solid #ccc;
+    flex-shrink: 0;
+}
+
+.txt {
+    margin-left: 10px; /* المسافة بين المربع والنص */
+    white-space: nowrap; /* يظل في نفس السطر */
+}
+/* ==== محتوى القسم ==== */
+.section-content {
+  padding: 8px 10px;
+}
+
+.list_column{
+  flex: column;
+  width: 87%;
+}
+/* ==== مجموعة select الواسعة ==== */
+.form-grid.wide-selects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); /* أكبر من قبل */
+  gap: 6px;
+  margin-bottom: 6px;
+  direction: rtl;
+}
+
+/* ==== ضبط label ==== */
+.form-grid.wide-selects .form-group label {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 3px;
+  color: #222;
+  text-align: right;
+}
+
+/* ==== تكبير select ==== */
+.form-grid.wide-selects select {
+  width: 100%;
+  padding: 7px 10px; /* راحة أكبر */
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  background-color: #f7f7f7;
+  font-size: 13px;
+  height: 34px; /* تكبير الارتفاع قليلاً */
+  box-sizing: border-box;
+}
+
+/* ==== عند المرور ==== */
+.form-grid.wide-selects select:hover {
+  border-color: #888;
+}
+
+
+/* ==== تصميم الجريد ==== */
 .form-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); /* كان 200px */
+  gap: 3px; /* بدل 4 */
+  margin-bottom: 4px;
+  direction: rtl;
 }
 
+/* ==== كل عنصر داخل الفورم ==== */
 .form-group {
   display: flex;
-  padding: 5px;
   flex-direction: column;
+  text-align: right;
 }
 
+/* ==== الحقول ==== */
+.form-group input,
+.form-group select {
+  padding: 3px 5px; /* أصغر من 5px 6px */
+  border: 1px solid #ccc;
+  border-radius: 3px; /* بدل 4 */
+  background-color: #f7f7f7;
+  font-size: 11px; /* بدل 12px */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ==== العناوين ==== */
 .form-group label {
   font-weight: 600;
-  font-size: 12px;
+  font-size: 11px; /* بدل 12px */
+  margin-bottom: 2px;
+  color: #222;
+  text-align: right;
+}
+.lblblue label {
+  font-weight: 600;
+  font-size: 11px; /* بدل 12px */
+  margin-bottom: 2px;
+  color: #0026ff !important; /* أزرق */
+  text-align: right;
+}
+/* ==== read-only ==== */
+.form-group input[readonly] {
+  background-color: #eee;
+}
+
+/* ==== المؤشر عند المرور ==== */
+.form-group input:hover,
+.form-group select:hover {
+  border-color: #888;
+}
+
+/* ==== صفوف خاصة ==== */
+.small-input { width: 110px; }
+.large-input { width: 170px; }
+.wide-input { grid-column: span 3; }
+.form-grid.three-wide {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 4px;
+  direction: rtl;
   margin-bottom: 4px;
 }
-
-.form-group input,
-.form-group textarea {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+/* ==== السهم في الأعلى أو الأسفل ==== */
+.toggle-arrow-BD {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  user-select: none;
 }
-
 /* ✅ الصور */
 .containerimg {
   padding: 15px;
@@ -284,7 +445,7 @@ body {
 .sidebarmenu {
   position: fixed;      /* علشان تلزق في يمين الشاشة */
   right: 0;             /* تيجي على اليمين */
-  width: 220px;
+  width: 230px;
   height: 100vh;
   background: linear-gradient(to right, rgb(255, 255, 255), rgb(211, 211, 211));
   display: flex;
@@ -300,8 +461,8 @@ body {
 /* زرار السهم */
 .toggle-arrow {
   position: fixed;
-  top: 115px;
-  right: 170px;
+  top: 160px;
+  right: 180px;
   background: rgb(35, 108, 160);
   color: #fff;
   border: none;
@@ -374,9 +535,65 @@ body {
   font-weight: bold;
 }
 .container-fluid {
-  margin-right: 220px; /* علشان يبعد شوية عن القائمة */
+  direction: rtl;
+  margin-right: 230px; /* علشان يبعد شوية عن القائمة */
   flex: 1;
 }
+
+    /* ✅ الشريط العلوي */
+    .topbar {
+      background: #000;
+      color: #fff;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .topbar .title {
+      font-size: 16px;
+    }
+    .topbar .subtitle {
+      font-size: 12px;
+      color: #ccc;
+    }
+    .topbar .actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .topbar .actions button {
+    appearance: none;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    font-weight: 600;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(51, 51, 51);
+    border-image: initial;
+    background: linear-gradient(to right, rgb(255, 255, 255), rgb(211, 211, 211));
+    padding: 8px 12px;
+    border-radius: 10px;
+    }
+    .actions button img{
+      height: 30px;
+    }
+  
+    .topbar .logo {
+      /* height: 45px; */
+      width: 125px;
+    }
+/* ✅ الشريط الرمادي */
+    .graybar {
+      background: #e0e0e0;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+    }
+    .graybar img {
+      width: 20px;
+      margin-left: 8px;
+    }
 
 .section-file {
   display: flex;
@@ -427,76 +644,36 @@ body {
 }
 
 
-/* ===================== Tabs Container ===================== */
-.tabs {
+.section-select {
+  margin: 15px 0;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  direction: rtl;
   gap: 10px;
-  margin-top: 20px;
 }
 
-/* ===================== Tabs Navigation ===================== */
-.tab-buttons {
-  display: flex;
-  gap: 5px;
-  justify-content: flex-start; /* للـ RTL ممكن تحطه flex-end حسب رغبتك */
-  flex-wrap: wrap;
-}
-
-.tab-buttons button {
-  padding: 8px 15px;
+.select-files {
+  width: 50%;
+  padding: 8px;
+  border-radius: 6px;
   border: 1px solid #ccc;
-  background: linear-gradient(to right, #fff, #e0e0e0);
-  cursor: pointer;
-  border-radius: 6px 6px 0 0;
-  font-size: 13px;
-  font-weight: 600;
-  transition: 0.2s;
+  font-family: "Cairo", sans-serif;
 }
 
-.tab-buttons button.active {
-  background: linear-gradient(to to bottom, #fff, #cacaca);
-  border-bottom: 2px solid #fff;
+
+.btn-view-all{
+
+  border: 2px solid #000000;    /* حدود واضحة */
+  border-radius: 0px;
+  color: #000;
+  font-family: "Cairo", sans-serif;
+  font-size: 14px;
+  /* transition: background 0.3s ease; */
 }
 
-.tab-buttons button:hover {
-  background: linear-gradient(to right, #f0f0f0, #ddd);
+.btn-view-all:hover {
+  background: #0b5ed7;
 }
-
-/* ===================== Tabs Content ===================== */
-.tab-content {
-  background: #fff;
-  border: 1px solid #ccc;
-  border-top: none;
-  border-radius: 0 0 6px 6px;
-  padding: 15px;
-}
-
-.tab-pane {
-  display: none;
-}
-
-.tab-pane.active {
-  display: block;
-}
-
-/* ===================== Tables inside tabs ===================== */
-.tab-pane table {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: center;
-  font-size: 13px;
-}
-
-.tab-pane th, .tab-pane td {
-  border: 1px solid #ccc;
-  padding: 6px;
-}
-
-.tab-pane tr:hover {
-  background: #f1f1f1;
-}
-
 
 .table-container {
   margin: 20px 0;
@@ -578,9 +755,114 @@ body {
 #page-buttons button.active {
   color: #000; /* أسود للصفحة الحالية */
 }
-.navbar{
-  display: none;
-}
 .web-footer{
   display: none;
+}
+
+
+.tabs {
+  display: flex;
+  border-bottom: 2px solid #ccc;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.tab {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-bottom: none;
+  background-color: #f5f5f5;
+  margin-right: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.tab.active {
+  background-color: #fff;
+  font-weight: bold;
+}
+
+.tab-content {
+  border: 1px solid #ccc;
+  padding: 15px;
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.leftcontainer {
+    gap: 20px;
+    direction: rtl; /* يجعل العمود الأول على اليمين بشكل افتراضي */
+}
+
+/* نعيد ترتيب العمودين */
+.left_sidebar {
+    order: 0; /* العمود الشمال */
+    width: 200px;
+    /* border: 1px solid #ccc; */
+    padding: 15px;
+    margin-right: 1300px;
+    border-radius: 5px;
+    /* background-color: #f9f9f9; */
+}
+.right_sidebar {
+    width: 200px;
+    height: 50px; /* أو أي ارتفاع مناسب */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+
+    display: flex;           /* تفعيل Flexbox */
+    flex-direction: row;     /* ترتيب العناصر أفقياً */
+    justify-content: center; /* محاذاة أفقية في الوسط */
+    align-items: center;     /* محاذاة عمودية في الوسط */
+    gap: 10px;               /* مسافة بين الصورة والنص */
+    text-align: center;      /* النص في الوسط داخل العنصر */
+}
+.right_sidebar p{
+  margin-top: 22px;
+}
+
+.content {
+    flex: 1;
+    order: 1; /* العمود اليمين */
+}
+.table-container {
+    overflow-x: auto;  /* تفعيل التمرير الأفقي */
+    width: 100%;       /* يمكن تعديلها حسب التصميم */
+}
+
+.attachments-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    min-width: 1200px; /* إجبار الجدول على عدم الانكسار */
+}
+.attachments-table thead tr{
+  background-color: #ccc;
+  color: black;
+  
+}
+
+.attachments-table th{
+      background: linear-gradient(to top, #e0e0e0, #ffffff);
+    font-weight: bold;
+    color: #000 !important;
+
+}
+.attachments-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+}
+
+.attachments-table th {
+    background-color: #62a7f1;
+    color: #fff;
+}
+
+.attachments-table tr:hover {
+    background-color: #62a7f1;
+    color: #fff;
 }
