@@ -1,0 +1,586 @@
+/* ✅ إعدادات عامة */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Tajawal", sans-serif;
+}
+
+body {
+  background: #f8f9fa;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* ✅ الشريط العلوي */
+.apptapbar{
+  
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin-right: -280px !important;
+  width: 1200px !important;
+  z-index: 1000 !important;
+}
+.topbar {
+    /* position: fixed; */
+    width: 100%;
+  background: #111;
+  color: #fff;
+  padding: 10px 20px;
+}
+
+.topbar-row {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topbar .brand-title {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.topbar .actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.topbar .actions .btn {
+  display: flex;
+  align-items: center;   /* يوسّط الكلام والصورة في نفس الخط */
+  gap: 6px;              /* مسافة صغيرة بين النص والصورة */
+}
+.topbar .actions .btn img {
+    width: 18px;
+  height: 18px;
+}
+
+.topbar .actions img {
+  width: 40px;
+  height: 40px;
+}
+
+
+/* ✅ أزرار عامة */
+.btn,
+.side-action,
+.open-sidebar-btn {
+          appearance: none;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    font-weight: 600;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(51, 51, 51);
+    border-image: initial;
+    background: linear-gradient(to right, rgb(255, 255, 255), rgb(211, 211, 211));
+    padding: 8px 12px;
+    border-radius: 10px;
+}
+
+.btn:hover,
+.side-action:hover,
+.open-sidebar-btn:hover {
+  background: #fff;
+}
+.open-sidebar-tasks-btn{
+  background-color: rgb(0, 123, 255);
+  color: #fff;
+      width: 172px;
+
+   cursor: pointer;
+    font-weight: 600;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(255, 255, 255);
+    border-image: initial;
+    appearance: none;
+     padding: 8px 12px;
+    border-radius: 10px;
+
+}
+
+.btn-outline {
+  /* background: transparent; */
+  border: 1px solid #fff;
+}
+
+/* ✅ الهيدر الرمادي */
+.header-gray {
+  direction: rtl;
+  background: #ddd;
+  padding: 10px 20px;
+  border-bottom: 1px solid #bbb;
+}
+
+.h-row {
+  margin-left: 850px;
+  display: inline-flex;
+  justify-content: start; /* يبدأ من اليمين (مع rtl) */
+  font-weight: bold;
+}
+
+/* ✅ القائمة الجانبية */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 280px;
+  height: 100%;
+  background: #fff;
+  box-shadow: -2px 0 8px rgba(0,0,0,0.2);
+  padding: 15px;
+  transition: right 0.3s ease-in-out;
+  overflow-y: auto;
+  z-index: 999;
+}
+
+.sidebar.active {
+  right: 0;
+}
+
+.sidebar .close-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 240px;
+  background: rgb(0, 123, 255);
+  border: none;
+  color: #fff;
+  padding: 8px;
+  margin-bottom: 15px;
+}
+
+.sidebar .side-action {
+      background: transparent;
+    display: block;
+    width: 240px;
+    margin-top: 5px;
+    border: none;
+}
+.sidebar .side-action:hover {
+  background: rgb(0, 123, 255);
+}
+
+/* ✅ جدول المرفقات */
+.attachments-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.attachments-table th,
+.attachments-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+.attachments-table tr:hover {
+  background: #f1f1f1;
+  cursor: pointer;
+}
+
+
+.section {
+  background: #fff;
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid;
+  border-image: linear-gradient(to left, #cacaca, #00ff66) 1; /* تدرج أخضر من يمين لشمال */
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+  background: linear-gradient(to bottom, #ffffff, #cacaca);
+}
+
+.section-header h4{
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-content {
+  display: block;
+  padding: 10px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  padding: 5px;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 600;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* ✅ الصور */
+.containerimg {
+  padding: 15px;
+}
+
+.attachments-view {
+  background: #fff;
+  padding: 15px;
+  border-radius: 6px;
+  max-height: 400px;
+  overflow-y: auto;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.img-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.img-box {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.img-box img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.container-home {
+  display: flex;
+  margin-top: 100px; /* عشان ما يختفيش المحتوى تحت الـ headers */
+
+  flex-direction: row;
+}
+
+.sidebarmenu {
+  position: fixed;      /* علشان تلزق في يمين الشاشة */
+  right: 0;             /* تيجي على اليمين */
+  width: 220px;
+  height: 100vh;
+  background: linear-gradient(to right, rgb(255, 255, 255), rgb(211, 211, 211));
+  display: flex;
+  flex-direction: column;
+  direction: ltr;
+  gap: 8px;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+  transition: transform 0.3s ease;
+  box-sizing: border-box;
+  z-index: 999;
+}
+/* زرار السهم */
+.toggle-arrow {
+  position: fixed;
+  top: 115px;
+  right: 170px;
+  background: rgb(35, 108, 160);
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 0px 0 0 0px;
+  cursor: pointer;
+  z-index: 1000;
+  transition: right 0.3s ease;
+}
+
+/* لما القائمة مقفولة يتزحزح الزرار */
+.sidebarmenu.closed + .toggle-arrow {
+  right: 0;
+}
+
+/* عند الإغلاق */
+.sidebarmenu.closed {
+  transform: translateX(100%); /* تخرج برا الشاشة من اليمين */
+}
+
+.sidebarmenu button {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background: transparent;
+  padding: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.3s;
+  text-align: right;
+}
+
+.sidebarmenu button img {
+  width: 18px;
+  height: 18px;
+}
+
+.sidebarmenu button:hover {
+  background: rgba(0, 123, 255, 0.2);
+}
+.sidebarmenu .header .title {
+   background: linear-gradient(to bottom,rgb(198, 212, 232), rgb(65, 107, 168));
+  color: #fff;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.sidebarmenu .close-btn {
+
+   background: linear-gradient(to bottom,rgb(198, 212, 232), rgb(65, 107, 168));  color: #fff;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.arrow {
+  font-size: 18px;
+  font-weight: bold;
+}
+.container-fluid {
+  margin-right: 220px; /* علشان يبعد شوية عن القائمة */
+  flex: 1;
+}
+
+.section-file {
+  display: flex;
+  /* justify-content: center;   توسيط العناصر أفقياً */
+  /* align-items: center;       توسيط رأسياً */
+  gap: 20px;                 /* مسافة بين العناصر */
+  padding: 20px;
+  background: linear-gradient(to bottom, #ffffff, #cacaca); /* أزرق → رمادي */
+  border-radius: 10px;       /* أطراف ناعمة */
+}
+
+.fileBorder {
+  border: 2px solid #949494;    /* حدود واضحة */
+  padding: 10px 15px;
+  border-radius: 0px;
+  background: transparent;          /* عشان يظهر أوضح */
+  display: flex;
+  font-size: 10px;
+  align-items: center;
+  gap: 8px;                  /* مسافة بين الأيقونة والنص */
+}
+
+.eye {
+  padding: 10px 15px;
+  border-radius: 8px;
+  background: transparent;
+  display: flex;
+    font-size: 10px;
+  align-items: center;
+  gap: 8px;
+}
+.eye:hover {
+  background: rgba(1, 58, 119, 0.301); /* أزرق فاتح شفاف */
+}
+.section-file img{
+  width: 24px;
+  height: 24px  ;
+}
+
+.section-pdf {
+  margin-top: 20px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+  width: 100%;
+  height: 800px;
+  display: none; /* مخفي لحد ما تضغط */
+}
+
+
+/* ===================== Tabs Container ===================== */
+.tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* ===================== Tabs Navigation ===================== */
+.tab-buttons {
+  display: flex;
+  gap: 5px;
+  justify-content: flex-start; /* للـ RTL ممكن تحطه flex-end حسب رغبتك */
+  flex-wrap: wrap;
+}
+
+.tab-buttons button {
+  padding: 8px 15px;
+  border: 1px solid #ccc;
+  background: linear-gradient(to right, #fff, #e0e0e0);
+  cursor: pointer;
+  border-radius: 6px 6px 0 0;
+  font-size: 13px;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.tab-buttons button.active {
+  background: linear-gradient(to to bottom, #fff, #cacaca);
+  border-bottom: 2px solid #fff;
+}
+
+.tab-buttons button:hover {
+  background: linear-gradient(to right, #f0f0f0, #ddd);
+}
+
+/* ===================== Tabs Content ===================== */
+.tab-content {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  padding: 15px;
+}
+
+.tab-pane {
+  display: none;
+}
+
+.tab-pane.active {
+  display: block;
+}
+
+/* ===================== Tables inside tabs ===================== */
+.tab-pane table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  font-size: 13px;
+}
+
+.tab-pane th, .tab-pane td {
+  border: 1px solid #ccc;
+  padding: 6px;
+}
+
+.tab-pane tr:hover {
+  background: #f1f1f1;
+}
+
+
+.table-container {
+  margin: 20px 0;
+  direction: rtl;
+  font-family: "Cairo", sans-serif;
+
+  width: 100%;         /* ياخد عرض الشاشة */
+  overflow-x: auto;    /* Scroll أفقي عند الحاجة */
+  overflow-y: hidden;  /* ما يبانش Scroll عمودي */
+}
+
+.attachments-table {
+  width: max-content;  /* الجدول يظهر بعرض محتواه */
+  min-width: 100%;     /* لو أصغر ياخد عرض الشاشة */
+  border-collapse: collapse;
+  text-align: center;
+}
+
+/* خلايا العناوين والصفوف */
+.attachments-table th, 
+.attachments-table td {
+  height: 28px; /* تصغير الارتفاع */
+  border: 1px solid #000; /* خط أسود */
+  padding: 4px 6px; /* تصغير البادينج */
+  font-size: 12px;
+  white-space: nowrap; /* الكلام في نفس السطر */
+}
+
+/* عناوين الجدول */
+.attachments-table th {
+  background: linear-gradient(to top, #e0e0e0, #ffffff); /* رمادي أبيض */
+  font-weight: bold;
+}
+
+/* أول صف */
+.attachments-table tr:first-child td {
+  background: #b3e5ff; /* سماوي */
+  font-weight: bold;
+}
+
+/* باقي الصفوف */
+.attachments-table tr:nth-child(even):not(:first-child) {
+  background: #f9f9f9; /* أبيض رمادي */
+}
+
+.attachments-table tr:nth-child(odd):not(:first-child) {
+  background: #ffffff; /* أبيض */
+}
+
+/* Hover */
+.attachments-table tr:hover td {
+  background: #b3e5ff !important; /* يقلب سماوي عند hover */
+}
+
+/* Pagination */
+.pagination {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+  font-size: 14px;
+}
+
+#page-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+#page-buttons button {
+  border: none;
+  background: transparent;
+  color: #0d6efd; /* أزرق */
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+#page-buttons button.active {
+  color: #000; /* أسود للصفحة الحالية */
+}
+.navbar{
+  display: none;
+}
+.web-footer{
+  display: none;
+}

@@ -1,0 +1,325 @@
+{% extends "nafeza/templates/web.html" %}
+
+{% block title %}
+	{{ _("نظام النافذة الموحدة للتجارة") }}
+{% endblock %}
+
+{% block page_content %}<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>نظام النافذة الموحدة للتجارة</title>
+  <style>
+    
+  </style>
+  <link rel="stylesheet" href="mtsphotostyle.css">
+</head>
+<body>
+
+  <!-- ✅ الشريط العلوي -->
+  <div class="topbar">
+    <div>
+      <div class="title">نظام النافذة الموحدة للتجارة</div>
+      <div class="subtitle">Nafeza_V2.00.00.20250926 [I14]</div>
+    </div>
+    <div class="actions">
+      <button><img src="img/desktop.png">تحديث سطح المكتب</button>
+      <button><img src="img/account.png">ميلاد جرجس زخارى المنشاوى</button>
+      <button><img src="img/logout.png">خروج</button>
+      <img src="img/whitelogo.png" width="85px" class="logo" alt="Logo">
+    </div>
+  </div>
+
+  <!-- ✅ الشريط الرمادي -->
+  <div class="graybar">
+    <img src="img/file.png" alt="icon">
+     <span id="acidcode"></span> </span>
+  </div>
+
+  <div class="page">
+    <!-- ✅ القائمة الجانبية -->
+    <div class="sidebar">
+      <h3 class="title_sidbar">المهام</h3>
+        <div class="btnBack" onclick="GoBack()">
+          <img src="img/back.png" alt="رجوع"> عودة
+        </div>
+          <div class="header">
+            <img src="img/file.png" alt="icon">
+            <span style="padding-left: 160px;">المرفقات المقدمة</span>
+            <img src="img/up.png" alt="arrow" class="arrow">
+          </div>
+      <div class="attach_row">
+        <select>
+          <option></option>
+          <option>اختر مرفق</option>
+        </select>
+
+        <div class="show_btn">
+          <img src="img/file.png" alt="icon">
+          عرض بيانات المرفق
+        </div>
+      </div>
+      <div class="table-container">
+          <table>
+            <thead>
+            <tr>
+              <th>وصف المرفق</th>
+              <th>توجد صورة</th>
+              <th>مرفوض</th>
+              <th>مؤشر الحذف</th>
+              <th>ت.أول حفظ</th>
+            </tr>
+            </thead>
+            <tbody id="table-body">
+
+            </tbody>
+            
+          </table>
+          <div class="pagination">
+            <span id="records-count">عدد السجلات : 0</span>
+             <div id="pagination" class="pagination"></div>
+            </div>
+      </div>
+
+       <div >
+           <div class="header">
+            <img src="img/file.png" alt="icon">
+            <span style="padding-left: 180px;">مرفقات مطلوبة</span>
+            <img src="img/down.png" alt="arrow" class="arrow" id="arrowMorfkat">
+          </div>
+          <div class="addedmorfakat">
+            <button>أضف</button>
+            <button>حذف</button>
+            <button>عرض بيانات المرفق</button>
+            <table>
+              <tr>
+                <th>وصف المرفق</th>
+                <th>توجد صورة</th>
+                <th>مرفوض</th>
+                <th>مؤشر الحذف</th>
+                <th>ت.أول حفظ</th>
+              </tr>
+            </table>
+          </div>
+       </div>
+    </div>
+    <script>
+  const arrow = document.getElementById("arrowMorfkat");
+  const section = document.querySelector(".addedmorfakat");
+
+  arrow.addEventListener("click", () => {
+    const isHidden = section.style.display === "none" || section.style.display === "";
+    section.style.display = isHidden ? "block" : "none";
+
+    // ✅ غير الصورة حسب الحالة
+    arrow.src = isHidden ? "img/up.png":"img/down.png";
+  });
+</script>
+
+    <!-- ✅ المحتوى -->
+    <div class="content">
+      <div class="section-header" >
+
+          <!-- ✅ العنوان -->
+          <h4 style="margin: 0;"><img src="img/file.png"> <span id="file-title"></span></h4>
+          <!-- ✅ الأيقونة -->
+          <div>
+            <span>▼</span> <!-- تحت -->
+          </div>
+
+        </div>
+        <div class="section-file" >
+          <div class="fileBorder">
+            <img src="img/folder.png" alt="folder"> وقع الملف
+          </div>
+          <div class="eye" id ="eyefile" data-pdf="files/sample.pdf">
+            <img src="img/eye.png" alt="eye"> عرض
+          </div>
+        </div>
+
+            <div class="section-pdf" style="display:none; width: 1400px;  height:900px; margin-top:15px;"></div>
+
+    </div>
+  </div>
+</body>
+    <script>
+
+      function GoBack() {
+    window.history.back();
+  }
+frappe.ready(function () {
+  console.log("Frappe is ready");
+  const params = new URLSearchParams(window.location.search);
+  const aci = params.get("aci");
+  const tbody = document.getElementById("table-body");
+  const recordsCount = document.getElementById("records-count");
+  const pdfSection = document.querySelector(".section-pdf");
+  const fileTitle = document.getElementById("file-title");
+  const eyefilepdf = document.getElementById("eyefile");
+
+  // Event Delegation على tbody (يشتغل حتى لو الصفوف اتولدت بعدين)
+  
+  tbody.addEventListener("click", function (e) {
+
+    
+    // 1) لو ضغطوا على زر العرض (أو على الصورة داخله)
+    const eyeBtn = e.target.closest(".eye");
+    if (eyeBtn) {
+      e.stopPropagation(); // عشان ما ينفذ حدث الـ tr
+      let pdfPath = (eyeBtn.getAttribute("data-pdf") || "").trim();
+      console.log("eye clicked, raw data-pdf:", pdfPath);
+
+      // Normalize المسار ليصبح رابط كامل إذا كان نسبي
+      if (pdfPath && !pdfPath.startsWith("http") && !pdfPath.startsWith("/")) {
+        pdfPath = window.location.origin + "/" + pdfPath;
+      } else if (pdfPath && pdfPath.startsWith("/")) {
+        pdfPath = window.location.origin + pdfPath;
+      }
+      console.log("normalized pdfPath:", pdfPath);
+
+      if (!pdfPath) {
+        alert("مسار الملف غير متوفر");
+        return;
+      }
+
+      // حاول تعرض في iframe + أضف رابط فتح في نافذة جديدة كـ fallback
+      pdfSection.style.display = "block";
+      pdfSection.innerHTML = `
+        <iframe src="${pdfPath}" width="100%" height="100%" style="border:none;"></iframe>
+        <div style="margin-top:8px;">
+          <a href="${pdfPath}" target="_blank" rel="noopener">فتح في نافذة جديدة</a>
+        </div>
+      `;
+      return;
+    }
+
+    // 2) لو ضغطت على أي tr فرعي: نحدّث العنوان
+    const tr = e.target.closest("tr");
+    if (tr) {
+      const desc = tr.dataset.description || (tr.querySelector("td") ? tr.querySelector("td").innerText : "");
+      const file_path = tr.dataset.file || (tr.querySelector("td") ? tr.querySelector("td").innerText : "");
+      fileTitle.innerText = desc;
+      
+
+      
+  // ✅ جلب مسار الملف من div.eye جوه الصف
+  const eyeDiv = tr.querySelector(".eye");
+  const pdfPath = eyeDiv ? eyeDiv.getAttribute("data-pdf") : "";
+  console.log(file_path)
+  
+  // ✅ تحديث زر العين الرئيسي
+  eyefilepdf.setAttribute("data-pdf", pdfPath);
+
+  // ✅ عند الضغط على زر العين الرئيسي
+  eyefilepdf.onclick = function () {
+    if (file_path) {
+      pdfSection.innerHTML = `
+        <iframe src="${file_path}" width="100%" height="100%" style="border:none;"></iframe>
+      `;
+      pdfSection.style.display = "block";
+    } else {
+      console.warn("⚠️ مفيش ملف PDF مربوط بالصف ده");
+    }
+  };
+ // ✅ إضافة كلاس tr-selected للصف الحالي، وإزالته من الباقي
+  const tbody = tr.parentElement;
+  tbody.querySelectorAll("tr").forEach(row => row.classList.remove("tr-selected"));
+  tr.classList.add("tr-selected");
+  
+    }
+
+  });
+
+
+    const acidcode = document.getElementById("acidcode");
+
+frappe.call({
+  method: "nafeza.www.nafeza.mtcPhotos.getShipment_data",
+  args: { shipment_request: String(aci) },
+  callback:function(r){
+    console.log(r.message["release_number"])
+    acidcode.innerText=r.message["release_number"]
+
+  }
+});
+  // جلب البيانات من السيرفر
+  frappe.call({
+    method: "nafeza.www.nafeza.mtcPhotos.get_shipment_files",
+    args: { shipment_request: String(aci) },
+    callback: function (r) {
+      console.log("response from get_shipment_files:", r);
+      const files = (r.message && r.message.files) || [];
+      recordsCount.innerText = `عدد السجلات : ${files.length}`;
+      tbody.innerHTML = "";
+      const rowsPerPage = 6;
+      let currentPage = 1;
+      const totalPages = Math.ceil(files.length / rowsPerPage);
+
+      function renderTablePage(page) {
+    tbody.innerHTML = ""; // فضي الجدول
+    const start = (page - 1) * rowsPerPage;
+    const end = start + rowsPerPage;
+    const paginatedFiles = files.slice(start, end);
+
+    paginatedFiles.forEach(file => {
+      let dt = new Date(file.date_time);
+      let formatted = dt.toLocaleDateString("EG", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric"
+      }) +
+      dt.toLocaleTimeString("EG", {
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+
+      let desc = (file.description || "").replace(/\t/g, "").trim();
+      let filepath = (file.file || "").replace(/\t/g, "").trim();
+
+      const tr = document.createElement("tr");
+      tr.dataset.description = desc;
+      tr.dataset.file = filepath;
+      tr.innerHTML = `
+        <td>${desc}</td>
+        <td>${file.modified ? "✔" : ""}</td>
+        <td>${file.unacceptable ? "✔" : ""}</td>
+        <td>${file.deleted ? "✔" : ""}</td>
+        <td>${formatted}</td>
+      `;
+
+      tbody.appendChild(tr);
+    });
+
+        renderPagination()
+  }
+ 
+    function renderPagination() {
+    const paginationDiv = document.getElementById("pagination");
+    paginationDiv.innerHTML = "";
+
+    for (let i = 1; i <= totalPages; i++) {
+      const span = document.createElement("span");
+      span.innerText = `[ ${i} ]`;
+      span.className = "page-num";
+      if (i === currentPage) span.classList.add("active");
+
+      span.addEventListener("click", () => {
+        currentPage = i;
+        renderTablePage(currentPage);
+      });
+
+      paginationDiv.appendChild(span);
+      if (i < totalPages) paginationDiv.append(" "); // مسافة بسيطة بين الأرقام
+    }
+  }
+
+
+  renderTablePage(currentPage);
+    }
+  });
+
+});
+</script>
+{% endblock %}
+
+</html>

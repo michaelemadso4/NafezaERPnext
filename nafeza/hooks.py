@@ -1,6 +1,6 @@
 app_name = "nafeza"
-app_title = "nafeza"
-app_publisher = "michael Emad"
+app_title = "Nafeza"
+app_publisher = "Michael"
 app_description = "nafeza"
 app_email = "michaelemadso4@gmail.com"
 app_license = "mit"
@@ -15,7 +15,7 @@ app_license = "mit"
 # 	{
 # 		"name": "nafeza",
 # 		"logo": "/assets/nafeza/logo.png",
-# 		"title": "nafeza",
+# 		"title": "Nafeza",
 # 		"route": "/nafeza",
 # 		"has_permission": "nafeza.api.permission.has_app_permission"
 # 	}

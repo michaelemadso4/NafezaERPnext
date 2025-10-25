@@ -1,0 +1,45 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-10-25 16:21:51.214004",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_e43y",
+    "expense_type",
+    "value_or_percentage",
+    "percentage",
+    "expense_value",
+    "expense_currency",
+    "exchange_rate",
+    "local_value"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_e43y",
+   "fieldtype": "Section Break"
+  },{ "fieldname": "expense_type", "fieldtype": "Data", "label": "Expense Type" },
+    { "fieldname": "value_or_percentage", "fieldtype": "Data", "label": "Value/Percentage" },
+    { "fieldname": "percentage", "fieldtype": "Float", "label": "Percentage" },
+    { "fieldname": "expense_value", "fieldtype": "Float", "label": "Expense Value" },
+    { "fieldname": "expense_currency", "fieldtype": "Data", "label": "Expense Currency" },
+    { "fieldname": "exchange_rate", "fieldtype": "Float", "label": "Exchange Rate" },
+    { "fieldname": "local_value", "fieldtype": "Float", "label": "Local Value" }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-10-25 16:21:51.214004",
+ "modified_by": "Administrator",
+ "module": "nafeza",
+ "name": "Invoice Expenses",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,567 @@
+{% extends "nafeza/templates/web.html" %}
+
+{% block title %}
+	{{ _("منصة نافذة - طلبات شحنات ال (ACI)") }}
+{% endblock %}
+
+{% block page_content %}
+<!doctype html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title></title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Tajawal:wght@300;400;500;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+
+</head>
+<script>
+ frappe.ready(function () {
+  console.log("Frappe is ready!");
+
+  (function () {
+    const table = document.querySelector(".custom-table");
+    if (!table) return;
+
+    // دالة مساعدة لإخفاء كل القوائم
+    function hideAllDropdowns() {
+      document.querySelectorAll(".dropdown").forEach(d => (d.style.display = "none"));
+    }
+
+    // نجيب البيانات ونبني الصفوف
+    frappe.call({
+      method: "nafeza.www.nafeza.acelist.get_shipment_requests",
+      callback: function (r) {
+        if (!r.message) return;
+
+        const allRows = []; // هنخزن هنا كل الصفوف (row + details)
+
+        r.message.forEach((row, index) => {
+          // صف البيانات
+          const tableRow = document.createElement("div");
+          tableRow.className = "table-row " + (index % 2 === 0 ? "row-even" : "row-odd");
+          tableRow.innerHTML = `
+            <div class="table-cell">${row.preliminary_number || ""}</div>
+            <div class="table-cell">${row.aci_number || ""}</div>
+            <div class="table-cell">${row.egyptian_importer || ""}</div>
+            <div class="table-cell">${row.foreign_exporter || ""}</div>
+            <div class="table-cell">
+              <img src="${row.country_icon || ""}" alt="Flag" style="width:24px;height:auto;vertical-align:middle;">
+              &nbsp; ${row.exporting_country || ""}
+            </div>
+            <div class="table-cell"><span class="status-box">${row.request_type || ""}</span></div>
+            <div class="table-cell">
+              <div class="actions">
+                <button type="button" class="setting-btn" aria-label="Settings"><i class="fa fa-cog"></i></button>
+                <button type="button" class="info-btn" aria-label="Info"><i class="fa fa-info-circle"></i></button>
+              </div>
+              <div class="dropdown" style="display:none">
+                <a href="#">عرض التفاصيل</a>
+                <a href="#" class="edit-link" data-aci="${row.aci_number}">تعديل البيانات</a>
+              </div>
+            </div>
+          `;
+
+          // صف التفاصيل (مخفي مبدئياً)
+          const rowDetails = document.createElement("div");
+          rowDetails.className = "row-details";
+          rowDetails.style.display = "none";
+          rowDetails.innerHTML = `
+            <strong>تاريخ التسجيل:</strong> ${row.request_date || ""} <br>
+            <strong>نوع الشحنة:</strong> ${row.shipment_type || ""}
+          `;
+
+          // نحفظهم مع بعض في مصفوفة
+          allRows.push({ row: tableRow, details: rowDetails });
+        });
+
+        // ---- Pagination ----
+        const rowsPerPage = 10;
+        let currentPage = 1;
+        const pagination = document.createElement("div");
+        pagination.className = "pagination";
+        table.after(pagination);
+
+        function displayPage(page) {
+          table.querySelectorAll(".table-row, .row-details").forEach(el => el.remove());
+
+          let start = (page - 1) * rowsPerPage;
+          let end = start + rowsPerPage;
+
+          allRows.slice(start, end).forEach(r => {
+            table.appendChild(r.row);
+            table.appendChild(r.details);
+          });
+
+          pagination.querySelectorAll("button").forEach((btn, i) => {
+            btn.classList.toggle("active", i + 1 === page);
+          });
+        }
+
+        function setupPagination() {
+          const pageCount = Math.ceil(allRows.length / rowsPerPage);
+          pagination.innerHTML = "";
+          for (let i = 1; i <= pageCount; i++) {
+            let btn = document.createElement("button");
+            btn.innerText = i;
+            btn.addEventListener("click", () => {
+              currentPage = i;
+              displayPage(currentPage);
+            });
+            pagination.appendChild(btn);
+          }
+        }
+
+        setupPagination();
+        displayPage(currentPage);
+
+        // روابط التعديل
+        document.addEventListener("click", (e) => {
+          const link = e.target.closest(".edit-link");
+          if (link) {
+            e.preventDefault();
+            const aci = link.getAttribute("data-aci");
+            window.open(`mtsedit.html?aci=${aci}`, "_blank");
+          }
+        });
+      }
+    });
+
+    // تفويض أحداث داخل الجدول
+    if (!window._acilistHandlersAttached) {
+      window._acilistHandlersAttached = true;
+
+      // غلق أي dropdown عند الضغط خارج .actions أو .dropdown
+      window.addEventListener("click", (e) => {
+        if (!e.target.closest(".actions") && !e.target.closest(".dropdown")) {
+          hideAllDropdowns();
+        }
+      });
+
+      // التعامل مع ضغطات الأزرار داخل الجدول
+      table.addEventListener("click", (e) => {
+        const settingBtn = e.target.closest(".setting-btn");
+        if (settingBtn) {
+          const row = settingBtn.closest(".table-row");
+          const dropdown = row?.querySelector(".dropdown");
+          if (!dropdown) return;
+          const isOpen = dropdown.style.display === "block";
+          hideAllDropdowns();
+          dropdown.style.display = isOpen ? "none" : "block";
+          return;
+        }
+
+        const infoBtn = e.target.closest(".info-btn");
+        if (infoBtn) {
+          const row = infoBtn.closest(".table-row");
+          const details = row?.nextElementSibling;
+          if (details && details.classList.contains("row-details")) {
+            details.style.display = details.style.display === "block" ? "none" : "block";
+          }
+          return;
+        }
+
+        const linkInDropdown = e.target.closest(".dropdown a");
+        if (linkInDropdown) {
+          hideAllDropdowns();
+        }
+      });
+    }
+  })();
+});
+</script>
+
+<body>
+  <!-- === Top Bar === -->
+  <div class="topbar">
+    <div class="container">
+      <div class="rownav">
+        <nav class="topbar-links">
+          <a href="#" title="مراكز الخدمات اللوجيستية"><i class="fa-solid fa-location-dot icon-blue"></i> مراكز الخدمات
+            اللوجيستية</a>|
+          <a href="#" title="خدمات الدعم الفني"> خدمات الدعم الفني</a>|
+          <a href="#" title="البيانات المفتوحة">الاتصال بنا </a>|
+          <span class="lang-select">
+            <i class="fa-solid fa-globe"></i>
+            <span class="lang-label" onclick="toggleLang()">اللغة</span>
+            <select id="lang-dropdown" style="display:none;">
+              <option value="ar">العربية</option>
+              <option value="en">English</option>
+            </select>
+          </span>
+        </nav>
+        <form class="search" role="search">
+          <input type="search" placeholder="ابحث هنا..." aria-label="ابحث هنا" />
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <!-- <i class="fa-solid fa-magnifying-glass"> -->
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="help-box">
+    <!-- يمين -->
+    <label for="question">كيف يمكننا مساعدتك؟</label>
+    <div class="help-right">
+      <input type="text" id="question" placeholder="اطرح سؤالك وستجد الجواب ...">
+      <button>عرض</button>
+    </div>
+
+    <!-- شمال -->
+    <div class="help-left">
+      <i class="fa-regular fa-circle-user"></i>
+      <button class="login-btn">حسابي<i class="fa fa-caret-down"></i></button>
+
+      <!-- <button class="register-btn">حساب جديد</button> -->
+    </div>
+
+  </div>
+  <div class="row-container" id="loginBox">
+    <div class="row">
+      <!-- الجزء الأول -->
+      <div class="col">
+        <button class="close-btn" onclick="closeLogin()">X</button>
+        <img src="img/user-avatar.png" alt="Logo" class="logo">
+        <h1>ميلاد جرجس زخارى المنشاوى</h1>
+        <h3>الشركه الهندسيه للتوريدات والاستشارات</h3>
+        <h3>acc@escpumps.com</h3>
+        <h4>اخر تسجيل دخول: أغسطس ٢٣، ٢٠٢٥</h4>
+        <div class="smart-login">
+          <button class="btn">حساب جديد</button>
+          <button class="btnout">تسجيل خروج</button>
+
+        </div>
+      </div>
+
+      <!-- الجزء الثاني -->
+      <div class="col">
+        <h1>ابدأ من هنا خدمات</h1>
+        <a href="" style="margin-top:15px; font-size:13px; color:#ddd;">
+          <p> <i class="fa fa-paperclip"></i> طلبات تفعيل الخدمات الإلكترونية</p>
+        </a>
+        <a href="" style="margin-top:15px; font-size:13px; color:#ddd;">
+          <p> <i class="fa fa-paperclip"></i> الخدمات الإلكترونية</p>
+        </a>
+        <a href="" style="margin-top:15px; font-size:13px; color:#ddd;">
+          <p> <i class="fa fa-paperclip"></i> طلب إضافة كيان/مستخلص تابع (جديد)</p>
+        </a>
+        <a href="" style="margin-top:15px; font-size:13px; color:#ddd;">
+          <p> <i class="fa fa-paperclip"></i> طلب تغير المفوض على الحساب الرئيسي</p>
+        </a>
+        <a href="" style="margin-top:15px; font-size:13px; color:#ddd;">
+          <p> <i class="fa fa-paperclip"></i> طلب إلحاق موظف/مستخلص (محذوف من كيان آخر)</p>
+        </a>
+        <a href="" style="margin-top:15px; font-size:13px; color:#ddd;">
+          <p> <i class="fa fa-paperclip"></i> طلب حذف موظف/مستخلص</p>
+        </a>
+        <a href="" style="margin-top:15px; font-size:13px; color:#ddd;">
+          <p> <i class="fa fa-paperclip"></i> طلب اضافه موظف تابع (جديد)</p>
+        </a>
+        <a href="" style="margin-top:15px; font-size:13px; color:#ddd;">
+          <p> <i class="fa fa-paperclip"></i> طلبات شحنات ال (ACI)</p>
+        </a>
+        <a href="" style="margin-top:15px; font-size:13px; color:#ddd;">
+          <p> <i class="fa fa-paperclip"></i> طلب الحصول على رقم تعريفي (ACID)</p>
+        </a>
+        <a href="" style="margin-top:15px; font-size:13px; color:#ddd;">
+          <p> <i class="fa fa-paperclip"></i> الاقرارات الجمركية</p>
+        </a>
+        <a href="" style="margin-top:15px; font-size:13px; color:#ddd;">
+          <p> <i class="fa fa-paperclip"></i> خدمة تأكيد مواعيد الكشف و المعاينة</p>
+        </a>
+        <br>
+
+        <a href="" style="margin-top:15px; font-size:13px; color:#ddd;">
+          <p><i class="fa fa-bell"></i> صندوق الإشعارات</p>
+        </a>
+      </div>
+
+      <!-- الجزء الثالث -->
+      <div class="col">
+        
+        <h2>إدارةالحسابات</h2>
+        <!-- اسم المستخدم -->
+        <a href=""style="margin-top:15px; font-size:13px; color:#ddd;"><p> <i class="fa fa-paperclip"></i> الحسابات الغير مفعله </p></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- <button class="close-btn" id="closeLogin"><i class="fa-solid fa-xmark"></i></button>
+
+  <div class="logoid" ><img src="img/nafeza-id.png" alt=""></div> -->
+  <!-- === Header / Nav === -->
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="#" aria-label="الرئيسية">
+          <div class="logo" aria-hidden="true"><img src="img/nafeza-logo-ar.svg" alt=""></div>
+        </a>
+        <nav class="navlinks" aria-label="روابط رئيسية">
+          <a href="#about">عن نافذة</a>
+          <a href="#services">الخدمات و المنتجات</a>
+          <a href="#aci">نظام التسجيل المُسبق للشحنات</a>
+          <a href="#media">المركز الإعلامي</a>
+          <a href="#support">الدعم والمساعدة</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <!-- === list Section === -->
+  <div class="listContainer">
+    <h2>طلبات شحنات ال (ACI)</h2>
+    <h4>اطلع على جميع طلبات ال (ACI) التي تقدمت بها</h4>
+    <hr>
+
+    <!-- زرار حفظ في اكسل -->
+    <div class="top-actions">
+      <button class="excel-btn">حفظ البيانات في ملف اكسل</button>
+    </div>
+
+    <!-- الفلترة والبحث -->
+    <div class="filter-box">
+      <select>
+        <option>فرز بواسطة</option>
+        <option>التاريخ</option>
+        <option>الحالة</option>
+      </select>
+
+      <select>
+        <option>اختر الكيان</option>
+        <option>شخص طبيعي</option>
+        <option>شركة</option>
+      </select>
+
+      <button class="search-btn">ابحث</button>
+      <button class="reload-btn">⟳</button>
+
+      <div class="spacer"></div>
+
+      <button class="add-btn"><i class="fa-solid fa-plus"></i> اضف طلب (ACID)</button>
+    </div>
+  </div>
+
+  <!-- === List Table === -->
+  <div class="custom-table">
+    <!-- Head -->
+    <div class="table-head table-cell">الرقم المبدئي</div>
+    <div class="table-head table-cell">الرقم التعريفي (ACI)</div>
+    <div class="table-head table-cell">المستورد المصري</div>
+    <div class="table-head table-cell">المُصدر الأجنبي</div>
+    <div class="table-head table-cell">دولة المُصدر</div>
+    <div class="table-head table-cell">نوع الطلب</div>
+    <div class="table-head table-cell">التفاصيل</div>
+
+    <!-- Row 1 -->
+   
+    <div class="row-details">
+      <strong>تاريخ التسجيل:</strong> 2025-08-15 <br>
+      <strong>نوع الشحنة:</strong> إلكترونيات
+    </div>
+  </div>
+
+  <!-- === Footer === -->
+   <footer>
+    <h2>كن على تواصل دائم معنا</h2>
+    <p>اشترك الآن في خدمة التنبيهات الإلكترونية لدينا وكن على إطلاع دائم بأحدث الأخبار والمستجدات الخاصة بالنافذة الواحدة القومية للتجارة الخارجية</p>
+    
+    <!-- فورم الاشتراك -->
+    <div class="subscribe">
+      <input type="email" placeholder="برجاء إدخال البريد الإلكتروني">
+      <input type="text" placeholder="رقم هاتفك المحمول">
+      <button>اشترك الآن</button>
+    </div>
+
+    <!-- روابط -->
+    <div class="links">
+      <div>
+        <strong>لمحة عامة عن نافذة</strong><br>
+        مراكز الخدمات اللوجستية
+      </div>
+      <div>
+        <strong>دليل خدمات نافذة</strong><br>
+        الإستعلام عن الإقرارات الجمركية<br>
+        الإستعلام عن التعريفة الجمركية<br>
+        المنشورات الجمركية<br>
+        الإدراج المباشر للإقرارات<br>
+        البيانات مفتوحة المُصدر
+      </div>
+      <div>
+        <strong>دليل خدمات نافذة</strong><br>
+        دليل الإجراءات<br>
+        نماذج العمل
+      </div>
+      <div>
+        <strong>الأخبار والفاعليات</strong><br>
+        الوسائط المتعددة
+      </div>
+      <div>
+        <strong>خدمات</strong><br>
+        الأسئلة الشائعة<br>
+        شكاوي ومقترحات<br>
+        نصائح أمنية
+      </div>
+      <div>
+        <strong>خدمات إضافية</strong><br>
+        أسعار العملات الأجنبية<br>
+        الإستعلام عن الباركود GS1<br>
+        المنشورات الجمركية<br>
+        التعريفة الجمركية<br>
+        وظائف نافذة
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- السوشيال -->
+    <div class="social">
+      <div>
+        <p>تابعنا عبر:</p>
+        <div class="social-icons">
+          <i class="fab fa-facebook"></i>
+          <i class="fab fa-x-twitter"></i>
+          <i class="fab fa-linkedin"></i>
+          <i class="fab fa-youtube"></i>
+        </div>
+      </div>
+      <div>
+        <p><strong>تابعنا عبر تحديثات الشبكات الاجتماعية</strong><br>
+        عرض كل التحديثات</p>
+      </div>
+      <div>
+        <p><strong>الخدمات اللوجيستية عبر الهاتف</strong><br>
+        على مدار الساعة، فى أي وقت ومن أي مكان، الخدمات اللوجستية عبر الهاتف لأجهزة الآيفون، الآيباد والأندرويد</p>
+      </div>
+    </div>
+
+    <div class="bottom-info">
+      <p>digicert-ssl | الدعم الفني | nafeza@mts-egy.com | 15460</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- حقوق -->
+    <div class="copyright">
+      <p>الحقوق محفوظة © ٢٠٢٥ الشركة المصرية لتكنولوجيا التجارة الإلكترونية</p>
+      <p>
+        <a href="#">الخصوصية</a> |
+        <a href="#">سياسة الاستخدام</a> |
+        <a href="#">عن نافذة</a> |
+        <a href="#">اتصل بنا</a> |
+        <a href="#">خريطة الموقع</a>
+      </p>
+    </div>
+  </footer>
+  <script>
+    const loginBtn = document.querySelector(".login-btn");
+    const loginBox = document.getElementById("loginBox");
+
+    loginBtn.addEventListener("click", () => {
+      loginBox.classList.add("show");
+    });
+
+    function closeLogin() {
+      loginBox.classList.remove("show");
+    }
+  </script>
+
+  <script>
+    // تحديث السنة تلقائياً
+    document.getElementById('y').textContent = new Date().getFullYear();
+    const swiper = new Swiper('.swiper', {
+      loop: true,
+      autoplay: {
+        delay: 4000,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+</body>
+<script>
+  // Dropdown toggle
+  document.querySelectorAll(".setting-btn").forEach(btn => {
+    btn.addEventListener("click", e => {
+      let dropdown = btn.parentElement.nextElementSibling;
+      document.querySelectorAll(".dropdown").forEach(d => {
+        if (d !== dropdown) d.style.display = "none";
+      });
+      dropdown.style.display = dropdown.style.display === "flex" ? "none" : "flex";
+    });
+  });
+
+  // Info toggle
+  document.querySelectorAll(".info-btn").forEach((btn, index) => {
+    btn.addEventListener("click", () => {
+      let detailRow = document.querySelectorAll(".row-details")[index];
+      detailRow.style.display = detailRow.style.display === "block" ? "none" : "block";
+    });
+  });
+
+  // لو ضغطت برا يقفل أي dropdown
+  window.addEventListener("click", e => {
+    if (!e.target.closest(".actions")) {
+      document.querySelectorAll(".dropdown").forEach(d => d.style.display = "none");
+    }
+  });
+   // Toggle language dropdown
+  function toggleLang() {
+    const dropdown = document.getElementById('lang-dropdown');
+    dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+  }
+
+  // Close login box on outside click
+  document.addEventListener('click', function (event) {
+    const loginBox = document.getElementById('loginBox');
+    if (!loginBox.contains(event.target) && !event.target.classList.contains('login-btn')) {
+      loginBox.classList.remove('show');
+    }
+  });
+</script>
+ <script>
+    const rowsPerPage = 10;
+    const rows = document.querySelectorAll('.custom-table .row-container');
+    const pagination = document.getElementById('pagination');
+
+    function displayPage(page) {
+      let start = (page - 1) * rowsPerPage;
+      let end = start + rowsPerPage;
+
+      rows.forEach((row, index) => {
+        row.style.display = (index >= start && index < end) ? 'contents' : 'none';
+      });
+
+      document.querySelectorAll('.pagination button').forEach((btn, i) => {
+        btn.classList.toggle('active', i + 1 === page);
+      });
+    }
+
+    function setupPagination() {
+      const pageCount = Math.ceil(rows.length / rowsPerPage);
+      pagination.innerHTML = '';
+      for (let i = 1; i <= pageCount; i++) {
+        let btn = document.createElement('button');
+        btn.innerText = i;
+        btn.addEventListener('click', () => displayPage(i));
+        pagination.appendChild(btn);
+      }
+    }
+
+    setupPagination();
+    displayPage(1); // أول صفحة افتراضياً
+  </script>
+
+{% endblock %}
+</html>

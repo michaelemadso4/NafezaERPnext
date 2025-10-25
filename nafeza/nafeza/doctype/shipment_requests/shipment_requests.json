@@ -1,0 +1,924 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:aci_number",
+ "creation": "2025-10-24 23:45:18.371629",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "preliminary_number",
+  "aci_number",
+  "egyptian_importer",
+  "foreign_exporter",
+  "exporting_country",
+  "country_icon",
+  "request_type",
+  "request_date",
+  "shipment_type",
+  "release_number",
+  "files",
+  "\u0627\u0644\u0628\u064a\u0627\u0646\u0627\u062a_\u0627\u0644\u0627\u0633\u0627\u0633\u064a\u0629_tab",
+  "shipment_number",
+  "shipmentname",
+  "address",
+  "mobile_number",
+  "egyptian",
+  "national_id_passport_number",
+  "factory_number",
+  "national_id_expiry_date",
+  "country",
+  "type_of_registration",
+  "registration_number",
+  "registration_expiry_date",
+  "sub_type",
+  "ledger",
+  "date_46",
+  "declared_value",
+  "applicant",
+  "mobile_number_for_communication",
+  "email",
+  "applicants_title_format",
+  "statement_presenter",
+  "statement_presenters_role",
+  "affiliated_to",
+  "tariff_application_date",
+  "previous_importer",
+  "joint_inspection_date",
+  "truck_release_date",
+  "shipment_link_type",
+  "shipping_date",
+  "compatible_customs_system",
+  "current_customs_system",
+  "tariff_sector",
+  "submission_system",
+  "previous_customs_system",
+  "customs_complex",
+  "registration_customs",
+  "goods_arrival_customs",
+  "final_release_customs",
+  "goods_delivery_location",
+  "warehouse_transport_storage",
+  "for_entity",
+  "inspection_description",
+  "client_attendance_date_for_inspection",
+  "number_of_transfer_parties",
+  "insertion_location",
+  "first_save_date",
+  "saved_by",
+  "last_save_date",
+  "aci_request_date",
+  "aci_issue_date",
+  "submission_date",
+  "status",
+  "declaration_stage",
+  "\u0627\u0644\u0645\u0624\u0634\u0631\u0627\u062a__\u0645\u062d\u062f\u062f\u0627\u062a_\u0627\u0644\u0625\u0642\u0631\u0627\u0631_tab",
+  "postal_parcel_indicator",
+  "operator_registered_in_e_invoice_system",
+  "operator_registered_in_white_list",
+  "exit_indicator_for_included_goods_without_containers",
+  "completion_of_endorsement",
+  "full_fee_payment_in_phase_one",
+  "disbursement_visa",
+  "article_104c_commitment",
+  "request_exit_transport",
+  "inspection_and_examination_rate",
+  "specialized_committees",
+  "request_type3",
+  "sufficiency_of_submitted_documents",
+  "is_the_incoming_message_stock",
+  "is_the_incoming_message_under_suspicion",
+  "is_the_message_in_a_wooden_box_thickness_gt_6mm",
+  "guided_goods_for_free_zone",
+  "goods_for_free_zone",
+  "is_the_incoming_message_used_or_waste",
+  "\u0628\u064a\u0627\u0646\u0627\u062a_\u0627\u0644\u0634\u062d\u0646\u0629_tab",
+  "policy_number",
+  "policy_date",
+  "road_number",
+  "linked_to_main_policy",
+  "port_of_loading",
+  "port_of_arrival",
+  "final_destination",
+  "arrival_date",
+  "departure_date_from_exporting_country",
+  "shipment_destination_type",
+  "last_location",
+  "shipping_agent",
+  "transport_name",
+  "beneficiary_name",
+  "number_of_waiver_requests",
+  "shipment_number2",
+  "sub_number",
+  "shipment_date",
+  "shipment_details",
+  "parcels_required_for_inspection",
+  "invoice_data_tab",
+  "invoice_number",
+  "invoice_date",
+  "contract_type_according_to_principal",
+  "contract_date",
+  "preliminary_invoice_number",
+  "preliminary_invoice_date",
+  "purchase_order_or_contract_number",
+  "purchase_order_or_contract_date",
+  "original_invoice_value",
+  "currency",
+  "central_bank_rate_indicator",
+  "customs_exchange_rate",
+  "central_bank_exchange_rate",
+  "local_invoice_value",
+  "number_of_invoice_items",
+  "address_invoice",
+  "exporter_type",
+  "foreign_supplier_nationality",
+  "aci_checked",
+  "inquiry_date",
+  "shipment_description",
+  "last_modified_date",
+  "payment_method",
+  "bank_handling_the_transfer",
+  "payment_type",
+  "due_date",
+  "item_data",
+  "invoice_items",
+  "invoice_expenses",
+  "acid_items_without_invoice"
+ ],
+ "fields": [
+  {
+   "fieldname": "preliminary_number",
+   "fieldtype": "Data",
+   "label": "preliminary_number"
+  },
+  {
+   "fieldname": "aci_number",
+   "fieldtype": "Data",
+   "label": "ACI Number",
+   "unique": 1
+  },
+  {
+   "fieldname": "egyptian_importer",
+   "fieldtype": "Link",
+   "label": "Egyptian Importer",
+   "options": "Egyptian Importer"
+  },
+  {
+   "fieldname": "foreign_exporter",
+   "fieldtype": "Link",
+   "label": "Foreign Exporter",
+   "options": "Exporter Foreign"
+  },
+  {
+   "fieldname": "exporting_country",
+   "fieldtype": "Link",
+   "label": "Exporting Country",
+   "options": "Exporting Country"
+  },
+  {
+   "fetch_from": "exporting_country.icon",
+   "fieldname": "country_icon",
+   "fieldtype": "Data",
+   "label": "Country Icon",
+   "read_only": 1
+  },
+  {
+   "default": "COM",
+   "fieldname": "request_type",
+   "fieldtype": "Select",
+   "label": "Request Type",
+   "options": "COM"
+  },
+  {
+   "fieldname": "request_date",
+   "fieldtype": "Date",
+   "label": "Request Date"
+  },
+  {
+   "default": "\u0634\u062d\u0646 \u0628\u062d\u0631\u0649",
+   "fieldname": "shipment_type",
+   "fieldtype": "Select",
+   "label": "Shipment Type",
+   "options": "\u0634\u062d\u0646 \u0628\u062d\u0631\u0649"
+  },
+  {
+   "fieldname": "files",
+   "fieldtype": "Table",
+   "label": "files",
+   "options": "shipment_requests_imgs"
+  },
+  {
+   "fieldname": "\u0627\u0644\u0628\u064a\u0627\u0646\u0627\u062a_\u0627\u0644\u0627\u0633\u0627\u0633\u064a\u0629_tab",
+   "fieldtype": "Tab Break",
+   "label": "\u0627\u0644\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u0627\u0633\u0627\u0633\u064a\u0629"
+  },
+  {
+   "fieldname": "shipment_number",
+   "fieldtype": "Data",
+   "label": "Shipment Number (Importer/Warehouse)"
+  },
+  {
+   "fieldname": "shipmentname",
+   "fieldtype": "Data",
+   "label": "Name"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Data",
+   "label": "Address"
+  },
+  {
+   "fieldname": "mobile_number",
+   "fieldtype": "Data",
+   "label": "Mobile Number"
+  },
+  {
+   "fieldname": "egyptian",
+   "fieldtype": "Data",
+   "label": "Egyptian"
+  },
+  {
+   "fieldname": "national_id_passport_number",
+   "fieldtype": "Data",
+   "label": "National ID / Passport Number"
+  },
+  {
+   "fieldname": "factory_number",
+   "fieldtype": "Data",
+   "label": "Factory Number"
+  },
+  {
+   "fieldname": "national_id_expiry_date",
+   "fieldtype": "Date",
+   "label": "National ID Expiry Date"
+  },
+  {
+   "fieldname": "country",
+   "fieldtype": "Data",
+   "label": "Country"
+  },
+  {
+   "fieldname": "type_of_registration",
+   "fieldtype": "Data",
+   "label": "Type of Registration"
+  },
+  {
+   "fieldname": "registration_number",
+   "fieldtype": "Data",
+   "label": "Registration Number"
+  },
+  {
+   "fieldname": "registration_expiry_date",
+   "fieldtype": "Date",
+   "label": "Registration Expiry Date"
+  },
+  {
+   "fieldname": "sub_type",
+   "fieldtype": "Data",
+   "label": "Sub-type"
+  },
+  {
+   "fieldname": "ledger",
+   "fieldtype": "Data",
+   "label": "Ledger"
+  },
+  {
+   "fieldname": "aci_number",
+   "fieldtype": "Data",
+   "label": "ACI Number",
+   "unique": 1
+  },
+  {
+   "fieldname": "date_46",
+   "fieldtype": "Date",
+   "label": "Date 46"
+  },
+  {
+   "fieldname": "declared_value",
+   "fieldtype": "Data",
+   "label": "Declared Value"
+  },
+  {
+   "fieldname": "applicant",
+   "fieldtype": "Data",
+   "label": "Applicant"
+  },
+  {
+   "fieldname": "mobile_number_for_communication",
+   "fieldtype": "Data",
+   "label": "Mobile Number for Communication"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email"
+  },
+  {
+   "fieldname": "applicants_title_format",
+   "fieldtype": "Data",
+   "label": "Applicant's Title/Format"
+  },
+  {
+   "fieldname": "statement_presenter",
+   "fieldtype": "Data",
+   "label": "Statement Presenter"
+  },
+  {
+   "fieldname": "statement_presenters_role",
+   "fieldtype": "Data",
+   "label": "Statement Presenter's Role"
+  },
+  {
+   "fieldname": "affiliated_to",
+   "fieldtype": "Data",
+   "label": "Affiliated To"
+  },
+  {
+   "fieldname": "tariff_application_date",
+   "fieldtype": "Date",
+   "label": "Tariff Application Date"
+  },
+  {
+   "fieldname": "previous_importer",
+   "fieldtype": "Data",
+   "label": "Previous Importer"
+  },
+  {
+   "fieldname": "joint_inspection_date",
+   "fieldtype": "Date",
+   "label": "Joint Inspection Date"
+  },
+  {
+   "fieldname": "truck_release_date",
+   "fieldtype": "Date",
+   "label": "Truck Release Date"
+  },
+  {
+   "fieldname": "shipment_link_type",
+   "fieldtype": "Data",
+   "label": "Shipment Link Type"
+  },
+  {
+   "fieldname": "shipping_date",
+   "fieldtype": "Date",
+   "label": "Shipping Date"
+  },
+  {
+   "fieldname": "arrival_date",
+   "fieldtype": "Date",
+   "label": "Arrival Date"
+  },
+  {
+   "fieldname": "compatible_customs_system",
+   "fieldtype": "Data",
+   "label": "Compatible Customs System"
+  },
+  {
+   "fieldname": "current_customs_system",
+   "fieldtype": "Data",
+   "label": "Current Customs System"
+  },
+  {
+   "fieldname": "tariff_sector",
+   "fieldtype": "Data",
+   "label": "Tariff Sector"
+  },
+  {
+   "fieldname": "submission_system",
+   "fieldtype": "Data",
+   "label": "Submission System"
+  },
+  {
+   "fieldname": "previous_customs_system",
+   "fieldtype": "Data",
+   "label": "Previous Customs System"
+  },
+  {
+   "fieldname": "customs_complex",
+   "fieldtype": "Data",
+   "label": "Customs Complex"
+  },
+  {
+   "fieldname": "registration_customs",
+   "fieldtype": "Data",
+   "label": "Registration Customs"
+  },
+  {
+   "fieldname": "goods_arrival_customs",
+   "fieldtype": "Data",
+   "label": "Goods Arrival Customs"
+  },
+  {
+   "fieldname": "final_release_customs",
+   "fieldtype": "Data",
+   "label": "Final Release Customs"
+  },
+  {
+   "fieldname": "goods_delivery_location",
+   "fieldtype": "Data",
+   "label": "Goods Delivery Location"
+  },
+  {
+   "fieldname": "warehouse_transport_storage",
+   "fieldtype": "Data",
+   "label": "Warehouse - (Transport and Storage under Custody in Case of Regulatory Rejection)"
+  },
+  {
+   "fieldname": "for_entity",
+   "fieldtype": "Data",
+   "label": "For Entity"
+  },
+  {
+   "fieldname": "inspection_description",
+   "fieldtype": "Data",
+   "label": "Inspection Description"
+  },
+  {
+   "fieldname": "client_attendance_date_for_inspection",
+   "fieldtype": "Date",
+   "label": "Client Attendance Date for Inspection"
+  },
+  {
+   "fieldname": "number_of_transfer_parties",
+   "fieldtype": "Int",
+   "label": "Number of Transfer Parties"
+  },
+  {
+   "fieldname": "insertion_location",
+   "fieldtype": "Data",
+   "label": "Insertion Location"
+  },
+  {
+   "fieldname": "first_save_date",
+   "fieldtype": "Date",
+   "label": "First Save Date"
+  },
+  {
+   "fieldname": "saved_by",
+   "fieldtype": "Data",
+   "label": "Saved By"
+  },
+  {
+   "fieldname": "last_save_date",
+   "fieldtype": "Date",
+   "label": "Last Save Date"
+  },
+  {
+   "fieldname": "aci_request_date",
+   "fieldtype": "Date",
+   "label": "ACI Request Date"
+  },
+  {
+   "fieldname": "aci_issue_date",
+   "fieldtype": "Date",
+   "label": "ACI Issue Date"
+  },
+  {
+   "fieldname": "submission_date",
+   "fieldtype": "Date",
+   "label": "Submission Date"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Data",
+   "label": "Status"
+  },
+  {
+   "fieldname": "declaration_stage",
+   "fieldtype": "Data",
+   "label": "Declaration Stage"
+  },
+  {
+   "default": "COM",
+   "fieldname": "request_type",
+   "fieldtype": "Select",
+   "label": "Request Type",
+   "options": "COM"
+  },
+  {
+   "fieldname": "\u0627\u0644\u0645\u0624\u0634\u0631\u0627\u062a__\u0645\u062d\u062f\u062f\u0627\u062a_\u0627\u0644\u0625\u0642\u0631\u0627\u0631_tab",
+   "fieldtype": "Tab Break",
+   "label": "\u0627\u0644\u0645\u0624\u0634\u0631\u0627\u062a / \u0645\u062d\u062f\u062f\u0627\u062a \u0627\u0644\u0625\u0642\u0631\u0627\u0631"
+  },
+  {
+   "fieldname": "postal_parcel_indicator",
+   "fieldtype": "Data",
+   "label": "Postal Parcel Indicator"
+  },
+  {
+   "fieldname": "operator_registered_in_e_invoice_system",
+   "fieldtype": "Data",
+   "label": "Operator Registered in E-Invoice System"
+  },
+  {
+   "fieldname": "operator_registered_in_white_list",
+   "fieldtype": "Data",
+   "label": "Operator Registered in White List"
+  },
+  {
+   "fieldname": "exit_indicator_for_included_goods_without_containers",
+   "fieldtype": "Data",
+   "label": "Exit Indicator for Included Goods - Without Containers"
+  },
+  {
+   "fieldname": "completion_of_endorsement",
+   "fieldtype": "Data",
+   "label": "Completion of Endorsement"
+  },
+  {
+   "fieldname": "full_fee_payment_in_phase_one",
+   "fieldtype": "Data",
+   "label": "Full Fee Payment in Phase One"
+  },
+  {
+   "fieldname": "disbursement_visa",
+   "fieldtype": "Data",
+   "label": "Disbursement Visa"
+  },
+  {
+   "fieldname": "article_104c_commitment",
+   "fieldtype": "Data",
+   "label": "Article 104c Commitment"
+  },
+  {
+   "fieldname": "request_exit_transport",
+   "fieldtype": "Data",
+   "label": "Request Exit with Transport and Storage under Custody for Presentation Authorities"
+  },
+  {
+   "fieldname": "inspection_and_examination_rate",
+   "fieldtype": "Data",
+   "label": "Inspection and Examination Rate"
+  },
+  {
+   "fieldname": "specialized_committees",
+   "fieldtype": "Data",
+   "label": "Specialized Committees"
+  },
+  {
+   "default": "COM",
+   "fieldname": "request_type3",
+   "fieldtype": "Select",
+   "label": "Request Type",
+   "options": "COM"
+  },
+  {
+   "fieldname": "sufficiency_of_submitted_documents",
+   "fieldtype": "Data",
+   "label": "Sufficiency of Submitted Documents"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_the_incoming_message_stock",
+   "fieldtype": "Check",
+   "label": "Is the Incoming Message Stock?"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_the_incoming_message_under_suspicion",
+   "fieldtype": "Check",
+   "label": "Is the Incoming Message Under Suspicion?"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_the_message_in_a_wooden_box_thickness_gt_6mm",
+   "fieldtype": "Check",
+   "label": "Is the Message in a Wooden Box Thickness > 6mm?"
+  },
+  {
+   "default": "0",
+   "fieldname": "guided_goods_for_free_zone",
+   "fieldtype": "Check",
+   "label": "Guided Goods for Free Zone?"
+  },
+  {
+   "default": "0",
+   "fieldname": "goods_for_free_zone",
+   "fieldtype": "Check",
+   "label": "Goods for Free Zone?"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_the_incoming_message_used_or_waste",
+   "fieldtype": "Check",
+   "label": "Is the Incoming Message Used or Waste?"
+  },
+  {
+   "fieldname": "\u0628\u064a\u0627\u0646\u0627\u062a_\u0627\u0644\u0634\u062d\u0646\u0629_tab",
+   "fieldtype": "Tab Break",
+   "label": "\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u0634\u062d\u0646\u0629"
+  },
+  {
+   "fieldname": "policy_number",
+   "fieldtype": "Data",
+   "label": "Policy Number"
+  },
+  {
+   "fieldname": "policy_date",
+   "fieldtype": "Date",
+   "label": "Policy Date"
+  },
+  {
+   "fieldname": "road_number",
+   "fieldtype": "Data",
+   "label": "Road Number"
+  },
+  {
+   "fieldname": "linked_to_main_policy",
+   "fieldtype": "Data",
+   "label": "Linked to Main Policy"
+  },
+  {
+   "fieldname": "port_of_loading",
+   "fieldtype": "Data",
+   "label": "Port of Loading"
+  },
+  {
+   "fieldname": "port_of_arrival",
+   "fieldtype": "Data",
+   "label": "Port of Arrival"
+  },
+  {
+   "fieldname": "final_destination",
+   "fieldtype": "Data",
+   "label": "Final Destination"
+  },
+  {
+   "fieldname": "arrival_date",
+   "fieldtype": "Date",
+   "label": "Arrival Date"
+  },
+  {
+   "fieldname": "departure_date_from_exporting_country",
+   "fieldtype": "Date",
+   "label": "Departure Date from Exporting Country"
+  },
+  {
+   "default": "\u0634\u062d\u0646 \u0628\u062d\u0631\u0649",
+   "fieldname": "shipment_type",
+   "fieldtype": "Select",
+   "label": "Shipment Type",
+   "options": "\u0634\u062d\u0646 \u0628\u062d\u0631\u0649"
+  },
+  {
+   "fieldname": "shipment_destination_type",
+   "fieldtype": "Data",
+   "label": "Shipment Destination Type"
+  },
+  {
+   "fieldname": "last_location",
+   "fieldtype": "Data",
+   "label": "Last Location"
+  },
+  {
+   "fieldname": "shipping_agent",
+   "fieldtype": "Data",
+   "label": "Shipping Agent"
+  },
+  {
+   "fieldname": "transport_name",
+   "fieldtype": "Data",
+   "label": "Transport Name"
+  },
+  {
+   "fieldname": "beneficiary_name",
+   "fieldtype": "Data",
+   "label": "Beneficiary Name"
+  },
+  {
+   "fieldname": "number_of_waiver_requests",
+   "fieldtype": "Int",
+   "label": "Number of Waiver Requests"
+  },
+  {
+   "fieldname": "shipment_number2",
+   "fieldtype": "Data",
+   "label": "Shipment Number (Importer/Warehouse)"
+  },
+  {
+   "fieldname": "sub_number",
+   "fieldtype": "Data",
+   "label": "Sub-number"
+  },
+  {
+   "fieldname": "shipment_date",
+   "fieldtype": "Date",
+   "label": "Shipment Date"
+  },
+  {
+   "fieldname": "shipment_details",
+   "fieldtype": "Table",
+   "label": "shipment details",
+   "options": "shipment details"
+  },
+  {
+   "fieldname": "parcels_required_for_inspection",
+   "fieldtype": "Table",
+   "label": "Parcels required for inspection",
+   "options": "Parcels required for inspection"
+  },
+  {
+   "fieldname": "invoice_data_tab",
+   "fieldtype": "Tab Break",
+   "label": "\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u0641\u0627\u062a\u0648\u0631\u0629"
+  },
+  {
+   "fieldname": "invoice_number",
+   "fieldtype": "Data",
+   "label": "Invoice Number"
+  },
+  {
+   "fieldname": "invoice_date",
+   "fieldtype": "Date",
+   "label": "Invoice Date"
+  },
+  {
+   "fieldname": "contract_type_according_to_principal",
+   "fieldtype": "Data",
+   "label": "Contract Type According to Principal"
+  },
+  {
+   "fieldname": "contract_date",
+   "fieldtype": "Date",
+   "label": "Contract Date"
+  },
+  {
+   "fieldname": "preliminary_invoice_number",
+   "fieldtype": "Data",
+   "label": "Preliminary Invoice Number"
+  },
+  {
+   "fieldname": "preliminary_invoice_date",
+   "fieldtype": "Date",
+   "label": "Preliminary Invoice Date"
+  },
+  {
+   "fieldname": "purchase_order_or_contract_number",
+   "fieldtype": "Data",
+   "label": "Purchase Order or Contract Number"
+  },
+  {
+   "fieldname": "purchase_order_or_contract_date",
+   "fieldtype": "Date",
+   "label": "Purchase Order or Contract Date"
+  },
+  {
+   "fieldname": "original_invoice_value",
+   "fieldtype": "Float",
+   "label": "Original Invoice Value"
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Data",
+   "label": "Currency"
+  },
+  {
+   "fieldname": "central_bank_rate_indicator",
+   "fieldtype": "Data",
+   "label": "Central Bank Rate Indicator"
+  },
+  {
+   "fieldname": "customs_exchange_rate",
+   "fieldtype": "Float",
+   "label": "Customs Exchange Rate"
+  },
+  {
+   "fieldname": "central_bank_exchange_rate",
+   "fieldtype": "Float",
+   "label": "Central Bank Exchange Rate"
+  },
+  {
+   "fieldname": "local_invoice_value",
+   "fieldtype": "Float",
+   "label": "Local Invoice Value"
+  },
+  {
+   "fieldname": "number_of_invoice_items",
+   "fieldtype": "Int",
+   "label": "Number of Invoice Items"
+  },
+  {
+   "fieldname": "foreign_exporter",
+   "fieldtype": "Link",
+   "label": "Foreign Exporter",
+   "options": "Exporter Foreign"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Data",
+   "label": "Address"
+  },
+  {
+   "fieldname": "exporter_type",
+   "fieldtype": "Data",
+   "label": "Exporter Type"
+  },
+  {
+   "fieldname": "foreign_supplier_nationality",
+   "fieldtype": "Data",
+   "label": "Foreign Supplier Nationality"
+  },
+  {
+   "default": "0",
+   "fieldname": "aci_checked",
+   "fieldtype": "Check",
+   "label": "ACI Checked"
+  },
+  {
+   "fieldname": "inquiry_date",
+   "fieldtype": "Date",
+   "label": "Inquiry Date"
+  },
+  {
+   "fieldname": "shipment_description",
+   "fieldtype": "Data",
+   "label": "Shipment Description"
+  },
+  {
+   "fieldname": "last_modified_date",
+   "fieldtype": "Date",
+   "label": "Last Modified Date"
+  },
+  {
+   "fieldname": "payment_method",
+   "fieldtype": "Data",
+   "label": "Payment Method"
+  },
+  {
+   "fieldname": "bank_handling_the_transfer",
+   "fieldtype": "Data",
+   "label": "Bank Handling the Transfer"
+  },
+  {
+   "fieldname": "payment_type",
+   "fieldtype": "Data",
+   "label": "Payment Type"
+  },
+  {
+   "fieldname": "due_date",
+   "fieldtype": "Date",
+   "label": "Due Date"
+  },
+  {
+   "fieldname": "address_invoice",
+   "fieldtype": "Data",
+   "label": "Address invoice"
+  },
+  {
+   "fieldname": "item_data",
+   "fieldtype": "Table",
+   "label": "Item Data",
+   "options": "Item Data"
+  },
+  {
+   "fieldname": "invoice_items",
+   "fieldtype": "Table",
+   "label": "Invoice Items",
+   "options": "Invoice Items"
+  },
+  {
+   "fieldname": "invoice_expenses",
+   "fieldtype": "Table",
+   "label": "Invoice Expenses",
+   "options": "Invoice Expenses"
+  },
+  {
+   "fieldname": "acid_items_without_invoice",
+   "fieldtype": "Table",
+   "label": "ACID Items Without Invoice",
+   "options": "ACID Items Without Invoice"
+  },
+  {
+   "fieldname": "release_number",
+   "fieldtype": "Data",
+   "label": "release_number"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-10-25 17:57:13.877930",
+ "modified_by": "Administrator",
+ "module": "nafeza",
+ "name": "shipment_requests",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

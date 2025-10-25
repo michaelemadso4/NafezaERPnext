@@ -1,4 +1,7 @@
-### nafeza
+<<<<<<< HEAD
+# NafezaERPnext
+=======
+### Nafeza
 
 nafeza
 
@@ -31,3 +34,4 @@ Pre-commit is configured to use the following tools for checking and formatting 
 ### License
 
 mit
+>>>>>>> a349e9d (feat: Initialize App)
