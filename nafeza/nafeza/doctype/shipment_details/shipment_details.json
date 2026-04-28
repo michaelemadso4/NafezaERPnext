@@ -7,46 +7,99 @@
  "engine": "InnoDB",
  "field_order": [
   "shipment_type",
-   "shipment_destination_type",
-    "general_description_of_goods",
-    "freezing_status",
-    "container_code",
-    "number_of_packages",
-    "package_unit",
-    "gross_weight",
-    "weight_unit",
-    "shipping_line",
-    "status",
-    "discharge_date",
-    "required_for_xray_inspection",
-    "xray_inspection_result"
+  "shipment_destination_type",
+  "general_description_of_goods",
+  "freezing_status",
+  "container_code",
+  "number_of_packages",
+  "package_unit",
+  "gross_weight",
+  "weight_unit",
+  "shipping_line",
+  "status",
+  "discharge_date",
+  "required_for_xray_inspection",
+  "xray_inspection_result"
  ],
  "fields": [
   {
    "fieldname": "shipment_type",
    "fieldtype": "Data",
    "label": "Shipment Type"
-  },{ "fieldname": "shipment_destination_type", "fieldtype": "Data", "label": "Shipment Destination Type" },
-    { "fieldname": "general_description_of_goods", "fieldtype": "Data", "label": "General Description of Goods" },
-    { "fieldname": "freezing_status", "fieldtype": "Data", "label": "Freezing Status" },
-    { "fieldname": "container_code", "fieldtype": "Data", "label": "Container Code" },
-    { "fieldname": "number_of_packages", "fieldtype": "Int", "label": "Number of Packages" },
-    { "fieldname": "package_unit", "fieldtype": "Data", "label": "Package Unit" },
-    { "fieldname": "gross_weight", "fieldtype": "Float", "label": "Gross Weight" },
-    { "fieldname": "weight_unit", "fieldtype": "Data", "label": "Weight Unit" },
-    { "fieldname": "shipping_line", "fieldtype": "Data", "label": "Shipping Line" },
-    { "fieldname": "status", "fieldtype": "Data", "label": "Status" },
-    { "fieldname": "discharge_date", "fieldtype": "Date", "label": "Discharge Date" },
-    { "fieldname": "required_for_xray_inspection", "fieldtype": "Check", "label": "Required for X-Ray Inspection" },
-    { "fieldname": "xray_inspection_result", "fieldtype": "Data", "label": "X-Ray Inspection Result" }
+  },
+  {
+   "fieldname": "shipment_destination_type",
+   "fieldtype": "Data",
+   "label": "Shipment Destination Type"
+  },
+  {
+   "fieldname": "general_description_of_goods",
+   "fieldtype": "Data",
+   "label": "General Description of Goods"
+  },
+  {
+   "fieldname": "freezing_status",
+   "fieldtype": "Data",
+   "label": "Freezing Status"
+  },
+  {
+   "fieldname": "container_code",
+   "fieldtype": "Data",
+   "label": "Container Code"
+  },
+  {
+   "fieldname": "number_of_packages",
+   "fieldtype": "Int",
+   "label": "Number of Packages"
+  },
+  {
+   "fieldname": "package_unit",
+   "fieldtype": "Data",
+   "label": "Package Unit"
+  },
+  {
+   "fieldname": "gross_weight",
+   "fieldtype": "Float",
+   "label": "Gross Weight"
+  },
+  {
+   "fieldname": "weight_unit",
+   "fieldtype": "Data",
+   "label": "Weight Unit"
+  },
+  {
+   "fieldname": "shipping_line",
+   "fieldtype": "Data",
+   "label": "Shipping Line"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Data",
+   "label": "Status"
+  },
+  {
+   "fieldname": "discharge_date",
+   "fieldtype": "Date",
+   "label": "Discharge Date"
+  },
+  {
+   "fieldname": "required_for_xray_inspection",
+   "fieldtype": "Data",
+   "label": "Required for X-Ray Inspection"
+  },
+  {
+   "fieldname": "xray_inspection_result",
+   "fieldtype": "Data",
+   "label": "X-Ray Inspection Result"
+  }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-10-25 02:08:05.114381",
+ "modified": "2025-11-07 13:54:00.159905",
  "modified_by": "Administrator",
- "module": "nafeza",
+ "module": "Nafeza",
  "name": "shipment details",
  "owner": "Administrator",
  "permissions": [],

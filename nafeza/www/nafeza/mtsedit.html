@@ -49,129 +49,138 @@
             return document.getElementById(id);
         }
 
-     
+
 
         let aci;
 
         frappe.ready(
             function () {
-                   // تعريف كل الحقول
-        let shipment_number = getInput("shipment_number");
-        let shipmentname = getInput("shipmentname");
-        let address = getInput("address");
-        let mobile_number = getInput("mobile_number");
-        let egyptian = getInput("egyptian");
-        let national_id_passport_number = getInput("national_id_passport_number");
-        let factory_number = getInput("factory_number");
-        let national_id_expiry_date = getInput("national_id_expiry_date");
-        let country = getInput("country");
-        let type_of_registration = getInput("type_of_registration");
-        let registration_number = getInput("registration_number");
-        let registration_expiry_date = getInput("registration_expiry_date");
-        let sub_type = getInput("sub_type");
-        let ledger = getInput("ledger");
-        let date_46 = getInput("date_46");
-        let declared_value = getInput("declared_value");
-        let applicant = getInput("applicant");
-        let mobile_number_for_communication = getInput("mobile_number_for_communication");
-        let email = getInput("email");
-        let applicants_title_format = getInput("applicants_title_format");
-        let statement_presenter = getInput("statement_presenter");
-        let statement_presenters_role = getInput("statement_presenters_role");
-        let affiliated_to = getInput("affiliated_to");
-        let tariff_application_date = getInput("tariff_application_date");
-        let previous_importer = getInput("previous_importer");
-        let joint_inspection_date = getInput("joint_inspection_date");
-        let truck_release_date = getInput("truck_release_date");
-        let shipment_link_type = getInput("shipment_link_type");
-        let shipping_date = getInput("shipping_date");
-        let compatible_customs_system = getInput("compatible_customs_system");
-        let current_customs_system = getInput("current_customs_system");
-        let tariff_sector = getInput("tariff_sector");
-        let submission_system = getInput("submission_system");
-        let previous_customs_system = getInput("previous_customs_system");
-        let customs_complex = getInput("customs_complex");
-        let registration_customs = getInput("registration_customs");
-        let goods_arrival_customs = getInput("goods_arrival_customs");
-        let final_release_customs = getInput("final_release_customs");
-        let goods_delivery_location = getInput("goods_delivery_location");
-        let warehouse_transport_storage = getInput("warehouse_transport_storage");
-        let for_entity = getInput("for_entity");
-        let inspection_description = getInput("inspection_description");
-        let client_attendance_date_for_inspection = getInput("client_attendance_date_for_inspection");
-        let number_of_transfer_parties = getInput("number_of_transfer_parties");
-        let insertion_location = getInput("insertion_location");
-        let first_save_date = getInput("first_save_date");
-        let saved_by = getInput("saved_by");
-        let last_save_date = getInput("last_save_date");
-        let aci_request_date = getInput("aci_request_date");
-        let aci_issue_date = getInput("aci_issue_date");
-        let submission_date = getInput("submission_date");
-        let status = getInput("status");
-        let declaration_stage = getInput("declaration_stage");
-        let postal_parcel_indicator = getInput("postal_parcel_indicator");
-        let operator_registered_in_e_invoice_system = getInput("operator_registered_in_e_invoice_system");
-        let operator_registered_in_white_list = getInput("operator_registered_in_white_list");
-        let exit_indicator_for_included_goods_without_containers = getInput("exit_indicator_for_included_goods_without_containers");
-        let completion_of_endorsement = getInput("completion_of_endorsement");
-        let full_fee_payment_in_phase_one = getInput("full_fee_payment_in_phase_one");
-        let disbursement_visa = getInput("disbursement_visa");
-        let article_104c_commitment = getInput("article_104c_commitment");
-        let request_exit_transport = getInput("request_exit_transport");
-        let inspection_and_examination_rate = getInput("inspection_and_examination_rate");
-        let specialized_committees = getInput("specialized_committees");
-        let request_type3 = getInput("request_type3");
-        let sufficiency_of_submitted_documents = getInput("sufficiency_of_submitted_documents");
-        let is_the_incoming_message_stock = getInput("is_the_incoming_message_stock");
-        let is_the_incoming_message_under_suspicion = getInput("is_the_incoming_message_under_suspicion");
-        let is_the_message_in_a_wooden_box_thickness_gt_6mm = getInput("is_the_message_in_a_wooden_box_thickness_gt_6mm");
-        let guided_goods_for_free_zone = getInput("guided_goods_for_free_zone");
-        let goods_for_free_zone = getInput("goods_for_free_zone");
-        let is_the_incoming_message_used_or_waste = getInput("is_the_incoming_message_used_or_waste");
-        let policy_number = getInput("policy_number");
-        let policy_date = getInput("policy_date");
-        let road_number = getInput("road_number");
-        let linked_to_main_policy = getInput("linked_to_main_policy");
-        let port_of_loading = getInput("port_of_loading");
-        let port_of_arrival = getInput("port_of_arrival");
-        let final_destination = getInput("final_destination");
-        let arrival_date = getInput("arrival_date");
-        let departure_date_from_exporting_country = getInput("departure_date_from_exporting_country");
-        let shipment_destination_type = getInput("shipment_destination_type");
-        let last_location = getInput("last_location");
-        let shipping_agent = getInput("shipping_agent");
-        let transport_name = getInput("transport_name");
-        let beneficiary_name = getInput("beneficiary_name");
-        let number_of_waiver_requests = getInput("number_of_waiver_requests");
-        let shipment_number2 = getInput("shipment_number2");
-        let sub_number = getInput("sub_number");
-        let shipment_date = getInput("shipment_date");
-        let invoice_number = getInput("invoice_number");
-        let invoice_date = getInput("invoice_date");
-        let contract_type_according_to_principal = getInput("contract_type_according_to_principal");
-        let contract_date = getInput("contract_date");
-        let preliminary_invoice_number = getInput("preliminary_invoice_number");
-        let preliminary_invoice_date = getInput("preliminary_invoice_date");
-        let purchase_order_or_contract_number = getInput("purchase_order_or_contract_number");
-        let purchase_order_or_contract_date = getInput("purchase_order_or_contract_date");
-        let original_invoice_value = getInput("original_invoice_value");
-        let currency = getInput("currency");
-        let central_bank_rate_indicator = getInput("central_bank_rate_indicator");
-        let customs_exchange_rate = getInput("customs_exchange_rate");
-        let central_bank_exchange_rate = getInput("central_bank_exchange_rate");
-        let local_invoice_value = getInput("local_invoice_value");
-        let number_of_invoice_items = getInput("number_of_invoice_items");
-        let address_invoice = getInput("address_invoice");
-        let exporter_type = getInput("exporter_type");
-        let foreign_supplier_nationality = getInput("foreign_supplier_nationality");
-        let aci_checked = getInput("aci_checked");
-        let inquiry_date = getInput("inquiry_date");
-        let shipment_description = getInput("shipment_description");
-        let last_modified_date = getInput("last_modified_date");
-        let payment_method = getInput("payment_method");
-        let bank_handling_the_transfer = getInput("bank_handling_the_transfer");
-        let payment_type = getInput("payment_type");
-        let due_date = getInput("due_date");
+                // تعريف كل الحقول
+                let shipment_number = getInput("shipment_number");
+                let shipmentname = getInput("shipmentname");
+                let address = getInput("address");
+                let mobile_number = getInput("mobile_number");
+                let egyptian = getInput("egyptian");
+                let national_id_passport_number = getInput("national_id_passport_number");
+                let factory_number = getInput("factory_number");
+                let national_id_expiry_date = getInput("national_id_expiry_date");
+                let country = getInput("country");
+                let type_of_registration = getInput("type_of_registration");
+                let registration_number = getInput("registration_number");
+                let registration_expiry_date = getInput("registration_expiry_date");
+                let sub_type = getInput("sub_type");
+                let ledger = getInput("ledger");
+                let acinumber = getInput("acinumber")
+                let date_46 = getInput("date_46");
+                let declared_value = getInput("declared_value");
+                let applicant = getInput("applicant");
+                let mobile_number_for_communication = getInput("mobile_number_for_communication");
+                let email = getInput("email");
+                let applicants_title_format = getInput("applicants_title_format");
+                let statement_presenter = getInput("statement_presenter");
+                let presenter_name = getInput("presenter_name");
+                let statement_presenters_role = getInput("statement_presenters_role");
+                let affiliated_to = getInput("affiliated_to");
+                let tariff_application_date = getInput("tariff_application_date");
+                let previous_importer = getInput("previous_importer");
+                let joint_inspection_date = getInput("joint_inspection_date");
+                let truck_release_date = getInput("truck_release_date");
+                let shipment_link_type = getInput("shipment_link_type");
+                let shipping_date = getInput("shipping_date");
+                let compatible_customs_system = getInput("compatible_customs_system");
+                let current_customs_system = getInput("current_customs_system");
+                let tariff_sector = getInput("tariff_sector");
+                let submission_system = getInput("submission_system");
+                let previous_customs_system = getInput("previous_customs_system");
+                let customs_complex = getInput("customs_complex");
+                // let registration_customs = getInput("registration_customs");
+                let guided_goods_for_free_zone_guided = getInput("guided_goods_for_free_zone_guided");
+                let goods_arrival_customs = getInput("goods_arrival_customs");
+                let final_release_customs = getInput("final_release_customs");
+                let goods_delivery_location = getInput("goods_delivery_location");
+                let warehouse_transport_storage = getInput("warehouse_transport_storage");
+                let for_entity = getInput("for_entity");
+                let inspection_description = getInput("inspection_description");
+                let client_attendance_date_for_inspection = getInput("client_attendance_date_for_inspection");
+                let number_of_transfer_parties = getInput("number_of_transfer_parties");
+                let insertion_location = getInput("insertion_location");
+                let first_save_date = getInput("first_save_date");
+                let saved_by = getInput("saved_by");
+                let last_save_date = getInput("last_save_date");
+                let aci_request_date = getInput("aci_request_date");
+                let aci_issue_date = getInput("aci_issue_date");
+                let submission_date = getInput("submission_date");
+                let status = getInput("status");
+                let declaration_stage = getInput("declaration_stage");
+                let postal_indicator = getInput("postal_indicator");
+                let operator_registered_in_e_invoice_system = getInput("operator_registered_in_e_invoice_system");
+                let operator_registered_in_white_list = getInput("operator_registered_in_white_list");
+                let exit_indicator_for_included_goods_without_containers = getInput("exit_indicator_for_included_goods_without_containers");
+                let completion_of_endorsement = getInput("completion_of_endorsement");
+                let full_fee_payment_in_phase_one = getInput("full_fee_payment_in_phase_one");
+                let disbursement_visa = getInput("disbursement_visa");
+                let article_104c_commitment = getInput("article_104c_commitment");
+                let request_exit_transport = getInput("request_exit_transport");
+                let inspection_and_examination_rate = getInput("inspection_and_examination_rate");
+                let specialized_committees = getInput("specialized_committees");
+                let request_type = getInput("request_type");
+                let order_type = getInput("order_type");
+                let sufficiency_of_submitted_documents = getInput("sufficiency_of_submitted_documents");
+                let is_the_incoming_message_stock = getInput("is_the_incoming_message_stock");
+                let is_the_incoming_message_under_suspicion = getInput("is_the_incoming_message_under_suspicion");
+                let is_the_message_in_a_wooden_box_thickness_gt_6mm = getInput("is_the_message_in_a_wooden_box_thickness_gt_6mm");
+                let guided_goods_for_free_zone = getInput("guided_goods_for_free_zone");
+                let goods_for_free_zone = getInput("goods_for_free_zone");
+                let is_the_incoming_message_used_or_waste = getInput("is_the_incoming_message_used_or_waste");
+                let policy_number = getInput("policy_number");
+                let policy_date = getInput("policy_date");
+                let road_number = getInput("road_number");
+                let linked_to_main_policy = getInput("linked_to_main_policy");
+                let port_of_loading = getInput("port_of_loading");
+                let port_of_arrival = getInput("port_of_arrival");
+                let final_destination = getInput("final_destination");
+                let arrival_date = getInput("arrival_date");
+                let arrived_date = getInput("arrived_date");
+                let departure_date = getInput("departure_date");
+                let shipment_type = getInput("shipment_type");
+                let shipment_number_for = getInput("shipment_number_for");
+                let shipment_destination_type = getInput("shipment_destination_type");
+                let last_location = getInput("last_location");
+                let shipping_agent = getInput("shipping_agent");
+                let transport_name = getInput("transport_name");
+                let beneficiary_name = getInput("beneficiary_name");
+                let number_of_waiver_requests = getInput("number_of_waiver_requests");
+                let shipment_number2 = getInput("shipment_number2");
+                let sub_number = getInput("sub_number");
+                let shipment_date = getInput("shipment_date");
+                let invoice_number = getInput("invoice_number");
+                let invoice_date = getInput("invoice_date");
+                let contract_type_according_to_principal = getInput("contract_type_according_to_principal");
+                let contract_date = getInput("contract_date");
+                let preliminary_invoice_number = getInput("preliminary_invoice_number");
+                let preliminary_invoice_date = getInput("preliminary_invoice_date");
+                let purchase_order_or_contract_number = getInput("purchase_order_or_contract_number");
+                let purchase_order_or_contract_date = getInput("purchase_order_or_contract_date");
+                let original_invoice_value = getInput("original_invoice_value");
+                let currency = getInput("currency");
+                let custom_complex = getInput("custom_complex");
+                let central_bank_rate_indicator = getInput("central_bank_rate_indicator");
+                let customs_exchange_rate = getInput("customs_exchange_rate");
+                let central_bank_exchange_rate = getInput("central_bank_exchange_rate");
+                let local_invoice_value = getInput("local_invoice_value");
+                let number_of_invoice_items = getInput("number_of_invoice_items");
+                let address_invoice = getInput("address_invoice");
+                let exporter_type = getInput("exporter_type");
+                let foreign_supplier_nationality = getInput("foreign_supplier_nationality");
+                let aci_checked = getInput("aci_checked");
+                let inquiry_date = getInput("inquiry_date");
+                let shipment_description = getInput("shipment_description");
+                let last_modified_date = getInput("last_modified_date");
+                let payment_method = getInput("payment_method");
+                let bank_handling_the_transfer = getInput("bank_handling_the_transfer");
+                let payment_type = getInput("payment_type");
+                let due_date = getInput("due_date");
+                let foreign_exporter =getInput("foreign_exporter")
                 console.log("Frappe is ready!");
                 const params = new URLSearchParams(window.location.search);
                 aci = params.get("aci");
@@ -195,137 +204,409 @@
                     },
                     callback: function (r) {
                         console.log(r.message);
-                        
-                         if(r.message) {
-                    let data = r.message;
 
-                    shipment_number.value = data["shipment_number"];
-                    shipmentname.value = data["shipmentname"];
-                    address.value = data["address"];
-                    mobile_number.value = data["mobile_number"];
-                    egyptian.value = data["egyptian"];
-                    national_id_passport_number.value = data["national_id_passport_number"];
-                    factory_number.value = data["factory_number"];
-                    national_id_expiry_date.value = data["national_id_expiry_date"];
-                    country.value = data["country"];
-                    type_of_registration.value = data["type_of_registration"];
-                    registration_number.value = data["registration_number"];
-                    registration_expiry_date.value = data["registration_expiry_date"];
-                    sub_type.value = data["sub_type"];
-                    ledger.value = data["ledger"];
-                    date_46.value = data["date_46"];
-                    declared_value.value = data["declared_value"];
-                    applicant.value = data["applicant"];
-                    mobile_number_for_communication.value = data["mobile_number_for_communication"];
-                    email.value = data["email"];
-                    applicants_title_format.value = data["applicants_title_format"];
-                    statement_presenter.value = data["statement_presenter"];
-                    statement_presenters_role.value = data["statement_presenters_role"];
-                    affiliated_to.value = data["affiliated_to"];
-                    tariff_application_date.value = data["tariff_application_date"];
-                    previous_importer.value = data["previous_importer"];
-                    joint_inspection_date.value = data["joint_inspection_date"];
-                    truck_release_date.value = data["truck_release_date"];
-                    shipment_link_type.value = data["shipment_link_type"];
-                    shipping_date.value = data["shipping_date"];
-                    compatible_customs_system.value = data["compatible_customs_system"];
-                    current_customs_system.value = data["current_customs_system"];
-                    tariff_sector.value = data["tariff_sector"];
-                    submission_system.value = data["submission_system"];
-                    previous_customs_system.value = data["previous_customs_system"];
-                    customs_complex.value = data["customs_complex"];
-                    registration_customs.value = data["registration_customs"];
-                    goods_arrival_customs.value = data["goods_arrival_customs"];
-                    final_release_customs.value = data["final_release_customs"];
-                    goods_delivery_location.value = data["goods_delivery_location"];
-                    warehouse_transport_storage.value = data["warehouse_transport_storage"];
-                    for_entity.value = data["for_entity"];
-                    inspection_description.value = data["inspection_description"];
-                    client_attendance_date_for_inspection.value = data["client_attendance_date_for_inspection"];
-                    number_of_transfer_parties.value = data["number_of_transfer_parties"];
-                    insertion_location.value = data["insertion_location"];
-                    first_save_date.value = data["first_save_date"];
-                    saved_by.value = data["saved_by"];
-                    last_save_date.value = data["last_save_date"];
-                    aci_request_date.value = data["aci_request_date"];
-                    aci_issue_date.value = data["aci_issue_date"];
-                    submission_date.value = data["submission_date"];
-                    status.value = data["status"];
-                    declaration_stage.value = data["declaration_stage"];
-                    postal_parcel_indicator.value = data["postal_parcel_indicator"];
-                    operator_registered_in_e_invoice_system.value = data["operator_registered_in_e_invoice_system"];
-                    operator_registered_in_white_list.value = data["operator_registered_in_white_list"];
-                    exit_indicator_for_included_goods_without_containers.value = data["exit_indicator_for_included_goods_without_containers"];
-                    completion_of_endorsement.value = data["completion_of_endorsement"];
-                    full_fee_payment_in_phase_one.value = data["full_fee_payment_in_phase_one"];
-                    disbursement_visa.value = data["disbursement_visa"];
-                    article_104c_commitment.value = data["article_104c_commitment"];
-                    request_exit_transport.value = data["request_exit_transport"];
-                    inspection_and_examination_rate.value = data["inspection_and_examination_rate"];
-                    specialized_committees.value = data["specialized_committees"];
-                    request_type3.value = data["request_type3"];
-                    sufficiency_of_submitted_documents.value = data["sufficiency_of_submitted_documents"];
-                    is_the_incoming_message_stock.value = data["is_the_incoming_message_stock"];
-                    is_the_incoming_message_under_suspicion.value = data["is_the_incoming_message_under_suspicion"];
-                    is_the_message_in_a_wooden_box_thickness_gt_6mm.value = data["is_the_message_in_a_wooden_box_thickness_gt_6mm"];
-                    guided_goods_for_free_zone.value = data["guided_goods_for_free_zone"];
-                    goods_for_free_zone.value = data["goods_for_free_zone"];
-                    is_the_incoming_message_used_or_waste.value = data["is_the_incoming_message_used_or_waste"];
-                    policy_number.value = data["policy_number"];
-                    policy_date.value = data["policy_date"];
-                    road_number.value = data["road_number"];
-                    linked_to_main_policy.value = data["linked_to_main_policy"];
-                    port_of_loading.value = data["port_of_loading"];
-                    port_of_arrival.value = data["port_of_arrival"];
-                    final_destination.value = data["final_destination"];
-                    arrival_date.value = data["arrival_date"];
-                    departure_date_from_exporting_country.value = data["departure_date_from_exporting_country"];
-                    shipment_destination_type.value = data["shipment_destination_type"];
-                    last_location.value = data["last_location"];
-                    shipping_agent.value = data["shipping_agent"];
-                    transport_name.value = data["transport_name"];
-                    beneficiary_name.value = data["beneficiary_name"];
-                    number_of_waiver_requests.value = data["number_of_waiver_requests"];
-                    shipment_number2.value = data["shipment_number2"];
-                    sub_number.value = data["sub_number"];
-                    shipment_date.value = data["shipment_date"];
-                    invoice_number.value = data["invoice_number"];
-                    invoice_date.value = data["invoice_date"];
-                    contract_type_according_to_principal.value = data["contract_type_according_to_principal"];
-                    contract_date.value = data["contract_date"];
-                    preliminary_invoice_number.value = data["preliminary_invoice_number"];
-                    preliminary_invoice_date.value = data["preliminary_invoice_date"];
-                    purchase_order_or_contract_number.value = data["purchase_order_or_contract_number"];
-                    purchase_order_or_contract_date.value = data["purchase_order_or_contract_date"];
-                    original_invoice_value.value = data["original_invoice_value"];
-                    currency.value = data["currency"];
-                    central_bank_rate_indicator.value = data["central_bank_rate_indicator"];
-                    customs_exchange_rate.value = data["customs_exchange_rate"];
-                    central_bank_exchange_rate.value = data["central_bank_exchange_rate"];
-                    local_invoice_value.value = data["local_invoice_value"];
-                    number_of_invoice_items.value = data["number_of_invoice_items"];
-                    address_invoice.value = data["address_invoice"];
-                    exporter_type.value = data["exporter_type"];
-                    foreign_supplier_nationality.value = data["foreign_supplier_nationality"];
-                    aci_checked.value = data["aci_checked"];
-                    inquiry_date.value = data["inquiry_date"];
-                    shipment_description.value = data["shipment_description"];
-                    last_modified_date.value = data["last_modified_date"];
-                    payment_method.value = data["payment_method"];
-                    bank_handling_the_transfer.value = data["bank_handling_the_transfer"];
-                    payment_type.value = data["payment_type"];
-                    due_date.value = data["due_date"];
+                        if (r.message) {
+                            let data = r.message;
+                            console.log(data["request_type"])
+                            acinumber.value = aci;
+                            shipment_number.value = data["shipment_number"];
+                            shipmentname.value = data["shipmentname"];
+                            address.value = data["address"];
+                            mobile_number.value = data["mobile_number"];
+                            egyptian.value = data["egyptian"];
+                            national_id_passport_number.value = data["national_id_passport_number"];
+                            factory_number.value = data["factory_number"];
+                            national_id_expiry_date.value = data["national_id_expiry_date"];
+                            country.value = data["country"];
+                            type_of_registration.value = data["type_of_registration"];
+                            registration_number.value = data["registration_number"];
+                            registration_expiry_date.value = data["registration_expiry_date"];
+                            sub_type.value = data["sub_type"];
+                            ledger.value = data["ledger"];
+                            date_46.value = data["date_46"];
+                            declared_value.value = data["declared_value"];
+                            applicant.value = data["applicant"];
+                            mobile_number_for_communication.value = data["mobile_number_for_communication"];
+                            email.value = data["email"];
+                            applicants_title_format.value = data["applicants_title_format"];
+                            statement_presenter.value = data["statement_presenter"];
+                            presenter_name.value = data["presenter_name"];
+                            statement_presenters_role.value = data["statement_presenters_role"];
+                            affiliated_to.value = data["affiliated_to"];
+                            tariff_application_date.value = data["tariff_application_date"];
+                            previous_importer.value = data["previous_importer"];
+                            joint_inspection_date.value = data["joint_inspection_date"];
+                            truck_release_date.value = data["truck_release_date"];
+                            shipment_link_type.value = data["shipment_link_type"];
+                            shipping_date.value = data["shipping_date"];
+                            compatible_customs_system.value = data["compatible_customs_system"];
+                            current_customs_system.value = data["current_customs_system"];
+                            tariff_sector.value = data["tariff_sector"];
+                            submission_system.value = data["submission_system"];
+                            previous_customs_system.value = data["previous_customs_system"];
+                            customs_complex.value = data["customs_complex"];
+                            custom_complex.value = data["custom_complex"];
+                            // registration_customs.value = data["registration_customs"];
+                            goods_arrival_customs.value = data["goods_arrival_customs"];
+                            final_release_customs.value = data["final_release_customs"];
+                            goods_delivery_location.value = data["goods_delivery_location"];
+                            warehouse_transport_storage.value = data["warehouse_transport_storage"];
+                            for_entity.value = data["for_entity"];
+                            inspection_description.value = data["inspection_description"];
+                            client_attendance_date_for_inspection.value = data["client_attendance_date_for_inspection"];
+                            number_of_transfer_parties.value = data["number_of_transfer_parties"];
+                            insertion_location.value = data["insertion_location"];
+                            first_save_date.value = data["first_save_date"];
+                            saved_by.value = data["saved_by"];
+                            last_save_date.value = data["last_save_date"];
+                            aci_request_date.value = data["aci_request_date"];
+                            aci_issue_date.value = data["aci_issue_date"];
+                            submission_date.value = data["submission_date"];
+                            status.value = data["status"];
+                            declaration_stage.value = data["declaration_stage"];
+                            postal_indicator.value = data["postal_parcel_indicator"];
+                            shipment_type.value = data["shipment_type_for"]
+                            // postal_parcel_indicator.value = data["postal_parcel_indicator"];
+                            guided_goods_for_free_zone_guided.value = data["guided_goods_for_free_zone_guided"] == 1 ? "نعم" : "لا";
+                            operator_registered_in_e_invoice_system.value = data["operator_registered_in_e_invoice_system"];
+                            operator_registered_in_white_list.value = data["operator_registered_in_white_list"];
+                            exit_indicator_for_included_goods_without_containers.value = data["exit_indicator_for_included_goods_without_containers"];
+                            completion_of_endorsement.value = data["completion_of_endorsement"];
+                            full_fee_payment_in_phase_one.value = data["full_fee_payment_in_phase_one"];
+                            disbursement_visa.value = data["disbursement_visa"];
+                            article_104c_commitment.value = data["article_104c_commitment"];
+                            request_exit_transport.value = data["request_exit_transport"];
+                            inspection_and_examination_rate.value = data["inspection_and_examination_rate"];
+                            specialized_committees.value = data["specialized_committees"];
+                            request_type.value = data["request_type"];
+                            order_type.value=data["order_type"];
+                            sufficiency_of_submitted_documents.value = data["sufficiency_of_submitted_documents"];
+                            is_the_incoming_message_stock.value = data["is_the_incoming_message_stock"] == 1 ? "نعم" : "لا";
+                            is_the_incoming_message_under_suspicion.value = data["is_the_incoming_message_under_suspicion"] == 1 ? "نعم" : "لا";
+                            is_the_message_in_a_wooden_box_thickness_gt_6mm.value = data["is_the_message_in_a_wooden_box_thickness_gt_6mm"] == 1 ? "نعم" : "لا";
+                            guided_goods_for_free_zone.value = data["guided_goods_for_free_zone"] == 1 ? "نعم" : "لا";
+                            // goods_for_free_zone.value = data["goods_for_free_zone"];
+                            is_the_incoming_message_used_or_waste.value = data["is_the_incoming_message_used_or_waste"] == 1 ? "نعم" : "لا";
+                            policy_number.value = data["policy_number"];
+                            policy_date.value = data["policy_date"];
+                            road_number.value = data["road_number"];
+                            linked_to_main_policy.value = data["linked_to_main_policy"];
+                            port_of_loading.value = data["port_of_loading"];
+                            port_of_arrival.value = data["port_of_arrival"];
+                            final_destination.value = data["final_destination"];
+                            arrival_date.value = data["arrival_date"];
+                            arrived_date.value = data["arrived_date"];
+                            departure_date.value = data["departure_date_from_exporting_country"]
+                            // departure_date_from_exporting_country.value = data["departure_date_from_exporting_country"];
+                            shipment_destination_type.value = data["shipment_destination_type"];
+                            last_location.value = data["last_location"];
+                            shipping_agent.value = data["shipping_agent"];
+                            transport_name.value = data["transport_name"];
+                            beneficiary_name.value = data["beneficiary_name"];
+                            number_of_waiver_requests.value = data["number_of_waiver_requests"];
+                            // shipment_number2.value = data["shipment_number2"];
+                            shipment_number_for.value = data["shipment_number2"];
+                            sub_number.value = data["sub_number"];
+                            shipment_date.value = data["shipment_date"];
+                            invoice_number.value = data["invoice_number"];
+                            invoice_date.value = data["invoice_date"];
+                            contract_type_according_to_principal.value = data["contract_type_according_to_principal"];
+                            contract_date.value = data["contract_date"];
+                            preliminary_invoice_number.value = data["preliminary_invoice_number"];
+                            preliminary_invoice_date.value = data["preliminary_invoice_date"];
+                            purchase_order_or_contract_number.value = data["purchase_order_or_contract_number"];
+                            purchase_order_or_contract_date.value = data["purchase_order_or_contract_date"];
+                            original_invoice_value.value = data["original_invoice_value"];
+                            currency.value = data["currency"];
+                            central_bank_rate_indicator.value = data["central_bank_rate_indicator"];
+                            customs_exchange_rate.value = data["customs_exchange_rate"];
+                            central_bank_exchange_rate.value = data["central_bank_exchange_rate"];
+                            local_invoice_value.value = data["local_invoice_value"];
+                            number_of_invoice_items.value = data["number_of_invoice_items"];
+                            address_invoice.value = data["address_invoice"];
+                            exporter_type.value = data["exporter_type"];
+                            foreign_supplier_nationality.value = data["foreign_supplier_nationality"];
+                            aci_checked.value = data["aci_checked"] == 1 ? "نعم" : "لا";
+                            inquiry_date.value = data["inquiry_date"];
+                            shipment_description.value = data["shipment_description"];
+                            last_modified_date.value = data["last_modified_date"];
+                            payment_method.value = data["payment_method"];
+                            bank_handling_the_transfer.value = data["bank_handling_the_transfer"];
+                            payment_type.value = data["payment_type"];
+                            due_date.value = data["due_date"];
+                            foreign_exporter.value= data["foreign_exporter"]
 
-                    } else {
-                        console.log("No shipment found for ACI:", aci);
-                    }
+                        } else {
+                            console.log("No shipment found for ACI:", aci);
+                        }
 
 
                     }
 
                 });
 
+
+                frappe.call({
+                    method: "nafeza.www.nafeza.mtsedit.get_shipment_details",
+                    args: {
+                        aci_number: String(aci)
+                    },
+                    callback: function (r) {
+                        console.log("get_shipment_details", r.message);
+
+                        // نتأكد إن في بيانات راجعة
+                        if (r.message && r.message.length > 0) {
+                            let tbody = document.querySelector(".shipment-details tbody");
+                            tbody.innerHTML = ""; // نفرغ الجدول قبل التعبئة
+
+                            r.message.forEach(function (row) {
+                                let tr = `
+                    <tr>
+                        <td>${row.idx || ""}</td>
+                        <td>${row.shipment_type || ""}</td>
+                        <td>${row.shipment_destination_type || ""}</td>
+                        <td>${row.general_description_of_goods || ""}</td>
+                        <td>${row.freezing_status || ""}</td>
+                        <td>${row.container_code || ""}</td>
+                        <td>${row.number_of_packages || ""}</td>
+                        <td>${row.package_unit || ""}</td>
+                        <td>${row.gross_weight || ""}</td>
+                        <td>${row.weight_unit || ""}</td>
+                        <td>${row.shipping_line || ""}</td>
+                        <td>${row.status || ""}</td>
+                        <td>${row.discharge_date || ""}</td>
+                        <td>${row.required_for_xray_inspection || ""}</td>
+                        <td>${row.xray_inspection_result || ""}</td>
+                    </tr>
+                `;
+                                tbody.innerHTML += tr;
+                            });
+                        } else {
+                            console.log("لا توجد بيانات شحن لهذا الرقم.");
+                        }
+                    }
+                });
+                frappe.call({
+                    method: "nafeza.www.nafeza.mtsedit.get_parcels_required_for_inspection",
+                    args: {
+                        aci_number: String(aci)
+                    },
+                    callback: function (r) {
+                        console.log("get_parcels_required_for_inspection", r.message);
+
+                        let tbody = document.querySelector(".parcels-inspection tbody");
+                        tbody.innerHTML = ""; // نفضي الجدول
+
+                        if (r.message && r.message.length > 0) {
+                            r.message.forEach(function (row) {
+                                let tr = `
+                    <tr>
+                        <td>${row.idx || ""}</td>
+                        <td>${row.container_code || ""}</td>
+                        <td>${row.customs_seal_for_containers || ""}</td>
+                        <td>${row.gross_weight || ""}</td>
+                        <td>${row.weight_unit || ""}</td>
+                        <td>${row.number_of_packages || ""}</td>
+                        <td>${row.package_unit || ""}</td>
+                        <td>${row.discharge_date || ""}</td>
+                        <td>${row.required_by_customs || ""}</td>
+                        <td>${row.required_by_inspection || ""}</td>
+                        <td>${row.required_by_safety_authority || ""}</td>
+                        <td>${row.required_for_xray_inspection || ""}</td>
+                        <td>${row.xray_inspection_result || ""}</td>
+                        <td>${row.general_description_of_goods || ""}</td>
+                    </tr>
+                `;
+                                tbody.innerHTML += tr;
+                            });
+                        } else {
+                            tbody.innerHTML = `<tr><td colspan="14" style="text-align:center;">لا توجد طرود مطلوبة للفحص</td></tr>`;
+                        }
+                    }
+                });
+// ============ 1️⃣ جدول بيانات الأصناف الرئيسية ===============
+frappe.call({
+  method: "nafeza.www.nafeza.mtsedit.get_item_data",
+  args: { aci_number: String(aci) },
+  callback: function (r) {
+    handlePaginationTable(".item_data tbody", "#pagination_item_data", r.message, 21, function (row) {
+      return `
+        <tr>
+          <td>${row.item_serial_number || ""}</td>
+          <td>${row.item_number || ""}</td>
+          <td>${row.item_number_at_exporter_or_other_systems || ""}</td>
+          <td>${row.detailed_item_description || ""}</td>
+          <td>${row.tariff_code || ""}</td>
+          <td>${row.country_of_origin || ""}</td>
+          <td>${row.purpose_of_use || ""}</td>
+          <td>${row.tariff_code_according_to_exporter || ""}</td>
+          <td>${row.tariff_code_according_to_aci || ""}</td>
+          <td>${row.invoice_item_serial || ""}</td>
+          <td>${row.item_according_to_appraiser || ""}</td>
+          <td>${row.quantity || ""}</td>
+          <td>${row.quantity_unit || ""}</td>
+          <td>${row.weight || ""}</td>
+          <td>${row.weight_unit || ""}</td>
+          <td>${row.engine_number_indicator || ""}</td>
+          <td>${row.inspection_visa || ""}</td>
+          <td>${row.shortage_or_surplus_quantity || ""}</td>
+          <td>${row.goeic_result || ""}</td>
+          <td>${row.nfsa_result || ""}</td>
+          <td>${row.ntra_result || ""}</td>
+        </tr>`;
+    });
+  }
+});
+
+// ============ 2️⃣ جدول بنود الفاتورة ===============
+frappe.call({
+  method: "nafeza.www.nafeza.mtsedit.get_invoice_items",
+  args: { aci_number: String(aci) },
+  callback: function (r) {
+    handlePaginationTable("#invoice_items tbody", "#pagination_invoice_items", r.message, 19, function (row) {
+      return `
+        <tr>
+          <td>${row.customs_item_serial_number || ""}</td>
+          <td>${row.customs_modification_or_add || ""}</td>
+          <td>${row.tariff_code || ""}</td>
+          <td>${row.tariff_code_description || ""}</td>
+          <td>${row.gross_weight || ""}</td>
+          <td>${row.net_weight || ""}</td>
+          <td>${row.weight_unit || ""}</td>
+          <td>${row.customs_quantity || ""}</td>
+          <td>${row.customs_quantity_unit || ""}</td>
+          <td>${row.statistical_quantity || ""}</td>
+          <td>${row.statistical_quantity_unit || ""}</td>
+          <td>${row.item_price_on_invoice || ""}</td>
+          <td>${row.invoice_currency || ""}</td>
+          <td>${row.item_description || ""}</td>
+          <td>${row.country_of_origin || ""}</td>
+          <td>${row.item_modified || ""}</td>
+          <td>${row.inspector_examination_description || ""}</td>
+          <td>${row.inspection_visa || ""}</td>
+          <td>${row.shortage_or_surplus_quantity || ""}</td>
+        </tr>`;
+    });
+  }
+});
+
+// ============ 3️⃣ جدول مصروفات الفاتورة ===============
+frappe.call({
+  method: "nafeza.www.nafeza.mtsedit.get_invoice_expenses",
+  args: { aci_number: String(aci) },
+  callback: function (r) {
+    handlePaginationTable("#invoice_expenses tbody", "#pagination_invoice_expenses", r.message, 7, function (row) {
+      return `
+        <tr>
+          <td>${row.expense_type || ""}</td>
+          <td>${row.value_or_percentage || ""}</td>
+          <td>${row.percentage || ""}</td>
+          <td>${row.expense_value || ""}</td>
+          <td>${row.expense_currency || ""}</td>
+          <td>${row.exchange_rate || ""}</td>
+          <td>${row.local_value || ""}</td>
+        </tr>`;
+    });
+  }
+});
+
+// ============ 4️⃣ جدول الأصناف بدون فاتورة ===============
+frappe.call({
+  method: "nafeza.www.nafeza.mtsedit.get_acid_items_without_invoice",
+  args: { aci_number: String(aci) },
+  callback: function (r) {
+    handlePaginationTable("#acid_items_without_invoice tbody", "#pagination_acid_items", r.message, 10, function (row) {
+      return `
+        <tr>
+          <td>${row.tariff_code || ""}</td>
+          <td>${row.country_of_origin || ""}</td>
+          <td>${row.purpose_of_use || ""}</td>
+          <td>${row.exporter_code || ""}</td>
+          <td>${row.exporter_name || ""}</td>
+          <td>${row.quantity || ""}</td>
+          <td>${row.quantity_unit || ""}</td>
+          <td>${row.value_in_foreign_currency || ""}</td>
+          <td>${row.currency || ""}</td>
+          <td>${row.value_in_local_currency || ""}</td>
+        </tr>`;
+    });
+  }
+});
+
+
+// ============ 🔁 دالة عامة للـ Pagination ============
+function handlePaginationTable(tbodySelector, paginationSelector, data, columnsCount, renderRowFn) {
+  let tbody = document.querySelector(tbodySelector);
+  let pagination = document.querySelector(paginationSelector);
+  let rowsPerPage = 10;
+  let currentPage = 1;
+  data = data || [];
+
+  if (!tbody || !pagination) return;
+
+  function displayPage(page) {
+    tbody.innerHTML = "";
+    if (data.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="${columnsCount}" style="text-align:center;">لا توجد بيانات</td></tr>`;
+      pagination.innerHTML = "";
+      return;
+    }
+
+    let start = (page - 1) * rowsPerPage;
+    let end = start + rowsPerPage;
+    let pageData = data.slice(start, end);
+
+    pageData.forEach(row => (tbody.innerHTML += renderRowFn(row)));
+    setupPagination();
+  }
+
+  function setupPagination() {
+    pagination.innerHTML = "";
+    pagination.className = "pagination-container";
+    let totalPages = Math.ceil(data.length / rowsPerPage);
+    if (totalPages <= 1) return;
+
+    let prev = document.createElement("button");
+    prev.textContent = "‹";
+    prev.disabled = currentPage === 1;
+    prev.onclick = () => {
+      if (currentPage > 1) {
+        currentPage--;
+        displayPage(currentPage);
+      }
+    };
+    pagination.appendChild(prev);
+
+    for (let i = 1; i <= totalPages; i++) {
+      let btn = document.createElement("button");
+      btn.textContent = i;
+      if (i === currentPage) btn.classList.add("active");
+      btn.onclick = () => {
+        currentPage = i;
+        displayPage(currentPage);
+      };
+      pagination.appendChild(btn);
+    }
+
+    let next = document.createElement("button");
+    next.textContent = "›";
+    next.disabled = currentPage === totalPages;
+    next.onclick = () => {
+      if (currentPage < totalPages) {
+        currentPage++;
+        displayPage(currentPage);
+      }
+    };
+    pagination.appendChild(next);
+  }
+
+  displayPage(currentPage);
+}
+
+
             });
+
+
     </script>
 
     <div class="container-home">
@@ -396,8 +677,8 @@
                         <div class="form-grid">
                             <div class="form-group">
                                 <label for="shipment-status">مصري</label>
-                                <select id="egyptian">
-                                </select>
+                                <input id="egyptian">
+                                </input>
                             </div>
                             <div class="form-group">
                                 <label for="shipment-name">رقم قومي/باسبور</label>
@@ -421,8 +702,8 @@
                         <div class="form-grid">
                             <div class="form-group">
                                 <label for="shipment-status">نوع قيد المتعامل </label>
-                                <select id="type_of_registration">
-                                </select>
+                                <input id="type_of_registration">
+                                </input>
                             </div>
                             <div class="form-group ">
                                 <label for="shipment-name">رقم القيد</label>
@@ -436,17 +717,17 @@
                             <div class="flex-btn"> بيانات المتعامل من مصلحه الضرائب</div>
                             <div class="form-group">
                                 <label for="shipment-status">النوع الفرعي </label>
-                                <select id="sub_type">
-                                </select>
+                                <input id="sub_type">
+                                </input>
                             </div>
                             <div class="form-group">
                                 <label for="shipment-status">الدفتر </label>
-                                <select id="ledger">
-                                </select>
+                                <input id="ledger">
+                                </input>
                             </div>
                             <div class="form-group">
                                 <label for="shipment-address">ACI رقم</label>
-                                <input type="text" id="aci" placeholder="__/__/____" />
+                                <input type="text" id="acinumber" placeholder="__/__/____" />
                             </div>
                             <div class="form-group">
                                 <label for="shipment-address">تاريخ 46</label>
@@ -461,8 +742,8 @@
                         <div class="form-grid">
                             <div class="form-group">
                                 <label for="shipment-status">مقدم الطلب </label>
-                                <select id="applicant">
-                                </select>
+                                <input id="applicant">
+                                </input>
                             </div>
                             <div class="form-group ">
                                 <label for="shipment-name">رقم المحمول للتراسل</label>
@@ -483,7 +764,7 @@
                                 <label for="presenter-name">مقدم البيان</label>
                                 <div class="input-row">
                                     <input type="text" id="statement_presenter" value="" readonly class="small-input" />
-                                    <input type="text" id="presenter-name-2" value="" readonly class="large-input" />
+                                    <input type="text" id="presenter_name" value="" readonly class="large-input" />
                                 </div>
                             </div>
 
@@ -532,7 +813,7 @@
 
                             <div class="form-group">
                                 <label for="arrival-date">تاريخ الوصول</label>
-                                <input type="text" id="shipping_date" value="" readonly />
+                                <input type="text" id="arrival_date" value="" readonly />
                             </div>
 
                             <div class="form-group">
@@ -569,7 +850,7 @@
 
                             <div class="form-group">
                                 <label for="customs-complex">المجمع الجمركي</label>
-                                <input type="text" id="customs-complex" value="" readonly />
+                                <input type="text" id="custom_complex" value="" readonly />
                             </div>
 
                             <div class="form-group">
@@ -630,8 +911,8 @@
 
                             <div class="form-group ">
                                 <label for="customs-complex">موقع الإدراج</label>
-                                <select id="insertion_location">
-                                </select>
+                                <input id="insertion_location">
+                                </input>
                             </div>
 
                         </div>
@@ -679,8 +960,12 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="request-type">نوع الطلب</label>
-                                <input type="text" id="request_type" value="" readonly />
+                                <label for="order_type">نوع الطلب</label>
+                                <input type="text" id="order_type" value="" />
+                            </div>
+                            <div class="form-group" style="display: none;">
+                                <label for="request_type">نوع الطلب</label>
+                                <input type="text" id="request_type" value="" />
                             </div>
 
                         </div>
@@ -703,63 +988,66 @@
                     <!-- ✨ ده اللي هيتفتح ويتقفل -->
                     <div class="section-content">
                         <div class="form-grid wide-selects">
-                           <div class="form-group">
-                            <label for="postal_indicator">مؤشر طرود بريدية</label>
-                            <input type="text" id="postal_indicator" readonly>
-                        </div>
+                            <div class="form-group">
+                                <label for="postal_indicator">مؤشر طرود بريدية</label>
+                                <input type="text" id="postal_indicator" readonly>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="operator_registered_in_e_invoice_system">المتعامل مُسجل بنظام الفاتورة الإلكترونية</label>
-                            <input type="text" id="operator_registered_in_e_invoice_system" readonly>
-                        </div>
+                            <div class="form-group">
+                                <label for="operator_registered_in_e_invoice_system">المتعامل مُسجل بنظام الفاتورة
+                                    الإلكترونية</label>
+                                <input type="text" id="operator_registered_in_e_invoice_system" readonly>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="operator_registered_in_white_list">المتعامل مُسجل قائمة بيضاء</label>
-                            <input type="text" id="operator_registered_in_white_list" readonly>
-                        </div>
+                            <div class="form-group">
+                                <label for="operator_registered_in_white_list">المتعامل مُسجل قائمة بيضاء</label>
+                                <input type="text" id="operator_registered_in_white_list" readonly>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="exit_indicator_for_included_goods_without_containers">مؤشر خروج بالمشمول - بدون حاويات</label>
-                            <input type="text" id="exit_indicator_for_included_goods_without_containers" readonly>
-                        </div>
+                            <div class="form-group">
+                                <label for="exit_indicator_for_included_goods_without_containers">مؤشر خروج بالمشمول -
+                                    بدون حاويات</label>
+                                <input type="text" id="exit_indicator_for_included_goods_without_containers" readonly>
+                            </div>
 
                         </div>
                         <div class="form-grid wide-selects">
 
-                           <div class="form-group">
-    <label for="completion_approval">الإنتهاء من التبنيد</label>
-    <input type="text" id="completion_approval" readonly>
-</div>
+                            <div class="form-group">
+                                <label for="completion_approval">الإنتهاء من التبنيد</label>
+                                <input type="text" id="completion_of_endorsement" readonly>
+                            </div>
 
-<div class="form-group">
-    <label for="full_fee_payment_in_phase_one">سداد كامل الرسوم بالمرحلة الأولى</label>
-    <input type="text" id="full_fee_payment_in_phase_one" readonly>
-</div>
+                            <div class="form-group">
+                                <label for="full_fee_payment_in_phase_one">سداد كامل الرسوم بالمرحلة الأولى</label>
+                                <input type="text" id="full_fee_payment_in_phase_one" readonly>
+                            </div>
 
-<div class="form-group">
-    <label for="disbursement_visa">تأشيرة الصرف</label>
-    <input type="text" id="disbursement_visa" readonly>
-</div>
+                            <div class="form-group">
+                                <label for="disbursement_visa">تأشيرة الصرف</label>
+                                <input type="text" id="disbursement_visa" readonly>
+                            </div>
 
-<div class="form-group">
-    <label for="article_104c_commitment">تعهد المادة 104ج</label>
-    <input type="text" id="article_104c_commitment" readonly>
-</div>
+                            <div class="form-group">
+                                <label for="article_104c_commitment">تعهد المادة 104ج</label>
+                                <input type="text" id="article_104c_commitment" readonly>
+                            </div>
 
-<div class="form-group">
-    <label for="request_exit_transport">ارغب في الخروج بنقل وتخزين تحت التحفظ لجهات العرض</label>
-    <input type="text" id="request_exit_transport" readonly>
-</div>
+                            <div class="form-group">
+                                <label for="request_exit_transport">ارغب في الخروج بنقل وتخزين تحت التحفظ لجهات
+                                    العرض</label>
+                                <input type="text" id="request_exit_transport" readonly>
+                            </div>
 
-<div class="form-group">
-    <label for="inspection_and_examination_rate">نسبة الكشف والمعاينه</label>
-    <input type="text" id="inspection_and_examination_rate" readonly>
-</div>
+                            <div class="form-group">
+                                <label for="inspection_and_examination_rate">نسبة الكشف والمعاينه</label>
+                                <input type="text" id="inspection_and_examination_rate" readonly>
+                            </div>
 
-<div class="form-group">
-    <label for="specialized_committees">اللجان التخصصيه</label>
-    <input type="text" id="specialized_committees" readonly>
-</div>
+                            <div class="form-group">
+                                <label for="specialized_committees">اللجان التخصصيه</label>
+                                <input type="text" id="specialized_committees" readonly>
+                            </div>
 
 
                         </div>
@@ -771,35 +1059,35 @@
                                 <input type="text" id="sufficiency_of_submitted_documents">
                             </div>
 
-                                <div class="form-group">
-                                    <label for="is-stock-message">هل الرساله الوارده استوك ؟</label>
-                                    <input type="text" id="is_the_incoming_message_stock" readonly>
-                                </div>
+                            <div class="form-group">
+                                <label for="is-stock-message">هل الرساله الوارده استوك ؟</label>
+                                <input type="text" id="is_the_incoming_message_stock" readonly>
+                            </div>
 
-                                <div class="form-group">
-                                    <label for="under-suspicion">هل الرساله الوارده تحت الشكه</label>
-                                    <input type="text" id="is_the_incoming_message_under_suspicion" readonly>
-                                </div>
+                            <div class="form-group">
+                                <label for="under-suspicion">هل الرساله الوارده تحت الشكه</label>
+                                <input type="text" id="is_the_incoming_message_under_suspicion" readonly>
+                            </div>
 
-                                <div class="form-group">
-                                    <label for="wooden-box">الرساله فى عبوه خشبيه سمك&gt; 6مم ؟</label>
-                                    <input type="text" id="is_the_message_in_a_wooden_box_thickness_gt_6mm" readonly>
-                                </div>
+                            <div class="form-group">
+                                <label for="wooden-box">الرساله فى عبوه خشبيه سمك&gt; 6مم ؟</label>
+                                <input type="text" id="is_the_message_in_a_wooden_box_thickness_gt_6mm" readonly>
+                            </div>
 
-                                <div class="form-group">
-                                    <label for="guided-goods-freezone">سلع مرشدة للمدينة الحرة؟</label>
-                                    <input type="text" id="guided_goods_for_free_zone_guided" readonly>
-                                </div>
+                            <div class="form-group">
+                                <label for="guided-goods-freezone">سلع مرشدة للمدينة الحرة؟</label>
+                                <input type="text" id="guided_goods_for_free_zone_guided" readonly>
+                            </div>
 
-                                <div class="form-group">
-                                    <label for="goods-freezone">سلع للمدينة الحرة؟</label>
-                                    <input type="text" id="guided_goods_for_free_zone" readonly>
-                                </div>
+                            <div class="form-group">
+                                <label for="goods-freezone">سلع للمدينة الحرة؟</label>
+                                <input type="text" id="guided_goods_for_free_zone" readonly>
+                            </div>
 
-                                <div class="form-group">
-                                    <label for="used-or-waste">هل الرسالة الواردة مستعملة او فضلات؟</label>
-                                    <input type="text" id="is_the_incoming_message_used_or_waste" readonly>
-                                </div>
+                            <div class="form-group">
+                                <label for="used-or-waste">هل الرسالة الواردة مستعملة او فضلات؟</label>
+                                <input type="text" id="is_the_incoming_message_used_or_waste" readonly>
+                            </div>
 
                         </div>
 
@@ -897,11 +1185,11 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="arrival-date">تاريخ الوصول</label>
-                                            <input type="text" id="arrival_date" value="">
+                                            <input type="text" id="arrived_date" value="">
                                         </div>
                                         <div class="form-group">
                                             <label for="departure-date">تاريخ المغادرة من بلد التصدير</label>
-                                            <input type="text" id="departure-date" value="">
+                                            <input type="text" id="departure_date" value="">
                                         </div>
                                         <div class="form-group">
                                             <label for="shipment-type">نوع الشحنة</label>
@@ -933,7 +1221,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="shipment-number">رقم الشحنة</label>
-                                            <input type="text" id="shipment_number" value="">
+                                            <input type="text" id="shipment_number_for" value="">
                                         </div>
                                         <div class="form-group">
                                             <label for="sub-number">الرقم الفرعي</label>
@@ -941,351 +1229,72 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="shipment-date">تاريخ الشحنة</label>
-                                            <input type="text" id="shipment_odate" value="">
+                                            <input type="text" id="shipment_date" value="">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <hr>
                             <div class="leftcontainer">
-                            <div class="right_sidebar">
-                                <img src="img/transition.png" width="25px" height="25" alt="">
-                            <p>نص تأشيرة الفحص بالأشعة</p>    
-                            </div>
+                                <div class="right_sidebar">
+                                    <img src="img/transition.png" width="25px" height="25" alt="">
+                                    <p>نص تأشيرة الفحص بالأشعة</p>
+                                </div>
+                                <div class="table-container">
+                                    <table class="attachments-table shipment-details">
+                                        <thead>
+                                            <tr>
+                                                <th>المسلسل</th>
+                                                <th>نوع الشحنة</th>
+                                                <th>نوع وجهة الشحنة</th>
+                                                <th>وصف عام للبضاعة</th>
+                                                <th>حالة التجميد</th>
+                                                <th>رمز الحاوية</th>
+                                                <th>عدد الطرود</th>
+                                                <th>وحدة الطرود</th>
+                                                <th>الوزن القائم</th>
+                                                <th>وحدة الوزن</th>
+                                                <th>السيل الملاحى</th>
+                                                <th>الحالة</th>
+                                                <th>تاريخ التفريغ</th>
+                                                <th>مطلوبة للفحص بالأشعة</th>
+                                                <th>نتيجة الكشف بالأشعة</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
 
-
-                            <script>
-                                
-        frappe.ready(
-            function () {
-              frappe.call({
-    method: "nafeza.www.nafeza.mtsedit.get_shipment_shipment_details",
-    args: {
-        aci_number: String(aci)
-    },
-    callback: function (r) {
-        console.log("r.message");
-
-        // جدول الشحنات shipment_details
-        const tbody1 = document.querySelector(".attachments-table.shipment-details tbody");
-        tbody1.innerHTML = "";
-
-        if (r.message.shipment_details && r.message.shipment_details.length > 0) {
-            r.message.shipment_details.forEach((row) => {
-                const tr = document.createElement("tr");
-                tr.innerHTML = `
-                    <td>${row.idx}</td>
-                    <td>${row.shipment_type}</td>
-                    <td>${row.shipment_destination_type}</td>
-                    <td>${row.general_description_of_goods}</td>
-                    <td>${row.freezing_status}</td>
-                    <td>${row.container_code}</td>
-                    <td>${row.number_of_packages}</td>
-                    <td>${row.package_unit}</td>
-                    <td>${row.gross_weight}</td>
-                    <td>${row.weight_unit}</td>
-                    <td>${row.shipping_line}</td>
-                    <td>${row.status}</td>
-                    <td>${row.discharge_date}</td>
-                    <td>${row.required_for_xray_inspection}</td>
-                    <td>${row.xray_inspection_result}</td>
-                `;
-                tbody1.appendChild(tr);
-            });
-        } else {
-            tbody1.innerHTML = `<tr><td colspan="15">لا توجد بيانات</td></tr>`;
-        }
-
-        // جدول الطرود parcels_required_for_inspection
-        const tbody2 = document.querySelector(".attachments-table.parcels-inspection tbody");
-        tbody2.innerHTML = "";
-
-        if (r.message.parcels_required_for_inspection && r.message.parcels_required_for_inspection.length > 0) {
-            r.message.parcels_required_for_inspection.forEach((row) => {
-                const tr = document.createElement("tr");
-                tr.innerHTML = `
-                    <td>${row.idx}</td>
-                    <td>${row.container_code}</td>
-                    <td>${row.customs_seal_for_containers}</td>
-                    <td>${row.gross_weight}</td>
-                    <td>${row.weight_unit}</td>
-                    <td>${row.number_of_packages}</td>
-                    <td>${row.package_unit}</td>
-                    <td>${row.discharge_date}</td>
-                    <td>${row.required_by_customs}</td>
-                    <td>${row.required_by_inspection}</td>
-                    <td>${row.required_by_safety_authority}</td>
-                    <td>${row.required_for_xray_inspection}</td>
-                    <td>${row.xray_inspection_result}</td>
-                    <td>${row.general_description_of_goods}</td>
-                `;
-                tbody2.appendChild(tr);
-            });
-        } else {
-            tbody2.innerHTML = `<tr><td colspan="14">لا توجد بيانات</td></tr>`;
-        }
-           // جدول بيانات الأصناف
-
-           // تعريف tbody المستهدف داخل الجدول
-let itemTableBody = document.querySelector(".attachments-table.item_data tbody");
-
-// التحقق من وجود بيانات
-if (r.message.item_data?.length) {
-    // تفريغ الجدول القديم قبل تعبئته
-    itemTableBody.innerHTML = "";
-
-    // تمر على كل صف وترجّعه في الجدول
-    r.message.item_data.forEach(row => {
-        itemTableBody.innerHTML += `
-            <tr>
-                <td>${row.idx || ""}</td>
-                <td>${row.item_serial_number || ""}</td>
-                <td>${row.item_number || ""}</td>
-                <td>${row.item_number_at_exporter_or_other_systems || ""}</td>
-                <td>${row.detailed_item_description || ""}</td>
-                <td>${row.tariff_code || ""}</td>
-                <td>${row.country_of_origin || ""}</td>
-                <td>${row.purpose_of_use || ""}</td>
-                <td>${row.tariff_code_according_to_exporter || ""}</td>
-                <td>${row.tariff_code_according_to_aci || ""}</td>
-                <td>${row.invoice_item_serial || ""}</td>
-                <td>${row.item_according_to_appraiser || ""}</td>
-                <td>${row.quantity || ""}</td>
-                <td>${row.quantity_unit || ""}</td>
-                <td>${row.weight || ""}</td>
-                <td>${row.weight_unit || ""}</td>
-                <td>${row.engine_number_indicator || ""}</td>
-                <td>${row.inspection_visa || ""}</td>
-                <td>${row.shortage_or_surplus_quantity || ""}</td>
-                <td>${row.goeic_result || ""}</td>
-                <td>${row.nfsa_result || ""}</td>
-                <td>${row.ntra_result || ""}</td>
-            </tr>
-        `;
-    });
-} else {
-    // لو مفيش بيانات
-    itemTableBody.innerHTML = `<tr><td colspan="22" style="text-align:center;">لا توجد بيانات</td></tr>`;
-}let invoiceTableBody = document.querySelector(".invoice_items tbody");
-
-// التحقق من وجود بيانات
-if (r.message.invoice_items?.length) {
-    // تفريغ الجدول القديم قبل تعبئته
-    invoiceTableBody.innerHTML = "";
-
-    // تمر على كل صف وتضيفه في الجدول
-    r.message.invoice_items.forEach(row => {
-        invoiceTableBody.innerHTML += `
-            <tr>
-                <td>${row.idx || ""}</td>
-                <td>${row.customs_edit_or_add || ""}</td>
-                <td>${row.tariff_code || ""}</td>
-                <td>${row.tariff_description || ""}</td>
-                <td>${row.gross_weight || ""}</td>
-                <td>${row.net_weight || ""}</td>
-                <td>${row.weight_unit || ""}</td>
-                <td>${row.customs_quantity || ""}</td>
-                <td>${row.customs_quantity_unit || ""}</td>
-                <td>${row.statistical_quantity || ""}</td>
-                <td>${row.statistical_quantity_unit || ""}</td>
-                <td>${row.invoice_item_price || ""}</td>
-                <td>${row.invoice_currency || ""}</td>
-                <td>${row.item_description || ""}</td>
-                <td>${row.country_of_origin || ""}</td>
-                <td>${row.is_item_modified || ""}</td>
-                <td>${row.inspector_description || ""}</td>
-                <td>${row.inspection_visa || ""}</td>
-                <td>${row.shortage_or_surplus_quantity || ""}</td>
-            </tr>
-        `;
-    });
-} else {
-    // لو مفيش بيانات
-    invoiceTableBody.innerHTML = `<tr><td colspan="19" style="text-align:center;">لا توجد بيانات</td></tr>`;
-}
-// تعريف tbody المستهدف داخل جدول invoice_expenses
-let expensesTableBody = document.querySelector(".invoice_expenses tbody");
-
-// التحقق من وجود بيانات
-if (r.message.invoice_expenses?.length) {
-    // تفريغ الجدول القديم قبل تعبئته
-    expensesTableBody.innerHTML = "";
-
-    // تمر على كل صف وتضيفه في الجدول
-    r.message.invoice_expenses.forEach(row => {
-        expensesTableBody.innerHTML += `
-            <tr>
-                <td>${row.expense_type || ""}</td>
-                <td>${row.value_or_percentage || ""}</td>
-                <td>${row.percentage || ""}</td>
-                <td>${row.expense_value || ""}</td>
-                <td>${row.expense_currency || ""}</td>
-                <td>${row.exchange_rate || ""}</td>
-                <td>${row.local_value || ""}</td>
-            </tr>
-        `;
-    });
-} else {
-    // لو مفيش بيانات
-    expensesTableBody.innerHTML = `<tr><td colspan="7" style="text-align:center;">لا توجد بيانات</td></tr>`;
-}
-// تعريف tbody داخل جدول acid_items_without_invoice
-let acidTableBody = document.querySelector(".acid_items_without_invoice tbody");
-
-// التحقق من وجود بيانات
-if (r.message.acid_items_without_invoice?.length) {
-    // تفريغ الجدول قبل التعبئة
-    acidTableBody.innerHTML = "";
-
-    // تمر على كل صف وتضيفه
-    r.message.acid_items_without_invoice.forEach(row => {
-        acidTableBody.innerHTML += `
-            <tr>
-                <td>${row.tariff_code || ""}</td>
-                <td>${row.country_of_origin || ""}</td>
-                <td>${row.purpose_of_use || ""}</td>
-                <td>${row.exporter_code || ""}</td>
-                <td>${row.exporter_name || ""}</td>
-                <td>${row.quantity || ""}</td>
-                <td>${row.quantity_unit || ""}</td>
-                <td>${row.value_in_foreign_currency || ""}</td>
-                <td>${row.currency || ""}</td>
-                <td>${row.value_in_local_currency || ""}</td>
-            </tr>
-        `;
-    });
-} else {
-    // لو مفيش بيانات
-    acidTableBody.innerHTML = `<tr><td colspan="10" style="text-align:center;">لا توجد بيانات</td></tr>`;
-}
-
-
-        
-    }
-});
-
-            })
-                            </script>
-<div class="table-container">
-    <table class="attachments-table shipment-details">
-        <thead>
-            <tr>
-                <th>المسلسل</th>
-                <th>نوع الشحنة</th>
-                <th>نوع وجهة الشحنة</th>
-                <th>وصف عام للبضاعة</th>
-                <th>حالة التجميد</th>
-                <th>رمز الحاوية</th>
-                <th>عدد الطرود</th>
-                <th>وحدة الطرود</th>
-                <th>الوزن القائم</th>
-                <th>وحدة الوزن</th>
-                <th>السيل الملاحى</th>
-                <th>الحالة</th>
-                <th>تاريخ التفريغ</th>
-                <th>مطلوبة للفحص بالأشعة</th>
-                <th>نتيجة الكشف بالأشعة</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>حاويات كاملة</td>
-                <td>برسم الوارد</td>
-                <td>WATER PUMPS AND SPARE PARTS OF WATER PUMPS HS CODE?: 841370 ACID?: 4126485472025070021 IMPORTER TAXATION NUMBER?: 412648547 EXPORTER NUMBER?: ESA46002069</td>
-                <td></td>
-                <td>ARKU8364020</td>
-                <td>49</td>
-                <td>قطعة</td>
-                <td>14432</td>
-                <td>كيلو جرام</td>
-                <td>B1758616</td>
-                <td>مدفوع</td>
-                <td>03/09/2025 03:39</td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>حاويات كاملة</td>
-                <td>برسم الوارد</td>
-                <td>WATER PUMPS AND SPARE PARTS OF WATER PUMPS HS CODE?: 841370</td>
-                <td></td>
-                <td>ARKU8372113</td>
-                <td>23</td>
-                <td>قطعة</td>
-                <td>19568</td>
-                <td>كيلو جرام</td>
-                <td>0640894</td>
-                <td>مدفوع</td>
-                <td>03/09/2025 01:30</td>
-                <td></td>
-                <td></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
 
                         <div id="tab2" class="tab-content">
                             <!-- محتوى الطرود المطلوبة للكشف -->
                             <div class="table-container">
-    <table class="attachments-table parcels-inspection">
-        <thead>
-            <tr>
-                <th>المسلسل</th>
-                <th>رمز الحاوية</th>
-                <th>السيل الجمركى للحاويات</th>
-                <th>الوزن القائم</th>
-                <th>وحدة الوزن</th>
-                <th>عدد الطرود</th>
-                <th>وحدة الطرود</th>
-                <th>تاريخ التفريغ</th>
-                <th>مطلوب من الجمرك</th>
-                <th>مطلوب من الرقابة</th>
-                <th>مطلوب من هيئة السلامة</th>
-                <th>مطلوبة للفحص بالأشعة</th>
-                <th>نتيجة الكشف بالأشعة</th>
-                <th>وصف عام للبضاعة</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>ARKU8364020</td>
-                <td></td>
-                <td>14432</td>
-                <td>كيلو جرام</td>
-                <td>49</td>
-                <td>قطعة</td>
-                <td>03/09/2025 03:39</td>
-                <td>✔</td>
-                <td>✔</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>WATER PUMPS AND SPARE PARTS OF WATER PUMPS HS CODE?: 841370 ACID?: 4126485472025070021 IMPORTER TAXATION NUMBER?: 412648547 EXPORTER NUMBER?: ESA46002069</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>ARKU8372113</td>
-                <td></td>
-                <td>19568</td>
-                <td>كيلو جرام</td>
-                <td>23</td>
-                <td>قطعة</td>
-                <td>03/09/2025 01:30</td>
-                <td>✔</td>
-                <td>✔</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>WATER PUMPS AND SPARE PARTS OF WATER PUMPS HS CODE?: 841370</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+                                <table class="attachments-table parcels-inspection">
+                                    <thead>
+                                        <tr>
+                                            <th>المسلسل</th>
+                                            <th>رمز الحاوية</th>
+                                            <th>السيل الجمركى للحاويات</th>
+                                            <th>الوزن القائم</th>
+                                            <th>وحدة الوزن</th>
+                                            <th>عدد الطرود</th>
+                                            <th>وحدة الطرود</th>
+                                            <th>تاريخ التفريغ</th>
+                                            <th>مطلوب من الجمرك</th>
+                                            <th>مطلوب من الرقابة</th>
+                                            <th>مطلوب من هيئة السلامة</th>
+                                            <th>مطلوبة للفحص بالأشعة</th>
+                                            <th>نتيجة الكشف بالأشعة</th>
+                                            <th>وصف عام للبضاعة</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1301,453 +1310,411 @@ if (r.message.acid_items_without_invoice?.length) {
                             <span class="toggle-arrow-BD">▼</span>
                         </div>
                     </div>
- <div class="left_sidebar">
-                                    <p>إجمالي عدد الشحنات: (اجمالي عدد الفواتير : 1)    </p>
+                    <div class="left_sidebar">
+                        <p>إجمالي عدد الشحنات: (اجمالي عدد الفواتير : 1) </p>
 
-                                </div>
+                    </div>
                     <!-- ✨ ده اللي هيتفتح ويتقفل -->
-                     <!-- ✅ مجموعة الحقول الأولى -->
-<div class="form-grid">
-    <div class="form-group">
-        <label for="invoice-number">رقم الفاتورة</label>
-        <input type="text" id="invoice_number" value="-">
-    </div>
-    <div class="form-group">
-        <label for="invoice-date">تاريخ الفاتورة</label>
-        <input type="text" id="invoice_date" value="31/07/2025">
-    </div>
-    <div class="form-group">
-        <label for="contract-type">نوع التعاقد طبقاّ لصاحب الشأن</label>
-        <input type="text" id="contract_type_according_to_principal" value="">
-    </div>
-    <div class="form-group">
-        <label for="contract-date">تاريخ التعاقد</label>
-        <input type="text" id="contract_date" value="31/07/2025">
-    </div>
-    <div class="form-group">
-        <label for="preliminary-invoice-number">رقم الفاتورة المبدئية</label>
-        <input type="text" id="preliminary_invoice_number" value="25">
-    </div>
-    <div class="form-group">
-        <label for="preliminary-invoice-date">تاريخ الفاتورة المبدئية</label>
-        <input type="text" id="preliminary_invoice_date" value="21/07/2025">
-    </div>
-    <div class="form-group">
-        <label for="purchase-order-number">رقم امر الشراء أو رقم العقد</label>
-        <input type="text" id="purchase_order_or_contract_number" value="25">
-    </div>
-    <div class="form-group">
-        <label for="purchase-order-date">تاريخ امر الشراء أو تاريخ العقد</label>
-        <input type="text" id="purchase_order_or_contract_date" value="21/07/2025">
-    </div>
-</div>
+                    <!-- ✅ مجموعة الحقول الأولى -->
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="invoice-number">رقم الفاتورة</label>
+                            <input type="text" id="invoice_number" value="-">
+                        </div>
+                        <div class="form-group">
+                            <label for="invoice-date">تاريخ الفاتورة</label>
+                            <input type="text" id="invoice_date" value="31/07/2025">
+                        </div>
+                        <div class="form-group">
+                            <label for="contract-type">نوع التعاقد طبقاّ لصاحب الشأن</label>
+                            <input type="text" id="contract_type_according_to_principal" value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="contract-date">تاريخ التعاقد</label>
+                            <input type="text" id="contract_date" value="31/07/2025">
+                        </div>
+                        <div class="form-group">
+                            <label for="preliminary-invoice-number">رقم الفاتورة المبدئية</label>
+                            <input type="text" id="preliminary_invoice_number" value="25">
+                        </div>
+                        <div class="form-group">
+                            <label for="preliminary-invoice-date">تاريخ الفاتورة المبدئية</label>
+                            <input type="text" id="preliminary_invoice_date" value="21/07/2025">
+                        </div>
+                        <div class="form-group">
+                            <label for="purchase-order-number">رقم امر الشراء أو رقم العقد</label>
+                            <input type="text" id="purchase_order_or_contract_number" value="25">
+                        </div>
+                        <div class="form-group">
+                            <label for="purchase-order-date">تاريخ امر الشراء أو تاريخ العقد</label>
+                            <input type="text" id="purchase_order_or_contract_date" value="21/07/2025">
+                        </div>
+                    </div>
 
-<!-- ✅ مجموعة الحقول الثانية -->
-<div class="form-grid">
-    <div class="form-group">
-        <label for="invoice-value">قيمة الفاتورة الأصلية</label>
-        <input type="text" id="original_invoice_value" value="364011.25">
-    </div>
-    <div class="form-group">
-        <label for="currency-code">العملة</label>
-        <input type="text" id="currency" value="EUR">
-    </div>
-    
-    <div class="form-group">
-        <label for="central-bank-indicator">مؤشر سعر بنك مركزى</label>
-        <input type="text" id="central_bank_rate_indicator" value="نعم">
-    </div>
-    <div class="form-group">
-        <label for="customs-exchange">م. التحويل الجمركى</label>
-        <input type="text" id="customs_exchange_rate" value="17.8448">
-    </div>
-    <div class="form-group">
-        <label for="central-bank-exchange">م. تحويل البنك المركزى</label>
-        <input type="text" id="central_bank_exchange_rate" value="56.6573">
-    </div>
-    <div class="form-group">
-        <label for="local-invoice">قيمة الفاتورة المحلية</label>
-        <input type="text" id="local_invoice_value" value="20623894.595">
-    </div>
-    <div class="form-group">
-        <label for="items-count">عدد أصناف الفاتورة</label>
-        <input type="text" id="number_of_invoice_items" value="25">
-    </div>
-</div>
+                    <!-- ✅ مجموعة الحقول الثانية -->
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="invoice-value">قيمة الفاتورة الأصلية</label>
+                            <input type="text" id="original_invoice_value" value="364011.25">
+                        </div>
+                        <div class="form-group">
+                            <label for="currency-code">العملة</label>
+                            <input type="text" id="currency" value="EUR">
+                        </div>
 
-<!-- ✅ مجموعة الحقول الثالثة -->
-<div class="form-grid">
-    <div class="form-group">
-        <label for="foreign-exporter">المصدر الأجنبي</label>
-        <input type="text" id="foreign_ exporter" value="p. ind. mediterraneo- c/ cid 8,||46560|MASSALFASSAR-VALENCIA|">
-    </div>
-    <div class="form-group">
-        <label for="address">عنوانه</label>
-        <input type="text" id="address_invoice" value="">
-    </div>
-    <div class="form-group">
-        <label for="manufacturer-type">نوع المُصدر</label>
-        <input type="text" id="exporter_type" value="5">
-    </div>
-    <div class="form-group">
-        <label for="supplier-nationality">جنسية المورد الأجنبي</label>
-        <input type="text" id="foreign_supplier_nationality" value="اسبانيا">
-    </div>
-</div>
+                        <div class="form-group">
+                            <label for="central-bank-indicator">مؤشر سعر بنك مركزى</label>
+                            <input type="text" id="central_bank_rate_indicator" value="نعم">
+                        </div>
+                        <div class="form-group">
+                            <label for="customs-exchange">م. التحويل الجمركى</label>
+                            <input type="text" id="customs_exchange_rate" value="17.8448">
+                        </div>
+                        <div class="form-group">
+                            <label for="central-bank-exchange">م. تحويل البنك المركزى</label>
+                            <input type="text" id="central_bank_exchange_rate" value="56.6573">
+                        </div>
+                        <div class="form-group">
+                            <label for="local-invoice">قيمة الفاتورة المحلية</label>
+                            <input type="text" id="local_invoice_value" value="20623894.595">
+                        </div>
+                        <div class="form-group">
+                            <label for="items-count">عدد أصناف الفاتورة</label>
+                            <input type="text" id="number_of_invoice_items" value="25">
+                        </div>
+                    </div>
 
-<!-- ✅ مجموعة الحقول الرابعة -->
-<div class="form-grid">
-    <div class="form-group">
-        <label for="aci-checked">ACI تم الإستعلام عن </label>
-        <input type="text" id="aci_checked" value="نعم">
-    </div>
-    <div class="form-group">
-        <label for="inquiry-date">تاريخ الاستعلام</label>
-        <input type="text" id="inquiry_date" value="14/08/2025 10:05:20 ص">
-    </div>
-    <div class="form-group">
-        <label for="shipment-description">وصف الشحنة</label>
-        <input type="text" id="shipment_description" value="مضخات">
-    </div>
-    <div class="form-group">
-        <label for="last-modified">ت. اخر تعديل</label>
-        <input type="text" id="last_modified_date" value="06/09/2025 03:28:03 م">
-    </div>
-    <div class="form-group">
-        <label for="payment-method">اسلوب السداد</label>
-        <input type="text" id="payment_method" value="Advance Payment">
-    </div>
-    <div class="form-group">
-        <label for="bank">البنك القائم بالتحويل</label>
-        <input type="text" id="bank_handling_the_transfer" value="كريدى اجريكول مصر">
-    </div>
-    <div class="form-group">
-        <label for="payment-type">طريقة الدفع</label>
-        <input type="text" id="payment_type" value="دفعة واحدة">
-    </div>
-    <div class="form-group">
-        <label for="due-date">تاريخ الاستحقاق</label>
-        <input type="text" id="due_date" value="21/07/2029">
-    </div>
-</div>
+                    <!-- ✅ مجموعة الحقول الثالثة -->
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="foreign-exporter">المصدر الأجنبي</label>
+                            <input type="text" id="foreign_exporter"
+                                value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="address">عنوانه</label>
+                            <input type="text" id="address_invoice" value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="manufacturer-type">نوع المُصدر</label>
+                            <input type="text" id="exporter_type" value="5">
+                        </div>
+                        <div class="form-group">
+                            <label for="supplier-nationality">جنسية المورد الأجنبي</label>
+                            <input type="text" id="foreign_supplier_nationality" value="اسبانيا">
+                        </div>
+                    </div>
 
-<script>
-     frappe.ready(
-            function () {
+                    <!-- ✅ مجموعة الحقول الرابعة -->
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="aci-checked">ACI تم الإستعلام عن </label>
+                            <input type="text" id="aci_checked" value="نعم">
+                        </div>
+                        <div class="form-group">
+                            <label for="inquiry-date">تاريخ الاستعلام</label>
+                            <input type="text" id="inquiry_date" value="14/08/2025 10:05:20 ص">
+                        </div>
+                        <div class="form-group">
+                            <label for="shipment-description">وصف الشحنة</label>
+                            <input type="text" id="shipment_description" value="مضخات">
+                        </div>
+                        <div class="form-group">
+                            <label for="last-modified">ت. اخر تعديل</label>
+                            <input type="text" id="last_modified_date" value="06/09/2025 03:28:03 م">
+                        </div>
+                        <div class="form-group">
+                            <label for="payment-method">اسلوب السداد</label>
+                            <input type="text" id="payment_method" value="Advance Payment">
+                        </div>
+                        <div class="form-group">
+                            <label for="bank">البنك القائم بالتحويل</label>
+                            <input type="text" id="bank_handling_the_transfer" value="كريدى اجريكول مصر">
+                        </div>
+                        <div class="form-group">
+                            <label for="payment-type">طريقة الدفع</label>
+                            <input type="text" id="payment_type" value="دفعة واحدة">
+                        </div>
+                        <div class="form-group">
+                            <label for="due-date">تاريخ الاستحقاق</label>
+                            <input type="text" id="due_date" value="21/07/2029">
+                        </div>
+                    </div>
 
-            });
+                    <script>
+                        frappe.ready(
+                            function () {
 
-</script>
+                            });
+
+                    </script>
 
 
-<div class="my-tabs">
-    <div class="my-tab-buttons">
-        <button class="my-active" data-tab="tab-items">بيانات الأصناف</button>
-        <button data-tab="tab-invoice">بنود الفاتورة</button>
-        <button data-tab="tab-expenses">مصروفات الفاتورة</button>
-        <button data-tab="tab-acid">بنود ACID بدون فاتورة</button>
-        <button data-tab="tab-declarations">إقرار/طلبات المتعامل</button>
-    </div>
-
-    <div class="my-tab-content">
-        <div id="tab-items" class="my-tab-pane my-active">
-            <button class="openbtn" type="button" id="open-button"><img src="img/folder.png">افتح</button>
-            <div class="custom-table-container">
-  <table class="attachments-table item_data" >
-    <thead>
-        <tr>
-      <th>مسلسل الصنف</th>
-      <th>رقم الصنف</th>
-      <th>رقم الصنف لدى المُصدر/انظمة اُخرى</th>
-      <th>الوصف التفصيلي للصنف</th>
-      <th>بند التعريفة</th>
-      <th>دولة المنشأ</th>
-      <th>غرض الإستخدام</th>
-      <th>بند التعريفة طبقا للمُصدر</th>
-      <th>بند التعريفه طبقا للـ ACI</th>
-      <th>مسلسل بند الفاتورة</th>
-      <th>البند طبقا للمثمن</th>
-      <th>الكمية</th>
-      <th>وحدة الكمية</th>
-      <th>الوزن</th>
-      <th>وحدة الوزن</th>
-      <th>مؤشر رقم موتور</th>
-      <th>تأشيرة الكشف</th>
-      <th>كمية العجز / الزيادة</th>
-      <th>نتيجة GOEIC</th>
-      <th>نتيجة NFSA</th>
-      <th>نتيجة NTRA</th>
-    </tr>
-    </thead>
-    <!-- Sample rows -->
-     <tbody>
-      </tbody>
-    <!-- أكمل باقي الصفوف -->
-  </table>
-
-  <div class="custom-pagination" id="customPagination"></div>
-</div>
-            
-<script>
-const table = document.getElementById('customAttachmentsTable');
-const pagination = document.getElementById('customPagination');
-const rowsPerPage = 3; // عدد الصفوف لكل صفحة
-const rows = Array.from(table.querySelectorAll('tr:not(:first-child)'));
-const pageCount = Math.ceil(rows.length / rowsPerPage);
-
-function showPage(page) {
-  rows.forEach((row, index) => {
-    row.style.display = (index >= (page-1)*rowsPerPage && index < page*rowsPerPage) ? '' : 'none';
-  });
-
-  // تحديث Pagination
-  pagination.innerHTML = '';
-  for(let i=1; i<=pageCount; i++){
-    const span = document.createElement('span');
-    span.textContent = i;
-    if(i===page) span.classList.add('active');
-    span.addEventListener('click', ()=> showPage(i));
-    pagination.appendChild(span);
-  }
+                    <div class="my-tabs">
+                        <div class="my-tab-buttons">
+                            <button class="my-active" data-tab="tab-items">بيانات الأصناف</button>
+                            <button data-tab="tab-invoice">بنود الفاتورة</button>
+                            <button data-tab="tab-expenses">مصروفات الفاتورة</button>
+                            <button data-tab="tab-acid">بنود ACID بدون فاتورة</button>
+                            <button data-tab="tab-declarations">إقرار/طلبات المتعامل</button>
+                        </div>
+<style>/* ===== Pagination Style (موحد لكل الجداول) ===== */
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  flex-wrap: wrap;
 }
 
-// عرض الصفحة الأولى عند التحميل
-showPage(1);
-</script>
-
-        </div>
-
-        <div id="tab-invoice" class="my-tab-pane">
-                       <button class="openbtn" type="button" id="open-button"><img src="img/folder.png">افتح</button>
-
-<div class="custom-table-container">
-
-  <table class="custom-attachments-table invoice_items" id="invoice_items">
-   <thead>
-     <tr>
-      <th>مسلسل البند الجمركي</th>
-      <th>تعديل/أضافة الجُمرك</th>
-      <th>بند التعريفة</th>
-      <th>وصف بند التعريفة</th>
-      <th>الوزن القائم</th>
-      <th>الوزن الصافى</th>
-      <th>وحدة الوزن</th>
-      <th>الكمية الجمركية</th>
-      <th>وحدة الكمية الجمركية</th>
-      <th>الكمية الإحصائية</th>
-      <th>وحدة الكمية الإحصائية</th>
-      <th>سعر الصنف بالفاتورة</th>
-      <th>عملة الفاتورة</th>
-      <th>وصف الصنف</th>
-      <th>دولة المنشأ</th>
-      <th>تم تعديل البند</th>
-      <th>وصف معاينة الكشاف</th>
-      <th>تأشيرة الكشف</th>
-      <th>كمية العجز / الزيادة</th>
-    </tr>
-   </thead>
-  <tbody>
-      <tr>
-      <td>2</td>
-      <td></td>
-      <td>8482800000</td>
-      <td>مدحرجات أخري بما فيها المدحرجات المشتركة [كرات مع دواليب ].</td>
-      <td>19</td>
-      <td>18</td>
-      <td>كيلو جرام</td>
-      <td>10</td>
-      <td>قطعة</td>
-      <td>10</td>
-      <td>عدد</td>
-      <td>3877</td>
-      <td>يورو</td>
-      <td>BALL BEARING PART OF WATER PUMP</td>
-      <td>الولايات المتحدة الامريكية</td>
-      <td>لا</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-  </tbody>
-    
-
-  </table>
-
-  <div class="custom-pagination" id="customPagination"></div>
-    <div class="record-count">عدد السجلات: 4</div>
-
-</div>
-
-<script>
-const tables = document.getElementById('customAttachmentsTable');
-const paginations = document.getElementById('customPagination');
-const rowsPerPages = 2; // عرض صفين لكل صفحة
-const rowss = Array.from(table.querySelectorAll('tr:not(:first-child)'));
-const pageCounts = Math.ceil(rows.length / rowsPerPage);
-
-function showPage(page) {
-  rows.forEach((row, index) => {
-    row.style.display = (index >= (page-1)*rowsPerPage && index < page*rowsPerPage) ? '' : 'none';
-  });
-
-  // تحديث Pagination
-  pagination.innerHTML = '';
-  for(let i=1; i<=pageCount; i++){
-    const span = document.createElement('span');
-    span.textContent = i;
-    if(i===page) span.classList.add('active');
-    span.addEventListener('click', ()=> showPage(i));
-    pagination.appendChild(span);
-  }
+.pagination-container button {
+  background-color: #f8f9fa;
+  border: 1px solid #ccc;
+  color: #333;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease-in-out;
 }
 
-// عرض الصفحة الأولى عند التحميل
-showPage(1);
-</script>
-        </div>
+.pagination-container button:hover:not(:disabled) {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
 
-        <div id="tab-expenses" class="my-tab-pane">
-           
-<div class="custom-table-container">
+.pagination-container button:disabled {
+  background-color: #e9ecef;
+  color: #888;
+  cursor: not-allowed;
+  border-color: #ddd;
+}
 
-  <table class="custom-attachments-table invoice_expenses" id="invoice_expenses">
-    <thead>
-        <tr>
-      <th>نوع المصروف</th>
-      <th>قيمة/نسبة</th>
-      <th>النسبة</th>
-      <th>قيمة المصروف</th>
-      <th>عملة المصروف</th>
-      <th>سعر التحويل</th>
-      <th>القيمة المحلية</th>
-    </tr>
-    </thead>
-   <tbody>
-     <tr>
-      <td>تكلفة التعبئة و التغليف</td>
-      <td>قيمة</td>
-      <td>0</td>
-      <td>0</td>
-      <td>جنيه مصري</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-   </tbody>
-   
-  </table>
-  <div class="record-count">عدد السجلات: 9</div>
+.pagination-container button.active {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+</style>
+                        <div class="my-tab-content">
+                            <div id="tab-items" class="my-tab-pane my-active">
+                                <button class="openbtn" type="button" id="open-button"><img
+                                        src="img/folder.png">افتح</button>
+                            <div class="custom-table-container">
+                                <table class="attachments-table item_data">
+                                    <thead>
+                                        <tr>
+                                            <th>مسلسل الصنف</th>
+                                            <th>رقم الصنف</th>
+                                            <th>رقم الصنف لدى المُصدر/انظمة اُخرى</th>
+                                            <th>الوصف التفصيلي للصنف</th>
+                                            <th>بند التعريفة</th>
+                                            <th>دولة المنشأ</th>
+                                            <th>غرض الإستخدام</th>
+                                            <th>بند التعريفة طبقا للمُصدر</th>
+                                            <th>بند التعريفه طبقا للـ ACI</th>
+                                            <th>مسلسل بند الفاتورة</th>
+                                            <th>البند طبقا للمثمن</th>
+                                            <th>الكمية</th>
+                                            <th>وحدة الكمية</th>
+                                            <th>الوزن</th>
+                                            <th>وحدة الوزن</th>
+                                            <th>مؤشر رقم موتور</th>
+                                            <th>تأشيرة الكشف</th>
+                                            <th>كمية العجز / الزيادة</th>
+                                            <th>نتيجة GOEIC</th>
+                                            <th>نتيجة NFSA</th>
+                                            <th>نتيجة NTRA</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            
+                                <div id="pagination_item_data"></div>
+                            </div>
+                               
 
-  <div class="custom-pagination" id="customExpensesPagination"></div>
-</div>
+                            </div>
+                            <div id="tab-invoice" class="my-tab-pane"> 
+    <button class="openbtn" type="button" id="open-button">
+        <img src="img/folder.png">افتح
+    </button>
 
-        </div>
+    <div class="custom-table-container">
 
-        <div id="tab-acid" class="my-tab-pane">
-          <div class="custom-table-container">
-  <div class="record-count">عدد السجلات: 2</div>
+        <table class="custom-attachments-table invoice_items" id="invoice_items">
+            <thead>
+                <tr>
+                    <th>مسلسل البند الجمركي</th>
+                    <th>تعديل/أضافة الجُمرك</th>
+                    <th>بند التعريفة</th>
+                    <th>وصف بند التعريفة</th>
+                    <th>الوزن القائم</th>
+                    <th>الوزن الصافى</th>
+                    <th>وحدة الوزن</th>
+                    <th>الكمية الجمركية</th>
+                    <th>وحدة الكمية الجمركية</th>
+                    <th>الكمية الإحصائية</th>
+                    <th>وحدة الكمية الإحصائية</th>
+                    <th>سعر الصنف بالفاتورة</th>
+                    <th>عملة الفاتورة</th>
+                    <th>وصف الصنف</th>
+                    <th>دولة المنشأ</th>
+                    <th>تم تعديل البند</th>
+                    <th>وصف معاينة الكشاف</th>
+                    <th>تأشيرة الكشف</th>
+                    <th>كمية العجز / الزيادة</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
 
-  <table class="custom-attachments-table acid_items_without_invoice" id="acid_items_without_invoice">
-    <thead><tr>
-      <th>بند التعريفة</th>
-      <th>بلد المنشأ</th>
-      <th>غرض الإستخدام</th>
-      <th>كود المٌصدر</th>
-      <th>اسم المٌصدر</th>
-      <th>الكمية</th>
-      <th>وحدة الكمية</th>
-      <th>القيمة بالعملة الأجنبية</th>
-      <th>العملة</th>
-      <th>القيمة بالعملة المحلية</th>
-    </tr></thead>
-    <tbody>
-        <tr>
-      <td>8482800000</td>
-      <td>اسبانيا</td>
-      <td>تجارى</td>
-      <td>ES-02-ESA46002069</td>
-      <td>BOMBAS IDEAL S.A.</td>
-      <td>180</td>
-      <td>عدد</td>
-      <td>12000</td>
-      <td>يورو</td>
-      <td>676933.2</td>
-    </tr>
-  
-    </tbody>
-  </table>
+<div id="pagination_invoice_items"></div>
+    </div>
 
-  <div class="custom-pagination" id="customExporterPagination"></div>
-</div>
-        </div>
-
-        <div id="tab-declarations" class="my-tab-pane">
-
-            <p style="margin-left: 400px; color: red;">تقر الشركة المستورِدة بالالتزام بالمواصفات القياسية المحددة بالطلب وكذلك الالتزام بخلو جميع الأصناف الواردة بالطلب من أية ملوثات إشعاعية، وبمسئوليتها عن إعادة تصدير (أو إعدام) الأصناف المخالفة لذلك</p>            
-        </div>
-
+    <script>
         
-    </div>
+    </script>
+
+    <style>
+        .custom-pagination span.active {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+    </style>
 </div>
-                     
+
+
+
+                            <div id="tab-expenses" class="my-tab-pane">
+
+                                <div class="custom-table-container">
+
+                                    <table class="custom-attachments-table invoice_expenses" id="invoice_expenses">
+                                        <thead>
+                                            <tr>
+                                                <th>نوع المصروف</th>
+                                                <th>قيمة/نسبة</th>
+                                                <th>النسبة</th>
+                                                <th>قيمة المصروف</th>
+                                                <th>عملة المصروف</th>
+                                                <th>سعر التحويل</th>
+                                                <th>القيمة المحلية</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                        </tbody>
+
+                                    </table>
+
+<div id="pagination_invoice_expenses"></div>
+                                </div>
+
+                            </div>
+
+                            <div id="tab-acid" class="my-tab-pane">
+                                <div class="custom-table-container">
+                                    
+
+                                    <table class="custom-attachments-table acid_items_without_invoice"
+                                        id="acid_items_without_invoice">
+                                        <thead>
+                                            <tr>
+                                                <th>بند التعريفة</th>
+                                                <th>بلد المنشأ</th>
+                                                <th>غرض الإستخدام</th>
+                                                <th>كود المٌصدر</th>
+                                                <th>اسم المٌصدر</th>
+                                                <th>الكمية</th>
+                                                <th>وحدة الكمية</th>
+                                                <th>القيمة بالعملة الأجنبية</th>
+                                                <th>العملة</th>
+                                                <th>القيمة بالعملة المحلية</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                          
+                                        </tbody>
+                                    </table>
+<div id="pagination_acid_items"></div>
+                                </div>
+                            </div>
+
+                            <div id="tab-declarations" class="my-tab-pane">
+
+                                <p style="margin-left: 400px; color: red;">تقر الشركة المستورِدة بالالتزام بالمواصفات
+                                    القياسية المحددة بالطلب وكذلك الالتزام بخلو جميع الأصناف الواردة بالطلب من أية
+                                    ملوثات إشعاعية، وبمسئوليتها عن إعادة تصدير (أو إعدام) الأصناف المخالفة لذلك</p>
+                            </div>
+
+
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const buttons = document.querySelectorAll('.my-tab-buttons button');
-    const panes = document.querySelectorAll('.my-tab-pane');
+                document.addEventListener('DOMContentLoaded', function () {
+                    const buttons = document.querySelectorAll('.my-tab-buttons button');
+                    const panes = document.querySelectorAll('.my-tab-pane');
 
-    buttons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // إزالة active من كل الزرار والتاب
-            buttons.forEach(b => b.classList.remove('my-active'));
-            panes.forEach(p => p.classList.remove('my-active'));
+                    buttons.forEach(btn => {
+                        btn.addEventListener('click', () => {
+                            // إزالة active من كل الزرار والتاب
+                            buttons.forEach(b => b.classList.remove('my-active'));
+                            panes.forEach(p => p.classList.remove('my-active'));
 
-            // إضافة active للزر والتاب المحدد
-            btn.classList.add('my-active');
-            const tabId = btn.getAttribute('data-tab');
-            document.getElementById(tabId).classList.add('my-active');
-        });
-    });
+                            // إضافة active للزر والتاب المحدد
+                            btn.classList.add('my-active');
+                            const tabId = btn.getAttribute('data-tab');
+                            document.getElementById(tabId).classList.add('my-active');
+                        });
+                    });
 
-    // لعرض تاب contact عند التحميل
-    document.querySelector('.my-tab-buttons button[data-tab="tab-contact"]').click();
-});
-</script>
-<script>
-// تبديل التبويبات
-const buttons = document.querySelectorAll('.tab-buttons button');
-const panes = document.querySelectorAll('.tab-pane');
+                    // لعرض تاب contact عند التحميل
+                    document.querySelector('.my-tab-buttons button[data-tab="tab-contact"]').click();
+                });
+            </script>
+            <script>
+                // تبديل التبويبات
+                const buttons = document.querySelectorAll('.tab-buttons button');
+                const panes = document.querySelectorAll('.tab-pane');
 
-buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-        buttons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+                buttons.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        buttons.forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
 
-        panes.forEach(p => p.classList.remove('active'));
-        const tabId = btn.getAttribute('data-tab');
-        document.getElementById(tabId).classList.add('active');
-    });
-});
+                        panes.forEach(p => p.classList.remove('active'));
+                        const tabId = btn.getAttribute('data-tab');
+                        document.getElementById(tabId).classList.add('active');
+                    });
+                });
 
-// زر "فتح" لإضافة صف بيانات جديد للتاب النشط
-const openButton = document.getElementById('open-button');
+                // زر "فتح" لإضافة صف بيانات جديد للتاب النشط
+                const openButton = document.getElementById('open-button');
 
-openButton.addEventListener('click', () => {
-    const activePane = document.querySelector('.tab-pane.active');
-    const table = activePane.querySelector('table');
+                openButton.addEventListener('click', () => {
+                    const activePane = document.querySelector('.tab-pane.active');
+                    const table = activePane.querySelector('table');
 
-    if (!table) return;
+                    if (!table) return;
 
-    const newRow = table.insertRow(-1); // إضافة صف جديد في آخر الجدول
+                    const newRow = table.insertRow(-1); // إضافة صف جديد في آخر الجدول
 
-    // إضافة خلايا لكل جدول حسب عدد الأعمدة
-    for (let i = 0; i < table.rows[0].cells.length; i++) {
-        const newCell = newRow.insertCell(i);
-        newCell.innerHTML = `<input type="text" placeholder="أدخل البيانات">`;
-    }
-});
-</script>
-              <div class="container-fluid">
+                    // إضافة خلايا لكل جدول حسب عدد الأعمدة
+                    for (let i = 0; i < table.rows[0].cells.length; i++) {
+                        const newCell = newRow.insertCell(i);
+                        newCell.innerHTML = `<input type="text" placeholder="أدخل البيانات">`;
+                    }
+                });
+            </script>
+            <div class="container-fluid">
                 <div class="section">
                     <div class="section-header">
                         <h4 style="margin: 0;">
@@ -1762,7 +1729,7 @@ openButton.addEventListener('click', () => {
                     <!-- ✨ ده اللي هيتفتح ويتقفل -->
                 </div>
             </div>
-             <div class="container-fluid">
+            <div class="container-fluid">
                 <div class="section">
                     <div class="section-header">
                         <h4 style="margin: 0;">
@@ -1777,7 +1744,7 @@ openButton.addEventListener('click', () => {
                     <!-- ✨ ده اللي هيتفتح ويتقفل -->
                 </div>
             </div>
-             <div class="container-fluid">
+            <div class="container-fluid">
                 <div class="section">
                     <div class="section-header">
                         <h4 style="margin: 0;">
@@ -1792,7 +1759,7 @@ openButton.addEventListener('click', () => {
                     <!-- ✨ ده اللي هيتفتح ويتقفل -->
                 </div>
             </div>
-             <div class="container-fluid">
+            <div class="container-fluid">
                 <div class="section">
                     <div class="section-header">
                         <h4 style="margin: 0;">
@@ -1807,7 +1774,7 @@ openButton.addEventListener('click', () => {
                     <!-- ✨ ده اللي هيتفتح ويتقفل -->
                 </div>
             </div>
-             <div class="container-fluid">
+            <div class="container-fluid">
                 <div class="section">
                     <div class="section-header">
                         <h4 style="margin: 0;">

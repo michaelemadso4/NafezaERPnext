@@ -25,6 +25,8 @@ def get_shipment_requests(aci_number):
         filters={'aci_number': aci_number},
         fields=["shipment_number",
   "shipmentname",
+  "request_type",
+  "order_type",
   "address",
   "mobile_number",
   "egyptian",
@@ -37,6 +39,7 @@ def get_shipment_requests(aci_number):
   "registration_expiry_date",
   "sub_type",
   "ledger",
+  "presenter_name",
   "date_46",
   "declared_value",
   "applicant",
@@ -58,6 +61,7 @@ def get_shipment_requests(aci_number):
   "submission_system",
   "previous_customs_system",
   "customs_complex",
+  "custom_complex",
   "registration_customs",
   "goods_arrival_customs",
   "final_release_customs",
@@ -87,7 +91,7 @@ def get_shipment_requests(aci_number):
   "request_exit_transport",
   "inspection_and_examination_rate",
   "specialized_committees",
-  "request_type3",
+  "guided_goods_for_free_zone_guided",
   "sufficiency_of_submitted_documents",
   "is_the_incoming_message_stock",
   "is_the_incoming_message_under_suspicion",
@@ -103,7 +107,9 @@ def get_shipment_requests(aci_number):
   "port_of_arrival",
   "final_destination",
   "arrival_date",
+  "arrived_date",
   "departure_date_from_exporting_country",
+  "shipment_type_for",
   "shipment_destination_type",
   "last_location",
   "shipping_agent",
@@ -138,7 +144,8 @@ def get_shipment_requests(aci_number):
   "payment_method",
   "bank_handling_the_transfer",
   "payment_type",
-  "due_date"
+  "due_date",
+  "foreign_exporter"
   ]  # غير الحقول حسب اللي عندك
     )
     if shipment_requests:
@@ -146,10 +153,9 @@ def get_shipment_requests(aci_number):
     else:
         return {}  # لو مفيش سجل مطابق
 
-
-
 @frappe.whitelist(allow_guest=True)
-def get_shipment_shipment_details(aci_number):
+def get_shipment_details(aci_number):
+    # نجيب سجل الشحنة الرئيسي
     shipment = frappe.get_all(
         'shipment_requests',
         filters={'aci_number': aci_number},
@@ -157,14 +163,13 @@ def get_shipment_shipment_details(aci_number):
     )
 
     if not shipment:
-        return {"shipment_details": [], "parcels_required_for_inspection": [],"item_data":[],"invoice_items":[],"invoice_expenses":[],"acid_items_without_invoice":[]}
+        return []
 
-    shipment_name = shipment[0].name
-    doc = frappe.get_doc('shipment_requests', shipment_name)
+    # نجيب الدوكيومنت نفسه علشان نقدر نقرأ الـ child table
+    shipment_doc = frappe.get_doc('shipment_requests', shipment[0].name)
 
-    # جدول الشحنات
     shipment_details = []
-    for i, row in enumerate(doc.shipment_details, start=1):
+    for i, row in enumerate(shipment_doc.shipment_details, start=1):
         shipment_details.append({
             "idx": i,
             "shipment_type": row.shipment_type or "",
@@ -183,9 +188,25 @@ def get_shipment_shipment_details(aci_number):
             "xray_inspection_result": row.xray_inspection_result or ""
         })
 
-    # جدول الطرود المطلوبة للفحص
+    return shipment_details
+
+@frappe.whitelist(allow_guest=True)
+def get_parcels_required_for_inspection(aci_number):
+    # نجيب سجل الشحنة الرئيسي
+    shipment = frappe.get_all(
+        'shipment_requests',
+        filters={'aci_number': aci_number},
+        fields=['name']
+    )
+
+    if not shipment:
+        return []
+
+    # نجيب الدوكيومنت نفسه علشان نقدر نقرأ الـ child table
+    shipment_doc = frappe.get_doc('shipment_requests', shipment[0].name)
+
     parcels_required_for_inspection = []
-    for i, row in enumerate(doc.parcels_required_for_inspection, start=1):
+    for i, row in enumerate(shipment_doc.parcels_required_for_inspection, start=1):
         parcels_required_for_inspection.append({
             "idx": i,
             "container_code": row.container_code or "",
@@ -202,10 +223,27 @@ def get_shipment_shipment_details(aci_number):
             "xray_inspection_result": row.xray_inspection_result or "",
             "general_description_of_goods": row.general_description_of_goods or ""
         })
+
+    return parcels_required_for_inspection
+
+@frappe.whitelist(allow_guest=True)
+def get_item_data(aci_number):
+    # نجيب سجل الشحنة الرئيسي
+    shipment = frappe.get_all(
+        'shipment_requests',
+        filters={'aci_number': aci_number},
+        fields=['name']
+    )
+
+    if not shipment:
+        return []
+
+    # نجيب الدوكيومنت نفسه علشان نقدر نقرأ الـ child table
+    shipment_doc = frappe.get_doc('shipment_requests', shipment[0].name)
+
     item_data = []
-    for i, row in enumerate(doc.item_data, start=1):
+    for i, row in enumerate(shipment_doc.item_data, start=1):
        item_data.append({
-            "idx": i,
             "item_serial_number": row.item_serial_number or "",
             "item_number": row.item_number or "",
             "item_number_at_exporter_or_other_systems": row.item_number_at_exporter_or_other_systems or "",
@@ -228,14 +266,31 @@ def get_shipment_shipment_details(aci_number):
             "nfsa_result": row.nfsa_result or "",
             "ntra_result": row.ntra_result or "",
         })
-    invoice_items = []
-    for i, row in enumerate(doc.invoice_items, start=1):
+
+    return item_data
+
+@frappe.whitelist(allow_guest=True)
+def get_invoice_items(aci_number):
+    # نجيب سجل الشحنة الرئيسي
+    shipment = frappe.get_all(
+        'shipment_requests',
+        filters={'aci_number': aci_number},
+        fields=['name']
+    )
+
+    if not shipment:
+        return []
+
+    # نجيب الدوكيومنت نفسه علشان نقدر نقرأ الـ child table
+    shipment_doc = frappe.get_doc('shipment_requests', shipment[0].name)
+
+    invoice_items = []    
+    for i, row in enumerate(shipment_doc.invoice_items, start=1):
             invoice_items.append({
-                "idx": i,
-                "customs_item_serial": row.customs_item_serial or "",
-                "customs_edit_or_add": row.customs_edit_or_add or "",
+                "customs_item_serial_number": row.customs_item_serial_number or "",
+                "customs_modification_or_add": row.customs_modification_or_add or "",
                 "tariff_code": row.tariff_code or "",
-                "tariff_description": row.tariff_description or "",
+                "tariff_code_description": row.tariff_code_description or "",
                 "gross_weight": row.gross_weight or "",
                 "net_weight": row.net_weight or "",
                 "weight_unit": row.weight_unit or "",
@@ -243,20 +298,37 @@ def get_shipment_shipment_details(aci_number):
                 "customs_quantity_unit": row.customs_quantity_unit or "",
                 "statistical_quantity": row.statistical_quantity or "",
                 "statistical_quantity_unit": row.statistical_quantity_unit or "",
-                "invoice_item_price": row.invoice_item_price or "",
+                "item_price_on_invoice": row.item_price_on_invoice or "",
                 "invoice_currency": row.invoice_currency or "",
                 "item_description": row.item_description or "",
                 "country_of_origin": row.country_of_origin or "",
-                "is_item_modified": row.is_item_modified or "",
-                "inspector_description": row.inspector_description or "",
+                "item_modified": row.item_modified or "",
+                "inspector_examination_description": row.inspector_examination_description or "",
                 "inspection_visa": row.inspection_visa or "",
                 "shortage_or_surplus_quantity": row.shortage_or_surplus_quantity or "",
             })
-        
-    invoice_expenses = []
-    for i, row in enumerate(doc.invoice_expenses, start=1):
+
+    return invoice_items
+
+
+@frappe.whitelist(allow_guest=True)
+def get_invoice_expenses(aci_number):
+    # نجيب سجل الشحنة الرئيسي
+    shipment = frappe.get_all(
+        'shipment_requests',
+        filters={'aci_number': aci_number},
+        fields=['name']
+    )
+
+    if not shipment:
+        return []
+
+    # نجيب الدوكيومنت نفسه علشان نقدر نقرأ الـ child table
+    shipment_doc = frappe.get_doc('shipment_requests', shipment[0].name)
+
+    invoice_expenses = []    
+    for i, row in enumerate(shipment_doc.invoice_expenses, start=1):
             invoice_expenses.append({
-                "idx": i,
                 "expense_type": row.expense_type or "",
                 "value_or_percentage": row.value_or_percentage or "",
                 "percentage": row.percentage or "",
@@ -265,28 +337,37 @@ def get_shipment_shipment_details(aci_number):
                 "exchange_rate": row.exchange_rate or "",
                 "local_value": row.local_value or "",
             })
-    acid_items_without_invoice = []
-    for i, row in enumerate(doc.acid_items_without_invoice, start=1):
-        acid_items_without_invoice.append({
-            "idx": i,
-            "tariff_code": row.tariff_code or "",
-            "country_of_origin": row.country_of_origin or "",
-            "purpose_of_use": row.purpose_of_use or "",
-            "exporter_code": row.exporter_code or "",
-            "exporter_name": row.exporter_name or "",
-            "quantity": row.quantity or "",
-            "quantity_unit": row.quantity_unit or "",
-            "value_in_foreign_currency": row.value_in_foreign_currency or "",
-            "currency": row.currency or "",
-            "value_in_local_currency": row.value_in_local_currency or "",
-        })
-       
-    return {
-        "shipment_details": shipment_details,
-        "parcels_required_for_inspection": parcels_required_for_inspection,
-        "item_data":item_data,
-        "invoice_items":invoice_items,
-        "invoice_expenses":invoice_expenses,
-        "acid_items_without_invoice":acid_items_without_invoice
-    }
 
+    return invoice_expenses
+
+@frappe.whitelist(allow_guest=True)
+def get_acid_items_without_invoice(aci_number):
+    # نجيب سجل الشحنة الرئيسي
+    shipment = frappe.get_all(
+        'shipment_requests',
+        filters={'aci_number': aci_number},
+        fields=['name']
+    )
+
+    if not shipment:
+        return []
+
+    # نجيب الدوكيومنت نفسه علشان نقدر نقرأ الـ child table
+    shipment_doc = frappe.get_doc('shipment_requests', shipment[0].name)
+
+    acid_items_without_invoice = []    
+    for i, row in enumerate(shipment_doc.acid_items_without_invoice, start=1):
+            acid_items_without_invoice.append({
+                "tariff_code": row.tariff_code or "",
+                "country_of_origin": row.country_of_origin or "",
+                "purpose_of_use": row.purpose_of_use or "",
+                "exporter_code": row.exporter_code or "",
+                "exporter_name": row.exporter_name or "",
+                "quantity": row.quantity or "",
+                "quantity_unit": row.quantity_unit or "",
+                "value_in_foreign_currency": row.value_in_foreign_currency or "",
+                "currency": row.currency or "",
+                "value_in_local_currency": row.value_in_local_currency or "",
+            })
+
+    return acid_items_without_invoice

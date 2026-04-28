@@ -12,8 +12,8 @@
   "foreign_exporter",
   "exporting_country",
   "country_icon",
-  "request_type",
   "request_date",
+  "request_type",
   "shipment_type",
   "release_number",
   "files",
@@ -40,6 +40,7 @@
   "applicants_title_format",
   "statement_presenter",
   "statement_presenters_role",
+  "presenter_name",
   "affiliated_to",
   "tariff_application_date",
   "previous_importer",
@@ -47,12 +48,14 @@
   "truck_release_date",
   "shipment_link_type",
   "shipping_date",
+  "arrival_date",
   "compatible_customs_system",
   "current_customs_system",
   "tariff_sector",
   "submission_system",
   "previous_customs_system",
   "customs_complex",
+  "custom_complex",
   "registration_customs",
   "goods_arrival_customs",
   "final_release_customs",
@@ -71,6 +74,7 @@
   "submission_date",
   "status",
   "declaration_stage",
+  "order_type",
   "\u0627\u0644\u0645\u0624\u0634\u0631\u0627\u062a__\u0645\u062d\u062f\u062f\u0627\u062a_\u0627\u0644\u0625\u0642\u0631\u0627\u0631_tab",
   "postal_parcel_indicator",
   "operator_registered_in_e_invoice_system",
@@ -91,6 +95,7 @@
   "guided_goods_for_free_zone",
   "goods_for_free_zone",
   "is_the_incoming_message_used_or_waste",
+  "guided_goods_for_free_zone_guided",
   "\u0628\u064a\u0627\u0646\u0627\u062a_\u0627\u0644\u0634\u062d\u0646\u0629_tab",
   "policy_number",
   "policy_date",
@@ -99,11 +104,12 @@
   "port_of_loading",
   "port_of_arrival",
   "final_destination",
-  "arrival_date",
   "departure_date_from_exporting_country",
   "shipment_destination_type",
   "last_location",
   "shipping_agent",
+  "arrived_date",
+  "shipment_type_for",
   "transport_name",
   "beneficiary_name",
   "number_of_waiver_requests",
@@ -153,7 +159,7 @@
   {
    "fieldname": "aci_number",
    "fieldtype": "Data",
-   "label": "ACI Number",
+   "label": "Aci Number",
    "unique": 1
   },
   {
@@ -180,13 +186,6 @@
    "fieldtype": "Data",
    "label": "Country Icon",
    "read_only": 1
-  },
-  {
-   "default": "COM",
-   "fieldname": "request_type",
-   "fieldtype": "Select",
-   "label": "Request Type",
-   "options": "COM"
   },
   {
    "fieldname": "request_date",
@@ -223,7 +222,7 @@
   },
   {
    "fieldname": "address",
-   "fieldtype": "Data",
+   "fieldtype": "Small Text",
    "label": "Address"
   },
   {
@@ -284,7 +283,7 @@
   {
    "fieldname": "aci_number",
    "fieldtype": "Data",
-   "label": "ACI Number",
+   "label": "Aci Number",
    "unique": 1
   },
   {
@@ -314,12 +313,12 @@
   },
   {
    "fieldname": "applicants_title_format",
-   "fieldtype": "Data",
+   "fieldtype": "Small Text",
    "label": "Applicant's Title/Format"
   },
   {
    "fieldname": "statement_presenter",
-   "fieldtype": "Data",
+   "fieldtype": "Small Text",
    "label": "Statement Presenter"
   },
   {
@@ -339,7 +338,7 @@
   },
   {
    "fieldname": "previous_importer",
-   "fieldtype": "Data",
+   "fieldtype": "Small Text",
    "label": "Previous Importer"
   },
   {
@@ -419,17 +418,17 @@
   },
   {
    "fieldname": "warehouse_transport_storage",
-   "fieldtype": "Data",
+   "fieldtype": "Small Text",
    "label": "Warehouse - (Transport and Storage under Custody in Case of Regulatory Rejection)"
   },
   {
    "fieldname": "for_entity",
-   "fieldtype": "Data",
+   "fieldtype": "Small Text",
    "label": "For Entity"
   },
   {
    "fieldname": "inspection_description",
-   "fieldtype": "Data",
+   "fieldtype": "Small Text",
    "label": "Inspection Description"
   },
   {
@@ -486,13 +485,6 @@
    "fieldname": "declaration_stage",
    "fieldtype": "Data",
    "label": "Declaration Stage"
-  },
-  {
-   "default": "COM",
-   "fieldname": "request_type",
-   "fieldtype": "Select",
-   "label": "Request Type",
-   "options": "COM"
   },
   {
    "fieldname": "\u0627\u0644\u0645\u0624\u0634\u0631\u0627\u062a__\u0645\u062d\u062f\u062f\u0627\u062a_\u0627\u0644\u0625\u0642\u0631\u0627\u0631_tab",
@@ -804,7 +796,7 @@
   },
   {
    "fieldname": "address",
-   "fieldtype": "Data",
+   "fieldtype": "Small Text",
    "label": "Address"
   },
   {
@@ -830,7 +822,7 @@
   },
   {
    "fieldname": "shipment_description",
-   "fieldtype": "Data",
+   "fieldtype": "Small Text",
    "label": "Shipment Description"
   },
   {
@@ -845,7 +837,7 @@
   },
   {
    "fieldname": "bank_handling_the_transfer",
-   "fieldtype": "Data",
+   "fieldtype": "Small Text",
    "label": "Bank Handling the Transfer"
   },
   {
@@ -860,7 +852,7 @@
   },
   {
    "fieldname": "address_invoice",
-   "fieldtype": "Data",
+   "fieldtype": "Small Text",
    "label": "Address invoice"
   },
   {
@@ -891,14 +883,51 @@
    "fieldname": "release_number",
    "fieldtype": "Data",
    "label": "release_number"
+  },
+  {
+   "fieldname": "request_type",
+   "fieldtype": "Select",
+   "label": "request_type",
+   "options": "COM"
+  },
+  {
+   "fieldname": "presenter_name",
+   "fieldtype": "Data",
+   "label": "presenter_name"
+  },
+  {
+   "fieldname": "custom_complex",
+   "fieldtype": "Data",
+   "label": "custom_complex"
+  },
+  {
+   "default": "0",
+   "fieldname": "guided_goods_for_free_zone_guided",
+   "fieldtype": "Check",
+   "label": "guided_goods_for_free_zone_guided"
+  },
+  {
+   "fieldname": "arrived_date",
+   "fieldtype": "Date",
+   "label": "arrived_date"
+  },
+  {
+   "fieldname": "shipment_type_for",
+   "fieldtype": "Data",
+   "label": "shipment_type"
+  },
+  {
+   "fieldname": "order_type",
+   "fieldtype": "Data",
+   "label": "\u0646\u0648\u0639 \u0627\u0644\u0637\u0644\u0628"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-10-25 17:57:13.877930",
+ "modified": "2025-12-16 22:29:24.556251",
  "modified_by": "Administrator",
- "module": "nafeza",
+ "module": "Nafeza",
  "name": "shipment_requests",
  "naming_rule": "By fieldname",
  "owner": "Administrator",

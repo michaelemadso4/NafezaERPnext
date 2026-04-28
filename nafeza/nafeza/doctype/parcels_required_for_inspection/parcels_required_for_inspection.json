@@ -8,17 +8,17 @@
  "field_order": [
   "container_code",
   "customs_seal_for_containers",
-    "gross_weight",
-    "weight_unit",
-    "number_of_packages",
-    "package_unit",
-    "discharge_date",
-    "required_by_customs",
-    "required_by_inspection",
-    "required_by_safety_authority",
-    "required_for_xray_inspection",
-    "xray_inspection_result",
-    "general_description_of_goods"
+  "gross_weight",
+  "weight_unit",
+  "number_of_packages",
+  "package_unit",
+  "discharge_date",
+  "required_by_customs",
+  "required_by_inspection",
+  "required_by_safety_authority",
+  "required_for_xray_inspection",
+  "xray_inspection_result",
+  "general_description_of_goods"
  ],
  "fields": [
   {
@@ -26,27 +26,74 @@
    "fieldtype": "Data",
    "label": "Container Code"
   },
-  { "fieldname": "customs_seal_for_containers", "fieldtype": "Data", "label": "Customs Seal for Containers" },
-    { "fieldname": "gross_weight", "fieldtype": "Float", "label": "Gross Weight" },
-    { "fieldname": "weight_unit", "fieldtype": "Data", "label": "Weight Unit" },
-    { "fieldname": "number_of_packages", "fieldtype": "Int", "label": "Number of Packages" },
-    { "fieldname": "package_unit", "fieldtype": "Data", "label": "Package Unit" },
-    { "fieldname": "discharge_date", "fieldtype": "Date", "label": "Discharge Date" },
-    { "fieldname": "required_by_customs", "fieldtype": "Check", "label": "Required by Customs" },
-    { "fieldname": "required_by_inspection", "fieldtype": "Check", "label": "Required by Inspection" },
-    { "fieldname": "required_by_safety_authority", "fieldtype": "Check", "label": "Required by Safety Authority" },
-    { "fieldname": "required_for_xray_inspection", "fieldtype": "Check", "label": "Required for X-Ray Inspection" },
-    { "fieldname": "xray_inspection_result", "fieldtype": "Data", "label": "X-Ray Inspection Result" },
-    { "fieldname": "general_description_of_goods", "fieldtype": "Data", "label": "General Description of Goods" }
-
+  {
+   "fieldname": "customs_seal_for_containers",
+   "fieldtype": "Data",
+   "label": "Customs Seal for Containers"
+  },
+  {
+   "fieldname": "gross_weight",
+   "fieldtype": "Float",
+   "label": "Gross Weight"
+  },
+  {
+   "fieldname": "weight_unit",
+   "fieldtype": "Data",
+   "label": "Weight Unit"
+  },
+  {
+   "fieldname": "number_of_packages",
+   "fieldtype": "Int",
+   "label": "Number of Packages"
+  },
+  {
+   "fieldname": "package_unit",
+   "fieldtype": "Data",
+   "label": "Package Unit"
+  },
+  {
+   "fieldname": "discharge_date",
+   "fieldtype": "Date",
+   "label": "Discharge Date"
+  },
+  {
+   "fieldname": "required_by_customs",
+   "fieldtype": "Data",
+   "label": "Required by Customs"
+  },
+  {
+   "fieldname": "required_by_inspection",
+   "fieldtype": "Data",
+   "label": "Required by Inspection"
+  },
+  {
+   "fieldname": "required_by_safety_authority",
+   "fieldtype": "Data",
+   "label": "Required by Safety Authority"
+  },
+  {
+   "fieldname": "required_for_xray_inspection",
+   "fieldtype": "Data",
+   "label": "Required for X-Ray Inspection"
+  },
+  {
+   "fieldname": "xray_inspection_result",
+   "fieldtype": "Data",
+   "label": "X-Ray Inspection Result"
+  },
+  {
+   "fieldname": "general_description_of_goods",
+   "fieldtype": "Data",
+   "label": "General Description of Goods"
+  }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-10-25 02:16:44.850010",
+ "modified": "2025-11-07 14:19:43.732044",
  "modified_by": "Administrator",
- "module": "nafeza",
+ "module": "Nafeza",
  "name": "Parcels required for inspection",
  "owner": "Administrator",
  "permissions": [],
